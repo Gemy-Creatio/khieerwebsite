@@ -1,0 +1,65 @@
+{% load static %}
+<section class="header" >
+        <div class="container position-sticky z-index-sticky top-0">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+                    <div class="container-fluid">
+                        <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="{% url 'home-page' %}">
+                            <img src="{% static 'images/logos/logo.png' %}" class="logo_login" />
+                        </a>
+                        <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon mt-2">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </span>
+                        </button>
+                        <div class="collapse navbar-collapse ps" id="navigation">
+                            <ul class="navbar-nav mx-auto">
+                                                                        <li class="nav-item">
+                                    <a class="nav-link me-2" href="{% url 'home-page' %}">
+                                        <i class="fas fa-home opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                        الرئيسية
+                                    </a>
+                                </li>
+                                                                         <li class="nav-item">
+                                    <a class="nav-link me-2" href="{% url 'about-page' %}">
+                                        <i class="fas fa-building opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                        عن الوقف
+                                    </a>
+                                </li>
+                                                        <li class="nav-item">
+                                    <a class="nav-link me-2" href="{% url 'home-page' %}">
+                                        <i class="fas fa-file-signature opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                        إتضم معنا
+                                    </a>
+                                </li>
+                                           <li class="nav-item">
+                                    <a class="nav-link me-2" href="{% url 'home-page' %}">
+                                        <i class="fas fa-envelope-square opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                        فرص الدعم
+                                    </a>
+                                </li>
+                                     <li class="nav-item">
+                                    <a class="nav-link me-2" href="{% url 'home-page' %}">
+                                        <i class="fas fa-headset opacity-6 text-dark me-1" aria-hidden="true"></i>
+                                        المركز الأعلامى
+                                    </a>
+                                </li>
+                            </ul>
+                             <ul class="navbar-nav d-lg-block d-none">
+                                <li class="nav-item">
+                                    <a href="" class="btn btn-sm btn-round text-white mb-0 me-1 bg-maal">المتجر الألكترونى</a>
+                                </li>
+                            </ul>
+                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- End Navbar -->
+            </div>
+        </div>
+    </div>
+  </section>
+
