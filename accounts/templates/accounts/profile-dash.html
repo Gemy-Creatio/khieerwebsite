@@ -1,0 +1,55 @@
+{% extends 'dashmain.html' %}
+{% load static %}
+{% block title %}{{ request.user.first_name }} {% endblock title %}
+
+
+{% block body %}
+    <div class="main-content-inner">
+            <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="border-top pt-5 center">
+                        <div class="card">
+                            <div class="card-title">
+                                <center><img src="{% static 'images/logos/logo.png' %}" style="width: 9rem; height: 9vh;" /></center>
+                            </div>
+                            <center>
+                                <div class="card-body">
+                                    <p class="text-cursive h5 text-black ">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+                                    <hr/>
+                                    <h2 class="text-cursive h5 text-red  ">الهاتف</h2>
+                                    <p class="text-cursive h5 text-black ">{{ request.user.phone }}</p>
+                                    <hr/>
+                                    <h2 class="text-cursive h5 text-red  ">العنوان</h2>
+                                    <p class="text-cursive h5 text-black ">{{ request.user.address }}</p>
+                                    <hr/>
+                                    <h2 class="text-cursive h5 text-red  ">البريد الألكترونى </h2>
+                                    <p class="text-cursive h5 text-black ">{{ request.user.email }}</p>
+                                    <hr/>
+                                    <h2 class="text-cursive h5 text-red  ">المساهمه </h2>
+                                    {% if request.user.user_type == 1 %}
+                                        <p class="text-cursive h5 text-black "> مدير المؤسسه</p>
+                                    {% endif %}
+                                    {% if request.user.user_type == 2 %}
+                                        <p class="text-cursive h5 text-black ">مشرف أساسى</p>
+                                    {% endif %}
+                                    {% if request.user.user_type == 3 %}
+                                        <p class="text-cursive h5 text-black ">مشرف متعاون</p>
+                                    {% endif %}
+                                </div>
+                            </center>
+                            <div class="card-footer">
+                                <center>
+                                    <a class="btn btn-teal body-font text-white" href="#"> تغيير كلمة المرور</a>
+                                </center>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock body %}

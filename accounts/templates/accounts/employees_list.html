@@ -1,0 +1,61 @@
+{% extends 'dashmain.html' %}
+
+{% block title %}  المشرفين {% endblock title %}
+
+
+{% block body %}
+
+    <div class="main-content-inner" id="contact-section">
+        <div class="container">
+             <div class="row center">
+                  <div class="col-12 center">
+               <center>
+                        <h2 class="body-font text-blue"  style="font-size: 35px; font-weight: bold;">المشرفين</h2>
+                 <hr/>
+                    <p class="body-font text-green" style="font-size: 25px">طاقات و أرواح
+                        شبابية خلاقة
+                    </p>
+                   </center>
+                  </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 bg-home center">
+                <div class="col-lg bg-home mb-2 d-flex">
+                    <a href="{% url 'register-employee' %}" class="btn btn-teal text-white body-font">إضافة مشرف أساسى</a>
+                    <a href="{% url 'register-helper' %}" class="btn btn-teal text-white body-font">إضافة مشرف متعاون</a>
+
+                </div>
+<table class="table styled-table" style="width: 90%;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">الأسم </th>
+      <th scope="col"> البريد الألكترونى </th>
+      <th scope="col">الهاتف</th>
+
+    </tr>
+  </thead>
+  <tbody>
+ {% for emp in employees %}
+     <tr>
+      <th scope="row">{{ emp.pk }}</th>
+      <td>{{ emp.first_name }} {{ emp.last_name }}</td>
+      <td>{{ emp.email }}</td>
+      <td>{{ emp.phone }}</td>
+
+
+    </tr>
+
+  {% endfor %}
+
+  </tbody>
+</table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock body %}
+

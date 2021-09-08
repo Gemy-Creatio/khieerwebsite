@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'greenCircle',
     'hebakhieer',
+    'accounts',
     'main',
     'xhtml2pdf',
     'django_filters'
@@ -53,7 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'khieerwebsite.urls'
-
+AUTH_USER_MODEL = 'accounts.User'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -71,7 +72,6 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'khieerwebsite.wsgi.application'
 
 # Database
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'khieerwebsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
     }
 }
 
@@ -130,3 +130,7 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+API_ENDPOINT = 'https://secure.paytabs.sa/payment/request'
+PAYTAB_API_SERVERKEY = 'SKJNNWHTJT-J22NNW6TLL-KLLJT6TGN9'
+PAYTAB_API_CLIENTKEY = 'C7KMMK-VVRV6M-MQQVG7-G7Q2PV'
+PROFILE_KEY = 75985

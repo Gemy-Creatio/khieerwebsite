@@ -1,0 +1,183 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %} إنشاء حساب {% endblock title %}
+
+{% block content %}
+    <div class="ftco-blocks-cover-1">
+        <!-- data-stellar-background-ratio="0.5" style="background-image: url('images/hero_1.jpg')" -->
+        <div class="site-section-cover overlay" data-stellar-background-ratio="0.5"
+             style="background-image: url('../../../static/images/volunteer_banner.png')">
+            <div class="container">
+                <div class="row align-items-center ">
+
+                    <div class="col-md-5 mt-5 pt-5">
+                        <span class="text-cursive h5 body-font " style="color: #5DBD7E"> خير السعودية</span>
+                        <h1 class="mb-3 font-weight-bold body-font">تطوع معنا </h1>
+                        <p class="body-font"><a href="{% url 'home-page' %}" class="text-white">الرئيسية</a> <span
+                                class="mx-3">/</span> <strong>إنشاء حساب </strong></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="site-section bg-light">
+        <div class="container">
+            <div class="row center">
+                <div class="col-12 center">
+                    <center>
+                        <h2 class="body-font text-blue" style="font-size: 35px; font-weight: bold;">شارك فى الخير</h2>
+                        <p class="body-font text-black" style="font-weight: bold;">نيسر الخير لأهل الخير </p>
+                        <hr/>
+                    </center>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 mb-5">
+
+                    <form enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <div class="col-md-6 mb-4 mb-lg-0">
+                                <input type="text" name="first_name" class="form-control" placeholder="(الأسم الأول)">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="last_name" class="form-control" placeholder="(إسم العائله)">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-10">
+                                <input type="email" name="email" class="form-control"
+                                       placeholder="البريد الألكترونى">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="text" name="address" class="form-control" placeholder="العنوان">
+                            </div>
+
+                                                        <div class="col-md-6">
+                                <input type="number" name="phone" class="form-control" placeholder="رقم الجوال">
+                            </div>
+
+                        </div>
+
+                                                <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>تاريخ الميلاد</label>
+                                <input type="date" name="birthdate" class="form-control" placeholder="تاريخ الميلاد"/>
+
+                            </div>
+                                                                                <div class="col-md-6">
+                                <label>السيرة الذاتية</label>
+                                <input type="file" name="cv" accept=".doc,.docx,.pdf" class="form-control" placeholder="CV"/>
+
+                            </div>
+
+                            </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label>الهدف من التطوع</label>
+<textarea id="goals" name="goals" rows="8" class="form-control" cols="50" placeholder="الهدف من التطوع">
+
+</textarea>
+                            </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label>المهارات</label>
+<textarea id="skills" name="skills" class="form-control" rows="8" cols="50" placeholder="المهارات">
+
+</textarea>
+                                </div>
+
+                            </div>
+
+
+                                                  <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label for="gender">النوع</label>
+
+                                    <select class="form-control" name="gender" id="gender">
+                                        <option value="ذكر">ذكر</option>
+                                        <option value=" أنثى">أنثى </option>
+
+                                    </select>
+                                </div>
+
+                                                                                      <div class="col-md-4">
+                                    <label for="time">التفرغ</label>
+
+                                    <select class="form-control" name="time" id="time">
+                                        <option value="متفرغ">متفرغ</option>
+                                        <option value="غير متفرغ">غير متفرغ</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="study">المؤهل الدراسى</label>
+
+                                    <select class="form-control" name="study" id="study">
+                                        <option value="ثانوى">ثانوى</option>
+                                        <option value="متوسط">متوسط</option>
+                                        <option value="جامعى">جامعى</option>
+                                        <option value="دراسات عليا">دراسات عليا</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="filed">المجال الذى ترغب التطوع يه</label>
+
+                                    <select class="form-control" name="filed" id="filed">
+                                        <option value=">تصميم الجرافيك">تصميم الجرافيك</option>
+                                        <option value="تصميم الموشن الجرافيك">تصميم الموشن الجرافيك</option>
+                                        <option value="كتابة المحتوى">كتابة المحتوى</option>
+                                          <option value="التصوير الفوتوغرافى">التصوير الفوتوغرافى</option>
+                                        <option value="التقنية">التقنية</option>
+                                        <option value="الأعمال المكتبية">الأعمال المكتبية</option>
+                                        <option value="التسويق الألكترونى">التسويق الألكترونى</option>
+                                        <option value="تصوير الفيديو ">تصوير الفيديو </option>
+                                        <option value="التدريب ">التدريب  </option>
+                                                                              <option value="التنظيم والتنسيق ">التنظيم والتنسيق  </option>
+                                                                              <option value="المونتاج تحرير الأفلام  ">المونتاج تحرير الأفلام  </option>
+                                                                              <option value="التعليق الصوتى">التعليق الصوتى</option>
+
+                                        <option value="اخرى">اخرى</option>
+                                    </select>
+                                </div>
+
+                                                                <div class="col-md-6">
+                                    <label for="place">موقع التطوع</label>
+
+                                    <select class="form-control" name="place" id="place">
+                                        <option value="ميدانى">ميدانى</option>
+                                        <option value="عن بعد">عن بعد</option>
+                                        <option value="الأثنين معا">الأثنين معا</option>
+
+                                    </select>
+                                </div>
+
+
+                            </div>
+
+                            <center><input type="submit" class="btn  btn-teal btn-custom-1 body-font text-white"
+                                           value="طلب تطوع"></center>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

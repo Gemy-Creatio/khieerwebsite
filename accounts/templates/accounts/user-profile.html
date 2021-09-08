@@ -1,0 +1,275 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}   {{ request.user.first_name }} {% endblock title %}
+
+
+
+{% block content %}
+    <div class="ftco-blocks-cover-1">
+        <!-- data-stellar-background-ratio="0.5" style="background-image: url('images/hero_1.jpg')" -->
+        <div class="site-section-cover overlay" data-stellar-background-ratio="0.5"
+             style="background-image: url('../../../static/images/kheer_inner.jpg')">
+            <div class="container">
+                <div class="row align-items-center ">
+
+                    <div class="col-md-5 mt-5 pt-5">
+                        <span class="text-cursive h5 " style="color: #5DBD7E"> خير السعوديه</span>
+                        <h1 class="mb-3 font-weight-bold body-font">الصفحه الشخصيه</h1>
+                        <p><a href="{% url 'home-page' %}" class="text-white">الرئيسيه</a> <span class="mx-3">/</span>
+                            <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="border-top pt-5 center">
+                        <div class="card">
+                            <div class="card-title">
+                                <center><img src="{% static 'images/logo.png' %}"/></center>
+                            </div>
+                            <center>
+                                <div class="card-body">
+                                    <p class="text-cursive h5 text-black ">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+                                    <hr/>
+                                    <h2 class="text-cursive h5 text-red  ">الهاتف</h2>
+                                    <p class="text-cursive h5 text-black ">{{ request.user.phone }}</p>
+                                    <hr/>
+                                    <h2 class="text-cursive h5 text-red  ">العنوان</h2>
+                                    <p class="text-cursive h5 text-black ">{{ request.user.address }}</p>
+                                    <hr/>
+                                    {% if request.user.user_type == 7 %}
+                                        <h2 class="text-cursive h5 text-red  ">المهنه</h2>
+                                        <p class="text-cursive h5 text-black ">{{ profile.job }}</p>
+                                        <hr/>
+                                        <h2 class="text-cursive h5 text-red  ">التخصص</h2>
+                                        <p class="text-cursive h5 text-black ">{{ profile.desc }}</p>
+                                    {% endif %}
+                                    <hr/>
+                                    <h2 class="text-cursive h5 text-red  ">البريد الألكترونى </h2>
+                                    <p class="text-cursive h5 text-black ">{{ request.user.email }}</p>
+                                    <hr/>
+                                    <h2 class="text-cursive h5 text-red  ">المساهمه </h2>
+                                    {% if request.user.user_type == 1 %}
+                                        <p class="text-cursive h5 text-black "> مدير المؤسسه</p>
+                                    {% endif %}
+                                    {% if request.user.user_type == 2 %}
+                                        <p class="text-cursive h5 text-black ">مشرف جمعيه رئيسيه</p>
+                                    {% endif %}
+                                    {% if request.user.user_type == 3 %}
+                                        <p class="text-cursive h5 text-black ">مشرف جمعيه تنمويه</p>
+                                    {% endif %}
+                                    {% if request.user.user_type == 4 %}
+                                        <p class="text-cursive h5 text-black ">مشرف متعاون</p>
+                                    {% endif %}{% if request.user.user_type == 5 %}
+                                    <p class="text-cursive h5 text-black ">مستفيد</p>
+                                {% endif %}{% if request.user.user_type == 6 %}
+                                    <p class="text-cursive h5 text-black ">متبرع</p>
+                                {% endif %}{% if request.user.user_type == 7 %}
+                                    <p class="text-cursive h5 text-black ">متطوع</p>
+                                {% endif %}
+                                </div>
+                            </center>
+                            <div class="card-footer">
+                                <center>
+                                    <a class="btn btn-teal text-white" href="#"> تغيير كلمة المرور</a>
+                                </center>
+                                <br/>
+                                <center>
+                                    <a class="btn btn-teal text-white" href="{% url 'edit-info' request.user.pk %}"> تعديل بيانات</a>
+                                </center>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% if request.user.user_type == 5 or request.user.user_type == 6 %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card center">
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <input id="national_id" name="national_id" type="number"
+                                                   class="form-control"
+                                                   placeholder="إدخل رقم الهويه">
+                                        </div>
+                                        <div class="form-group row">
+
+                                            <div class="col-12">
+                                                <center><input type="submit" id="btn_id" value="متابعه" name="btn_id"
+                                                               class="btn btn-teal text-cursive text-white"></center>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="border-top pt-5 center">
+                            <div class="card">
+                                <div class="card-title">
+                                    <center><p style="font-size: larger;" class="text-cursive text-green"><i
+                                            class="fa fa-envelope-open text-green" aria-hidden="true"></i></p></center>
+                                </div>
+                                <center>
+                                    <div class="card-body" id="info_body">
+
+
+                                    </div>
+                                    <hr/>
+                                    <div class="card-body" id="bags_body">
+
+                                    </div>
+                                </center>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+{% endblock content %}
+
+
+{% block javascript %}
+    <script>
+        var id =
+        {{ request.user.pk }}
+        var needy = [];
+        var course = [];
+        var user_type =
+        {{ request.user.user_type }}
+        var found = [];
+        var payment = [];
+        var user;
+        var bags = [];
+        $(() => {
+
+            $("#btn_id").on('click', event => {
+                event.preventDefault();
+                $.ajax({
+                    method: 'POST',
+                    url: '{% url 'noti' %}',
+                    data: {
+                        'national_id': $('#national_id').val(),
+                        'user_id': id,
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success: function (data) {
+                        if (user_type === 5) {
+                            needy = JSON.parse(data.needy)
+                            console.log(needy);
+                            $("#info_body").empty();
+                            needy.map((need) => {
+                                $("#info_body").append(`
+<h2 class="text-cursive h5 text-red  " >مصدر الدخل</h2>
+                                       <p class="text-cursive h5 text-black " >${need.fields.source_income}</p>
+                                       <hr/>
+  <h2 class="text-cursive h5 text-red  " >نوع الدعم</h2>
+                                       <p class="text-cursive h5 text-black " >${need.fields.support}</p>
+                                       <hr/>
+  <h2 class="text-cursive h5 text-red  " >إجمالى التبرعات</h2>
+                                       <p class="text-cursive h5 text-black " >${need.fields.total_donations}</p>
+                                       <hr/>
+                                       <hr/>
+                                  `)
+                                bags = bags = JSON.parse(data.bags)
+                                $("#bags_body").empty();
+                                bags.map((value) => {
+                                    $("#bags_body").append(`
+                                                 <h2 class="text-cursive h5 text-red  " >اسم المنحه</h2>
+                                       <p class="text-cursive h5 text-black " >${value.fields.name}</p>
+                                       <hr/>
+  <h2 class="text-cursive h5 text-red  " >الوصف</h2>
+                                       <p class="text-cursive h5 text-black " >${value.fields.description}</p>
+                                       <hr/>
+            <h2 class="text-cursive h5 text-red  " >المسار</h2>
+                                       <p class="text-cursive h5 text-black " >${value.fields.link}</p>
+                                    `);
+                                })
+
+                            });
+                            if (parseInt(needy[0].fields.enablity) === 1) {
+                                course = JSON.parse(data.courses)
+                                bags = JSON.parse(data.bags)
+                                $("#bags_body").empty();
+                                bags.map((value) => {
+                                    $("#bags_body").append(`
+                                                 <h2 class="text-cursive h5 text-red  " >اسم المنحه</h2>
+                                       <p class="text-cursive h5 text-black " >${value.fields.name}</p>
+                                       <hr/>
+  <h2 class="text-cursive h5 text-red  " >الوصف</h2>
+                                       <p class="text-cursive h5 text-black " >${value.fields.description}</p>
+                                       <hr/>
+            <h2 class="text-cursive h5 text-red  " >المسار</h2>
+                                       <p class="text-cursive h5 text-black " >${value.fields.link}</p>
+                                    `);
+                                });
+                                console.log(course);
+                                course.map((value) => {
+                                    $("#info_body").append(`
+       <h2 class="text-cursive h5 text-red  " ><i class="fa fa-laptop" > </i> دورارت التكمين</h2>
+                                       <p class="text-cursive h5 text-black " >بالتعاون مع مؤسسات داخل المملكه</p>
+   <hr/>
+  <h2 class="text-cursive h5 text-red  " ><i class="fa fa-phone" aria-hidden="true"></i> تواصل معنا لمعرفة المزيد</h2>
+                                    <a href="{% url 'contact-page' %}" class="btn btn-teal body-font"> تواصل معنا</a>
+                                    <hr/>
+                                       <h2 class="text-cursive h5 text-red  " >اسم المنحه</h2>
+                                       <p class="text-cursive h5 text-black " >${value.fields.name}</p>
+                                       <hr/>
+  <h2 class="text-cursive h5 text-red  " >الوصف</h2>
+                                       <p class="text-cursive h5 text-black " >${value.fields.description}</p>
+                                       <hr/>
+                                       `);
+
+                                });
+                            }
+                        } else if (parseInt(user_type) === 6) {
+                            payment = JSON.parse(data.payment);
+                            console.log(payment)
+                            $("#info_body").empty();
+                            payment.map(pay => {
+                                $("#info_body").append(`
+                                <h2 class="text-cursive h5 text-red  " >تبرع بمبلغ</h2>
+                                       <p class="text-cursive h5 text-black " >${pay.fields.ammount}</p>
+                                       <hr/>
+                                       <hr/>
+                                `);
+                            });
+                        } else if (parseInt(user_type) === 7) {
+                            user = JSON.parse(data.user);
+                            console.log(found);
+                        } else {
+                            found = JSON.parse(data.found)
+                            console.log(found);
+                        }
+                    },
+                    error: function (error) {
+                        alert(error.responseText)
+                    }
+                });
+
+            });
+
+        });
+    </script>
+
+{% endblock javascript %}

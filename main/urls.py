@@ -8,5 +8,8 @@ urlpatterns = [
     path('roaya', views.roaya_page, name='roaya-page'),
     path('khieer30', views.khieer30_page, name='khieer30-page'),
     path('staff', views.staff_page, name='staff-page'),
+    path('paramg', views.paramg_page, name='paramg-page'),
+    path('autoservices', views.autoservices, name='auto-page'),
+    path('support', views.tech_support, name='tech-page'),
 
 ]

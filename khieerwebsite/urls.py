@@ -23,6 +23,7 @@ from khieerwebsite import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+    path('user/', include('accounts.urls')),
     path('hebakhieer/', include('hebakhieer.urls')),
 
 ]

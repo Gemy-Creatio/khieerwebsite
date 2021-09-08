@@ -20737,7 +20737,7 @@ hr.horizontal.gray-light {
 
 .navbar.navbar-transparent .nav-link:hover,
 .navbar.navbar-transparent .nav-link:focus {
-  color: rgba(255, 255, 255, 0.75);
+  color: #5DBD7E;
 }
 
 .navbar.navbar-transparent .navbar-toggler .navbar-toggler-icon .navbar-toggler-bar {
