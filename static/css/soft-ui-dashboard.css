@@ -20729,10 +20729,10 @@ hr.horizontal.gray-light {
   width: 100%;
   z-index: 1;
 }
-
+/*gemy*/
 .navbar.navbar-transparent .nav-link,
 .navbar.navbar-transparent .nav-link i {
-  color: #fff;
+  color: #040404;
 }
 
 .navbar.navbar-transparent .nav-link:hover,
@@ -20741,7 +20741,7 @@ hr.horizontal.gray-light {
 }
 
 .navbar.navbar-transparent .navbar-toggler .navbar-toggler-icon .navbar-toggler-bar {
-  background: #fff;
+  background: #5DBD7E;
 }
 
 .navbar.navbar-transparent .navbar-collapse {
