@@ -1,0 +1,84 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %} الدائرة الخضراء {% endblock title %}
+
+{% block body %}
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../../static/images/green_banner.png');">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto pt-lg-5">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+        <div class="col-xl-8 col-lg-7 col-md-7 mx-auto">
+          <div class="card z-index-0">
+            <div class="card-header text-center pt-4">
+              <h5 class="blue-khieer">خير السعودية</h5>
+            </div>
+            <div class="card-body">
+                        <div class="row">
+                        <div class="col-lg-6 pt-lg-3">
+                            <div class="d-flex flex-column h-100">
+                                <h3 class="mb-1 pt-2 green-khieer text-bold">الدائرة الخضراء</h3>
+                                <p class="blue-khieer">
+                          منتج الدائرة الخضراء هو أحد أهم منتجات مؤسسة بلد الخير الوقفية لتكوين مجموعات فى دائرة و هى ترمز للنمو و التماسك و التعاضد و تقدم العديد من الخدمات القيمة و المبتكرة و التى تهدف إلى العمل على نمو وعى أعضاء الدائرة
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+                            <div class="border-radius-lg h-100">
+                                <div class="position-relative d-flex align-items-center justify-content-center h-100">
+                                    <img class="w-100 position-relative z-index-2 pt-4"
+                                         src="{% static 'images/green_icon.png' %}" alt="rocket">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-3">
+     {% for cat in cats %}
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <a href="{% url 'login' %}" style="cursor: pointer; text-decoration: none">
+              <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">{{ cat.name }}</p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape shadow text-center border-radius-md">
+                        {% if cat.pk == 1 %}
+                      <img src="{% static 'images/wa3y.jpeg' %}" style="width: 4.5rem" class="logo_user"/>
+                      {% elif cat.pk == 2 %}
+                                                  <img src="{% static 'images/skills.jpeg' %}" style="width: 4.5rem" class="logo_user"/>
+
+                     {% else %}
+                                                  <img src="{% static 'images/khsomat.jpeg' %}" style="width: 4.5rem" class="logo_user"/>
+
+                  {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </a>
+        </div>
+    {% endfor %}
+
+      </div>
+
+    </div>
+  </section>
+
+
+{% endblock body %}
