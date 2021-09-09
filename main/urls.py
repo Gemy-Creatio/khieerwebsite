@@ -11,5 +11,6 @@ urlpatterns = [
     path('paramg', views.paramg_page, name='paramg-page'),
     path('autoservices', views.autoservices, name='auto-page'),
     path('support', views.tech_support, name='tech-page'),
+    path('mediaCenter', views.media_center, name='media-page'),
 
 ]

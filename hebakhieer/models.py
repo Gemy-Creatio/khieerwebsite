@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+
 class Volunteer(models.Model):
     email = models.EmailField(
         verbose_name=_('email address'), max_length=255, unique=True

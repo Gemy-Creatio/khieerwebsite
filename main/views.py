@@ -58,3 +58,7 @@ def tech_support(request):
         else:
             redirect('tech-page')
     return render(request, 'main/tech-support.html')
+
+
+def media_center(request):
+    return render(request, 'main/mediaCenter.html')

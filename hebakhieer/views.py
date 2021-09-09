@@ -1,14 +1,45 @@
 import json
 
 import requests
+from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect
 
 from khieerwebsite.settings import PROFILE_KEY, PAYTAB_API_SERVERKEY, API_ENDPOINT
-from .models import HebaKheer
+from .models import HebaKheer, Volunteer
 
 
 # Create your views here.
-
+def register_volunteer(request):
+    if request.method == 'POST' and request.FILES['cv']:
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        filed = request.POST.get('filed')
+        study = request.POST.get('study')
+        goals = request.POST.get('goals')
+        bithdate = request.POST.get('bithdate')
+        skills = request.POST.get('skills')
+        time = request.POST.get('time')
+        place = request.POST.get('place')
+        cv = request.FILES['cv']
+        gender = request.POST.get('gender')
+        fs = FileSystemStorage()
+        fs.save(cv.name, cv)
+        job = request.POST.get('job')
+        desc = request.POST.get('specific')
+        vol_profile = Volunteer(job=job, phone=phone, address=address, desc=desc, first_name=first_name, email=email,
+                                gender=gender, birthdate=bithdate,
+                                time=time, place=place, cv=cv, skills=skills, study=study, goals=goals,
+                                filed=filed, last_name=last_name)
+        vol_profile.save()
+        if vol_profile is not None:
+            return redirect('home-page')
+        else:
+            redirect('reg-vol')
+    context = {}
+    return render(request, 'hebakhieer/volunteer-user.html', context)
 
 def heba_khieer(request):
     if request.method == 'GET':
