@@ -38,9 +38,9 @@
                       </p>
                       <div class="d-flex align-items-center justify-content-between">
                           {% if course.is_past_due %}
-                        <a href="" class="btn btn-sm btn-round align-self-center disabled text-white mb-0 me-1 bg-maal">الأشتراك</a>
+                        <a href="{% url 'green-add-user' course.pk %}" class="btn btn-sm btn-round align-self-center disabled text-white mb-0 me-1 bg-maal">الأشتراك</a>
                           {% else %}
-                              <a href="" class="btn btn-sm btn-round align-self-center text-white mb-0 me-1 bg-maal">الأشتراك</a>
+                              <a href="{% url 'green-add-user' course.pk %}" class="btn btn-sm btn-round align-self-center text-white mb-0 me-1 bg-maal">الأشتراك</a>
                           {% endif %}
                         <div class="avatar-group mt-2">
                           <a href="{% url 'green-trainer' course.pk %}" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="{{ course.trainer.first_name }}">

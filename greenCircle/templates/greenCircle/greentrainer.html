@@ -46,7 +46,7 @@
             <div class="row pt-3">
                 {% for course in trainer.course_set.all %}
                                     <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-         <a href="" style="cursor: pointer; text-decoration: none">
+         <a href="{% url 'green-add-user' course.pk %}" style="cursor: pointer; text-decoration: none">
               <div class="card">
             <div class="card-body p-3">
               <div class="row">
