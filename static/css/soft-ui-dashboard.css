@@ -24972,4 +24972,10 @@ pre[class*="language-"] {
   }
 }
 
+.background_circle {
+    background-image: url("../images/end_pay.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 /*# sourceMappingURL=dashboard-free.css.map */

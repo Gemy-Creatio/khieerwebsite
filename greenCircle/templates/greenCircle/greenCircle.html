@@ -46,7 +46,11 @@
       <div class="row pt-3">
      {% for cat in cats %}
         <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <a href="{% url 'login' %}" style="cursor: pointer; text-decoration: none">
+         {% if request.user.first_name %}
+         <a href="{% url 'green-courses' cat.pk %}" style="cursor: pointer; text-decoration: none">
+             {% else %}
+         <a href="{% url 'login' %}" style="cursor: pointer; text-decoration: none">
+        {% endif %}
               <div class="card">
             <div class="card-body p-3">
               <div class="row">

@@ -1,0 +1,63 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %} الدائرة الخضراء {% endblock title %}
+
+{% block body %}
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../../static/images/green_banner.png');">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto pt-lg-5">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n8 mt-md-n8 mt-n8">
+   {% for course in courses %}
+                  <div class="col-xl-4 col-lg-4 col-md-6 mx-auto">
+<div class="card h-auto" style="border-top-color: #2D6D93; border-top: 6px solid">
+                    <div class="position-relative">
+                      <a class="d-block border-radius-xl">
+                       {% if course.is_past_due %}
+                            <img src="{% static 'images/end_course.png' %}" alt="img-blur-shadow" class="img-fluid opacity-2 shadow border-radius-xl">
+                          {% else %}
+                            <img src="{{ course.logo.url }}" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
+                          {% endif %}
+                      </a>
+                    </div>
+                    <div class="card-body px-1 pb-0">
+                      <p class="green-khieer text-dark mb-2 text-sm">{{ course.name }}</p>
+                      <a href="{% url 'green-trainer' course.pk %}">
+                        <h5 class="blue-khieer">
+                         {{ course.trainer.first_name }}  {{ course.trainer.last_name }}
+                        </h5>
+                      </a>
+                      <p class="mb-4 text-sm">
+                        {{ course.description }}
+                      </p>
+                      <div class="d-flex align-items-center justify-content-between">
+                          {% if course.is_past_due %}
+                        <a href="" class="btn btn-sm btn-round align-self-center disabled text-white mb-0 me-1 bg-maal">الأشتراك</a>
+                          {% else %}
+                              <a href="" class="btn btn-sm btn-round align-self-center text-white mb-0 me-1 bg-maal">الأشتراك</a>
+                          {% endif %}
+                        <div class="avatar-group mt-2">
+                          <a href="{% url 'green-trainer' course.pk %}" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="{{ course.trainer.first_name }}">
+                            <img alt="Image placeholder" src="{{ course.trainer.image.url}}">
+                          </a>
+                            
+                        </div>
+                      </div>
+                    </div>
+                  </div>        </div>
+
+
+          {% endfor %}
+      </div>
+
+    </div>
+  </section>
+
+
+{% endblock body %}
