@@ -44,7 +44,7 @@ class Course(models.Model):
     start_date = models.DateField(verbose_name="تاريخ البدايه", null=True, auto_now=False, auto_now_add=False)
     end_date = models.DateField(verbose_name="تاريخ النهايه", null=True, auto_now=False, auto_now_add=False, )
     total_hours = models.IntegerField(null=True, blank=True, verbose_name='عدد الساعات')
-    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE, verbose_name='المدرب')
+    trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE, related_name='courses', verbose_name='المدرب')
 
     @property
     def is_past_due(self):
@@ -60,7 +60,7 @@ class CourseRequest(models.Model):
         verbose_name=_('email address'), max_length=255
     )
     phone = models.CharField(max_length=255, null=True, blank=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, related_name='Requests')
 
     def __str__(self):
         return self.name
