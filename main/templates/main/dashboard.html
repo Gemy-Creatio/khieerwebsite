@@ -1,6 +1,6 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %} تسجيل الدخول {% endblock title %}
+{% block title %} لوحة التحكم {% endblock title %}
 
 {% block body %}
 <section class="min-vh-85 mb-8">
@@ -148,7 +148,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-7 pt-3">
           <div class="card z-index-0 h-100">
             <div class="card-header pb-0 p-3">
-              <h6 class="mb-0">أكثر الدوائر الخضراء من حيث عدد الساعات
+              <h6 class="mb-0">أكثر الواهبين من حيث التبرع
               </h6>
             </div>
             <div class="card-body justify-content-center p-3">
@@ -180,7 +180,7 @@
           backgroundColor: [
             '#5DBD7E', '#2D6D93', '#5DBD7E', '#2D6D93', '#5DBD7E'
           ],
-          label: 'أكثر الدوائر الخضراء من حيث عدد الساعات '
+          label: 'أكثر الواهبين من حيث التبرع '
         }],
         labels: {{ durlabels|safe }}
       },

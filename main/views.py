@@ -76,13 +76,13 @@ def dashboard(request):
     durationlabels = []
     durationdata = []
     hebs = HebaKheer.objects.order_by('-ammount')[:5]
-    durations = Course.objects.order_by('-duration')[:5]
+    durations = HebaKheer.objects.order_by('-ammount')[:5]
     for heba in hebs:
         hebalabels.append(heba.name)
         hebadata.append(heba.ammount)
     for dur in durations:
         durationlabels.append(dur.name)
-        durationdata.append(dur.duration)
+        durationdata.append(dur.ammount)
     trainers = Trainer.objects.order_by('-courses')[:5]
     for trainer in trainers:
         trainerlabels.append(trainer.first_name)
