@@ -13,7 +13,7 @@ def greenCircleCourses(request, pk):
 
 
 def green_trainer_details(request, pk):
-    context = {"trainer": Trainer.objects.get(course=pk)}
+    context = {"trainer": Trainer.objects.get(courses=pk)}
     return render(request, 'greenCircle/greentrainer.html', context=context)
 
 

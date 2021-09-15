@@ -3,7 +3,7 @@ import json
 import requests
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect
-
+from accounts.models import User
 from khieerwebsite.settings import PROFILE_KEY, PAYTAB_API_SERVERKEY, API_ENDPOINT
 from .models import HebaKheer, Volunteer
 
@@ -41,6 +41,7 @@ def register_volunteer(request):
     context = {}
     return render(request, 'hebakhieer/volunteer-user.html', context)
 
+
 def heba_khieer(request):
     if request.method == 'GET':
         return render(request, 'hebakhieer/hebakhieer.html')
@@ -71,3 +72,14 @@ def heba_khieer(request):
         content = json.loads(data)
         heba_obj.save()
         return redirect(content['redirect_url'])
+
+
+def dash_options(request):
+    return render(request, 'hebakhieer/dash-options.html')
+
+
+def dash_emps(request):
+    context = {
+        "emps": User.objects.exclude(user_type=1)
+    }
+    return render(request, 'hebakhieer/dash-emps.html', context=context)
