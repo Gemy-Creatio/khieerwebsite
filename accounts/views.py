@@ -56,7 +56,7 @@ def register_secondary_empolyee(request):
                                                      address=address, password=password, phone=phone)
         if user is not None:
             login(request, user)
-            return redirect('home-page')
+            return redirect('dash-emps')
     context = {}
     return render(request, 'accounts/register-employee.html', context)
 
@@ -73,7 +73,7 @@ def register_helper_employee(request):
                                                   address=address, password=password, phone=phone)
         if user is not None:
             login(request, user)
-            return redirect('home-page')
+            return redirect('dash-emps')
     context = {}
     return render(request, 'accounts/register-helper-employee.html', context)
 

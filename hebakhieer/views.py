@@ -83,3 +83,10 @@ def dash_emps(request):
         "emps": User.objects.exclude(user_type=1)
     }
     return render(request, 'hebakhieer/dash-emps.html', context=context)
+
+
+def dash_heba(request):
+    context = {
+        "hebas": HebaKheer.objects.all()
+    }
+    return render(request, 'hebakhieer/heba-dash.html', context=context)
