@@ -90,3 +90,10 @@ def dash_heba(request):
         "hebas": HebaKheer.objects.all()
     }
     return render(request, 'hebakhieer/heba-dash.html', context=context)
+
+
+def dash_volunteer(request):
+    context = {
+        "vols": Volunteer.objects.all()
+    }
+    return render(request, 'greenCircle/all-volunteers.html', context=context)

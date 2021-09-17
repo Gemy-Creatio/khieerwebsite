@@ -1,10 +1,10 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %} هبة الخير  {% endblock title %}
+{% block title %} المتطوعين {% endblock title %}
 
 {% block body %}
 <section class="min-vh-85 mb-8">
-    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../../static/images/takafel.png');">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../../static/images/volunteer.png');">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-5 text-center mx-auto pt-lg-5">
@@ -85,7 +85,7 @@
           <div class="card-header pb-0 p-3">
                   <div class="row">
                     <div class="col-4 d-flex align-items-center">
-                      <h6 class="mb-0">هبات الخير</h6>
+                      <h6 class="mb-0">المتطوعين</h6>
                     </div>
                   </div>
                 </div>
@@ -98,17 +98,22 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الهاتف</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">العنوان</th>
 
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">مبلغ الهبة</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الوظيفة</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">وقت التفرغ</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">المهارات </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الدراسة </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">السيرة الذاتية </th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                             {% for item in hebas %}
+                             {% for item in vols %}
                               <tr>
                                         <td>
                                             <div class="d-flex px-2 py-1">
 
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">{{ item.name }} </h6>
+                                                    <h6 class="mb-0 text-sm">{{ item.first_name }} {{ item.last_name }} </h6>
                                                 </div>
                                             </div>
                                         </td>
@@ -121,8 +126,25 @@
                                         </td>
 
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ item.ammount }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ item.job }}</p>
 
+                                        </td>
+                                <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ item.time }}</p>
+
+                                        </td>
+                                  <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ item.skills }}</p>
+
+                                        </td>
+                                  <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ item.study }}</p>
+
+                                        </td>
+                                  <td>
+                                       <a href="{{ item.cv.url }}">
+                                           <i class="far fa-id-card green-khieer">السيرة الذاتية</i>
+                                       </a>
                                         </td>
                                     </tr>
                                {% endfor %}

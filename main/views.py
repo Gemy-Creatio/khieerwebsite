@@ -1,8 +1,14 @@
-from django.shortcuts import render, redirect
+from datetime import datetime
 
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.template.loader import get_template
+from django.views import View
+from accounts.models import User
+from khieerwebsite.utils import render_to_pdf
 from main.models import Contact, TechnicalSupport
 from greenCircle.models import Course, Trainer
-from hebakhieer.models import HebaKheer
+from hebakhieer.models import HebaKheer, Volunteer
 
 
 def home_page(request):
@@ -102,3 +108,85 @@ def dashboard(request):
         'durdata': durationdata,
     }
     return render(request, 'main/dashboard.html', context=context)
+
+
+class VolunteerAllReport(View):
+    def get(self, request, *args, **kwargs):
+        template = get_template('volunteer-all-pdf.html')
+        needyinshow = Volunteer.objects.all()
+        user_obj = User.objects.get(pk=request.user.pk)
+        context = {
+            "company": "خير السعوديه",
+            "user": user_obj,
+            "vols": needyinshow,
+            "topic": "المتقدمين للتطوع ",
+            "today": datetime.today().strftime('%Y-%m-%d'),
+        }
+        html = template.render(context)
+        pdf = render_to_pdf('volunteer-all-pdf.html', context)
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Invoice_%s.pdf" % ("12341231")
+            content = "inline; filename='%s'" % (filename)
+            download = request.GET.get("download")
+            if download:
+                content = "attachment; filename='%s'" % (filename)
+            response['Content-Disposition'] = content
+            return response
+        return HttpResponse("Not found")
+
+
+def reports(request):
+    return render(request, 'main/reports.html')
+
+
+class HebaAllReport(View):
+    def get(self, request, *args, **kwargs):
+        template = get_template('heba-all-pdf.html')
+        needyinshow = HebaKheer.objects.all()
+        user_obj = User.objects.get(pk=request.user.pk)
+        context = {
+            "company": "خير السعوديه",
+            "user": user_obj,
+            "hebas": needyinshow,
+            "topic": "هبات الخير ",
+            "today": datetime.today().strftime('%Y-%m-%d'),
+        }
+        html = template.render(context)
+        pdf = render_to_pdf('heba-all-pdf.html', context)
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Invoice_%s.pdf" % ("12341231")
+            content = "inline; filename='%s'" % (filename)
+            download = request.GET.get("download")
+            if download:
+                content = "attachment; filename='%s'" % (filename)
+            response['Content-Disposition'] = content
+            return response
+        return HttpResponse("Not found")
+
+
+class CourseAllReport(View):
+    def get(self, request, *args, **kwargs):
+        template = get_template('course-all-pdf.html')
+        needyinshow = Course.objects.all()
+        user_obj = User.objects.get(pk=request.user.pk)
+        context = {
+            "company": "خير السعوديه",
+            "user": user_obj,
+            "courses": needyinshow,
+            "topic": "الحقائب الخضراء ",
+            "today": datetime.today().strftime('%Y-%m-%d'),
+        }
+        html = template.render(context)
+        pdf = render_to_pdf('course-all-pdf.html', context)
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Invoice_%s.pdf" % ("12341231")
+            content = "inline; filename='%s'" % (filename)
+            download = request.GET.get("download")
+            if download:
+                content = "attachment; filename='%s'" % (filename)
+            response['Content-Disposition'] = content
+            return response
+        return HttpResponse("Not found")
