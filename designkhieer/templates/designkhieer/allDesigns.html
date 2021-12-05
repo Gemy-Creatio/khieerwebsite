@@ -1,0 +1,87 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %}  تصاميم الخير {% endblock title %}
+
+
+{% block body %}
+<section class="min-vh-85 mb-8">
+  <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../../static/images/tamkeen_new.png');">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 text-center mx-auto pt-lg-5">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+      <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <div class="card z-index-0">
+          <div class="card-header text-center pt-4">
+            <h5 class="green-khieer">خير السعودية</h5>
+               <p class="text-lead" style="color: #040404; padding-right: 1.7rem">طاقات و أرواح
+                      شبابية خلاقة</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="pt-3 row">
+                  <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                    <div class="card z-index-0">
+                      <div class="card-header text-center pt-4">
+                        <h5 class="green-khieer">تصاميم الخير</h5>
+                        <div class="text-center">
+                          <a href="{% url 'add-design' %}" class="btn btn-primary bg-maal text-white body-font">إضافة تصميم </a>    
+                        </div>
+                      </div>
+                      <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table align-items-center">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">الأسم </th>
+                              <th scope="col"> الصورة  </th>
+                        
+                            </tr>
+                          </thead>
+                          <tbody>
+                         {% for item in data %}
+                             <tr>
+                              <th scope="row" class="text-center">{{ item.pk }}</th>
+                              <td>{{ item.name }}</td>
+                              <td>
+                                  <div class="text-center d-flex justify-content-center">
+                                        <img src="{{item.image.url}}" class="image_design" />
+                                  </div>
+                              </td>
+                        
+                        
+                        
+                            </tr>
+                        
+                          {% endfor %}
+                        
+                          </tbody>
+                          </table>
+
+                      </div>
+                      </div>
+                    </div>     
+    
+      </div>
+     
+      </div>
+      
+     
+
+  </div>
+</section>
+  
+
+
+
+{% endblock body %}
+
+
+  

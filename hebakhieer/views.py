@@ -19,7 +19,7 @@ def register_volunteer(request):
         filed = request.POST.get('filed')
         study = request.POST.get('study')
         goals = request.POST.get('goals')
-        bithdate = request.POST.get('bithdate')
+        bithdate = request.POST.get('birthdate')
         skills = request.POST.get('skills')
         time = request.POST.get('time')
         place = request.POST.get('place')

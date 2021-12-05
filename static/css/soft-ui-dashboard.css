@@ -8,6 +8,28 @@
     width: 100%;
     background-color: transparent;
 }
+.image_design{
+  width:6rem;
+  height:15vh;
+}
+#frame {
+  position: relative;
+
+    width: 597px;
+    height: 600px;
+  background-image: url('../images/shirt.png');
+  background-position: center;
+  background-size: cover; }
+
+#myImg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  display: block;
+  margin: auto; }
 :root {
     --bs-blue: #63B3ED;
     --bs-indigo: #596CFF;

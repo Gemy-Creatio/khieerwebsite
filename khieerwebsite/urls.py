@@ -26,6 +26,7 @@ urlpatterns = [
     path('user/', include('accounts.urls')),
     path('hebakhieer/', include('hebakhieer.urls')),
     path('greencircle/', include('greenCircle.urls')),
+    path('designs/', include('designkhieer.urls')),
 
 ]
 

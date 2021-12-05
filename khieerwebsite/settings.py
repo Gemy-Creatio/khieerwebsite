@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'hebakhieer',
     'accounts',
     'main',
+    'designkhieer',
     'xhtml2pdf',
     'django_filters'
 ]
