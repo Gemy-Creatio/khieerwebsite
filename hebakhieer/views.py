@@ -97,3 +97,12 @@ def dash_volunteer(request):
         "vols": Volunteer.objects.all()
     }
     return render(request, 'greenCircle/all-volunteers.html', context=context)
+
+
+
+def vol_details(request,pk):
+    vol = Volunteer.objects.get(pk=pk)
+    context = {
+        "vol": Volunteer.objects.get(pk=pk)
+    }
+    return render(request, 'hebakhieer/detail-volunteer.html', context=context)

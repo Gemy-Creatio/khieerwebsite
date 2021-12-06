@@ -103,6 +103,7 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">المهارات </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الدراسة </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">السيرة الذاتية </th>
+                                    <th></th>
 
                                 </tr>
                             </thead>
@@ -145,6 +146,11 @@
                                        <a href="{{ item.cv.url }}">
                                            <i class="far fa-id-card green-khieer">السيرة الذاتية</i>
                                        </a>
+                                        </td>
+                                        <td>
+                                          <a href="{% url 'detail-vol' item.pk %}">
+                                            <i class="far fa-address-book"></i>
+                                          </a>
                                         </td>
                                     </tr>
                                {% endfor %}

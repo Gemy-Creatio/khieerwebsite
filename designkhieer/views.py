@@ -45,3 +45,9 @@ class AllUserDesigns(View):
     def get(self, request):
         data = models.KhieerDesign.objects.all()
         return render(request, 'designkhieer/userDesigns.html', context={"data": data})                    
+
+
+
+def DeleteDesign (request , pk):
+     models.KhieerDesign.objects.filter(id=pk).delete()
+     return redirect('user-designs')
