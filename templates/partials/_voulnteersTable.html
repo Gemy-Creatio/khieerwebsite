@@ -1,0 +1,70 @@
+{% load static %}
+<div class="table-responsive">
+    <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الأسم </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الهاتف</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">العنوان</th>
+
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الوظيفة</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">وقت التفرغ</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">المهارات </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الدراسة </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">السيرة الذاتية </th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                             {% for item in vols %}
+                              <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">{{ item.first_name }} {{ item.last_name }} </h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                  <td class="align-middle text-center text-sm">
+                                            <span class="badge badge-sm bg-gradient-secondary">{{ item.phone }}</span>
+                                        </td>
+                                    <td class="align-middle text-center text-sm">
+                                            <p class="text-xs font-weight-bold mb-0">{{ item.address }}</p>
+                                        </td>
+
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ item.job }}</p>
+
+                                        </td>
+                                <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ item.time }}</p>
+
+                                        </td>
+                                  <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ item.skills }}</p>
+
+                                        </td>
+                                  <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ item.study }}</p>
+
+                                        </td>
+                                  <td>
+                                       <a target="_blank" href="/static{{item.cv.url}}">
+                                           <i class="far fa-id-card green-khieer">السيرة الذاتية</i>
+                                       </a>
+                                        </td>
+                                        <td>
+                                          <a href="{% url 'detail-vol' item.pk %}">
+                                            <i class="far fa-address-book"></i>
+                                          </a>
+                                        </td>
+                                    </tr>
+                               {% endfor %}
+
+                            </tbody>
+                        </table>
+
+</div>

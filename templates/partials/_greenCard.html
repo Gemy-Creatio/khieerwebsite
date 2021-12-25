@@ -1,0 +1,25 @@
+{% load static %}
+ <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">{{ cat.name }}</p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape shadow text-center border-radius-md">
+                        {% if cat.pk == 1 %}
+                      <img src="{% static 'images/wa3y.jpeg' %}" style="width: 4.5rem" class="logo_user"/>
+                      {% elif cat.pk == 2 %}
+                                                  <img src="{% static 'images/skills.jpeg' %}" style="width: 4.5rem" class="logo_user"/>
+
+                     {% else %}
+                                                  <img src="{% static 'images/khsomat.jpeg' %}" style="width: 4.5rem" class="logo_user"/>
+
+                  {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>

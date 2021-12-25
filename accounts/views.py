@@ -5,6 +5,7 @@ from greenCircle.models import Trainer
 from hebakhieer.models import Volunteer
 from .models import User
 from django.core.files.storage import FileSystemStorage
+from django.core.paginator import Paginator
 
 
 def register_trainer(request):
@@ -105,5 +106,9 @@ def edit_user_info(request, pk):
 
 
 def employees_list(request):
-    context = {"employees": User.objects.exclude(user_type=1)}
+    employees = User.objects.exclude(user_type=1)
+    paginator = Paginator(employees, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"employees": page_obj}
     return render(request, 'accounts/employees_list.html', context=context)

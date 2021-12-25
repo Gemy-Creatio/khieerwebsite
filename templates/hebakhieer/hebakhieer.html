@@ -1,0 +1,67 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %}  هبة الخير {% endblock title %}
+
+
+{% block body %}
+
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/heba_kheer.png');">
+      <div class="container">
+        <div class="row justify-content-center">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+          <div class="card z-index-0">
+            <div class="card-header text-center pt-4">
+                <h3 class="blue-khieer mb-2 mt-5">هبة الخير </h3>
+            <p class="text-lead" style="color: #040404; padding-right: 1.7rem">مَّن ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا فَيُضَاعِفَهُ لَهُ أَضْعَافًا كَثِيرَةً ۚ وَاللَّهُ يَقْبِضُ وَيَبْسُطُ وَإِلَيْهِ تُرْجَعُونَ (245)</p>
+            </div>
+            <div class="card-body">
+              <form method="post">
+                  {% csrf_token %}
+                <div class="mb-3">
+                  <input type="text" class="form-control" placeholder="الأسم" name="name" id="name" aria-label="Name" aria-describedby="email-addon">
+                </div>
+                <div class="mb-3">
+                  <input type="text" name="address" id="address" class="form-control" placeholder="العنوان" aria-label="address" aria-describedby="email-addon">
+                </div>
+                   <div class="mb-3">
+                  <input type="number" name="phone" id="phone" class="form-control" placeholder="الهاتف" aria-label="amount" aria-describedby="password-addon">
+                </div>
+                  <div class="mb-3">
+                  <input type="number" name="amount" id="amount" class="form-control" placeholder="المساهمة" aria-label="amount" aria-describedby="password-addon">
+                </div>
+                   <div class="mb-3">
+                       <p class="text-sm blue-khieer">
+ يسرنا في وقف خير السعودية التابع لمؤسسة بلد الخير الوقفية ، أن نشكر لك جهودك الدائمة في خدمة ذوي الحاجة ..
+كما نشكر لكم رغبتكم في وقف مبلغ المدخل ، والذي سيتم تخصيص ٣٠٪؜ منه لأعمال خير السعودية و ٧٠ ٪؜ لأعمال الخير بناء على مانص عليه صك الوقفيةلخير السعودية ، لذلك نأمل منك مشكور الموافقة على الإقرار بضغط على الزر ادناه ،
+
+سائلين المولى عز وجل لكم مزيداً من الخير و العطاء وأن يكتب هذا الدعم في ميزان أعمالكم .
+
+تقبلوا تحياتنا ،،
+فريق خير السعودية .
+                       </p>
+                </div>
+                <div class="form-check form-check-info text-left">
+                  <input class="form-check-input" name="flexCheckDefault"  type="checkbox" value="" id="flexCheckDefault" checked="">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    الموافقه على ما سبق
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">مساهمة</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock body %}

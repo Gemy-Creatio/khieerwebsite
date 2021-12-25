@@ -1,0 +1,71 @@
+ <div class="row">
+                        <div class="col-lg-7 pt-lg-6">
+<div class="timeline timeline-one-side">
+<a href="{% url 'green-trainer' course.pk %}">
+                    <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="fas fa-user green-khieer"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">{{ course.trainer.first_name }} {{ course.trainer.last_name }}</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">المدرب</p>
+                  </div>
+                </div>
+
+</a>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="fas fa-briefcase blue-khieer"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">{{ course.name }}</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">الدائرة</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="fas fa-calendar-times green-khieer"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">{{ course.start_date }}</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">تاريخ البداية</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="fas fa-calendar-times blue-khieer"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">{{ course.end_date }}</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">تاريخ النهاية</p>
+                  </div>
+                </div>
+                <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                    <i class="fas fa-clock green-khieer"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">{{ course.duration }}</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">عدد الساعات</p>
+                  </div>
+                </div>
+                <div class="timeline-block">
+                  <span class="timeline-step">
+                    <i class="fas fa-book blue-khieer"></i>
+                  </span>
+                  <div class="timeline-content">
+                    <h6 class="text-dark text-sm font-weight-bold mb-0">{{ course.description }}</h6>
+                    <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">الوصف</p>
+                  </div>
+                </div>
+              </div>
+                        </div>
+                        <div class="col-lg-4 ms-auto text-center mt-5 mt-lg-0">
+                            <div class="border-radius-lg h-100">
+                                <div class="position-relative d-flex align-items-center justify-content-center h-100">
+                                    <img class="w-100 position-relative z-index-2 pt-4"
+                                         src="{{ course.logo.url }}" alt="rocket">
+                                </div>
+                            </div>
+                        </div>
+                    </div>

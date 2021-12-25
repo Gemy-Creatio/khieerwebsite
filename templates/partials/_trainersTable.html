@@ -1,0 +1,61 @@
+
+      <div class="table-responsive">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                         الأسم
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            الهاتف
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                           البريد الألكترونى
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            العنوان
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                           عدد الدورات
+                                        </th>
+                                        <th class="text-secondary opacity-7"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in trainers %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{ item.first_name }} {{ item.last_name }} </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{ item.phone }}</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="badge badge-sm bg-gradient-secondary">{{ item.email | urlize }}</span>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{ item.address }} </p>
+
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{ item.courses.all.count }} </p>
+
+                                            </td>
+
+                                            <td class="ms-auto text-start">
+                                                <a class="btn btn-link text-dark px-3 mb-0" href=""><i
+                                                        class="fas fa-pencil-alt blue-khieer me-2"
+                                                        aria-hidden="true"></i>المزيد</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+
+                            </div>

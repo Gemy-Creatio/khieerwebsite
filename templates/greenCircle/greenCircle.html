@@ -1,0 +1,64 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %} الدائرة الخضراء {% endblock title %}
+
+{% block body %}
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/green_banner.png');">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto pt-lg-5">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+        <div class="col-xl-8 col-lg-7 col-md-7 mx-auto">
+          <div class="card z-index-0">
+            <div class="card-header text-center pt-4">
+              <h5 class="blue-khieer">خير السعودية</h5>
+            </div>
+            <div class="card-body">
+                        <div class="row">
+                        <div class="col-lg-6 pt-lg-3">
+                            <div class="d-flex flex-column h-100">
+                                <h3 class="mb-1 pt-2 green-khieer text-bold">الدائرة الخضراء</h3>
+                                <p class="blue-khieer">
+منتج لتكوين مجموعات في دوائر خضراء ترمز للنمو والتماسك والتعاضد. يقدم عدد من الخدمات المبتكرة التي تهدف إلى نمو وعي المستفيدين داخل الدائرة في اكتشاف الشغف والوصول للغاية من الحياة والنوايا والوعي بالعطاء والتسامح.                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+                            <div class="border-radius-lg h-100">
+                                <div class="position-relative d-flex align-items-center justify-content-center h-100">
+                                    <img class="w-100 position-relative z-index-2 pt-4"
+                                         src="{% static 'images/green_icon.png' %}" alt="rocket">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-3">
+     {% for cat in cats %}
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+         {% if request.user.first_name %}
+         <a href="{% url 'green-courses' cat.pk %}" style="cursor: pointer; text-decoration: none">
+             {% else %}
+         <a href="{% url 'login' %}" style="cursor: pointer; text-decoration: none">
+        {% endif %}
+             {% include 'partials/_greenCard.html' with cat=cat %}
+          </a>
+        </div>
+    {% endfor %}
+
+      </div>
+
+    </div>
+  </section>
+
+
+{% endblock body %}

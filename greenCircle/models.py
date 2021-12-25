@@ -14,6 +14,10 @@ class Trainer(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     address = models.CharField(_('Address'), max_length=255, null=True, blank=True)
 
+    @property
+    def FullName(self):
+        return f"{self.first_name} {self.last_name}"
+
     def __str__(self):
         return self.first_name
 

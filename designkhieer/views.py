@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render , redirect
 from django.urls import reverse
 from django.views import View
@@ -35,7 +36,10 @@ def AddDesign(request):
 class AllDesigns(View):
     def get(self, request):
         data = models.KhieerDesign.objects.all()
-        return render(request, 'designkhieer/allDesigns.html', context={"data": data})            
+        paginator = Paginator(data, 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'designkhieer/allDesigns.html', context={"data": page_obj})
 
 
 

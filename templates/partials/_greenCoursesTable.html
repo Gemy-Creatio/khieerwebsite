@@ -1,0 +1,68 @@
+ <div class="table-responsive">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            إسم الدائرة
+                                        </th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            المدرب
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            عدد الساعات
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            الدائرة
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            تاريخ البداية
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            تاريخ النهاية
+                                        </th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            التصنيف
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in courses %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{ item.name }} </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{ item.trainer.first_name }} {{ item.trainer.last_name }}</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="badge badge-sm bg-gradient-secondary">{{ item.total_hours }}</span>
+                                            </td>
+                                            <td>
+                                                <a href="{{ item.link }}">
+                                                    <i class="far fa-file-video green-khieer"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{ item.start_date }} </p>
+
+                                            </td>
+                                             <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{ item.end_date }} </p>
+
+                                            </td>
+                                             <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{ item.category.name }} </p>
+
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+
+                            </div>

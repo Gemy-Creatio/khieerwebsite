@@ -1,0 +1,22 @@
+ <div class="card h-auto" style="border-top-color: #2D6D93; border-top: 6px solid">
+                        <div class="position-relative">
+                            <a class="d-block border-radius-xl">
+                                <img src="{{ trainer.image.url }}" alt="img-blur-shadow"
+                                     class="img-fluid opacity-2 shadow border-radius-xl">
+
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong
+                                        class="green-khieer">الأسم:</strong>
+                                    &nbsp; {{ trainer.first_name }} {{ trainer.last_name }}</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                        class="green-khieer">الهاتف:</strong> &nbsp; {{ trainer.phone }}</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong class="green-khieer">البريد
+                                    الألكترونى:</strong> &nbsp; {{ trainer.email | urlize }}</li>
+                                <li class="list-group-item border-0 ps-0 text-sm"><strong
+                                        class="green-khieer">العنوان:</strong> &nbsp; {{ trainer.address }}</li>
+                            </ul>
+                        </div>
+                    </div>

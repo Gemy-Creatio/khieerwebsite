@@ -1,0 +1,39 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %} الدائرة الخضراء {% endblock title %}
+
+{% block body %}
+    <section class="min-vh-85 mb-8">
+        <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
+             style=" background-image: url('../../static/images/kid_transparent.png');">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 text-center mx-auto pt-lg-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row mt-lg-n8 mt-md-n8 mt-n8">
+                <div class="col-xl-4 col-lg-4 col-md-6 mx-auto">
+                   {% include 'partials/_trainerDetails.html' with trainer=trainer %}
+                </div>
+
+
+            </div>
+
+            <div class="row pt-3">
+                {% for course in trainer.courses.all %}
+                                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+         <a href="{% url 'green-add-user' course.pk %}" style="cursor: pointer; text-decoration: none">
+              {% include 'partials/_greenCourseCard.html' with course=course %}
+          </a>
+        </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+
+
+{% endblock body %}

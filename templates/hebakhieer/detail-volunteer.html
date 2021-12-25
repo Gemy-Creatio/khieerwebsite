@@ -1,0 +1,28 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %} لوحة التحكم {% endblock title %}
+
+{% block body %}
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/takafel.png');">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto pt-lg-5">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n6 mt-md-n6 mt-n6">
+                   {% include 'partials/menus/_accountsMenu.html' %}
+
+      </div>
+       <div class="row pt-3 justify-content-center">
+       <div class="col-12">
+    {% include 'partials/_volunteerDetails.html' with vol=vol %}
+       </div>
+       </div>
+    
+    </div>
+  </section>
+{% endblock body %}

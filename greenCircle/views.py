@@ -1,35 +1,50 @@
 from django.core.files.storage import FileSystemStorage
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.views import View
+from django.views.generic import CreateView
+
 from greenCircle.models import Category, Trainer, CourseRequest, Course
+from django.core.paginator import Paginator
+from . import forms
 
 
 def greenCircle(request):
-    context = {"cats": Category.objects.all()}
+    cats = Category.objects.all()
+    context = {"cats": cats}
     return render(request, 'greenCircle/greenCircle.html', context)
 
 
 def greenCircleCourses(request, pk):
-    context = {"courses": Course.objects.filter(category_id=pk)}
+    courses = Course.objects.filter(category_id=pk)
+    context = {"courses": courses}
     return render(request, 'greenCircle/greencourses.html', context=context)
 
 
 def green_trainer_details(request, pk):
-    context = {"trainer": Trainer.objects.get(courses=pk)}
+    trainer = Trainer.objects.get(courses=pk)
+    context = {"trainer": trainer}
     return render(request, 'greenCircle/greentrainer.html', context=context)
 
 
-def course_request(request, pk):
-    course = Course.objects.get(pk=pk)
-    context = {"course": course}
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        phone = request.POST.get('phone')
-        email = request.POST.get('email')
-        course_obj = CourseRequest(name=name, phone=phone, email=email, course=course)
-        course_obj.save()
-        if course_obj.pk:
-            return redirect('green-circle', course.category.id)
-    return render(request, 'greenCircle/greencourse_request.html', context)
+class CourseRequestView(View):
+    def get(self, request, pk):
+        form = forms.CourseRequestForm()
+        course = Course.objects.get(pk=pk)
+        context = {"course": course, "form": form}
+        return render(request, 'greenCircle/greencourse_request.html', context)
+
+    def post(self, request, pk):
+        form = forms.CourseRequestForm(request.POST, request.FILES)
+        if form.is_valid():
+            name = form.cleaned_data.get("name")
+            phone = form.cleaned_data.get("phone")
+            email = form.cleaned_data.get("email")
+            obj = CourseRequest.objects.create(name=name, phone=phone, course_id=pk, email=email)
+            obj.save()
+            return redirect('green-circle')
+        else:
+            return JsonResponse({"message": "bad data"})
 
 
 def add_greenCourse(request):
@@ -56,15 +71,27 @@ def add_greenCourse(request):
 
 
 def Greencourses_list(request):
-    context = {"courses": Course.objects.all()}
+    courses = Course.objects.all()
+    paginator = Paginator(courses, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"courses": page_obj}
     return render(request, 'greenCircle/greenCircleList.html', context)
 
 
 def Greenrequest_list(request):
-    context = {"courses": CourseRequest.objects.all()}
+    requests = CourseRequest.objects.all()
+    paginator = Paginator(requests, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"courses": page_obj}
     return render(request, 'greenCircle/greenRequestList.html', context)
 
 
 def Greentrainers_list(request):
-    context = {"trainers": Trainer.objects.all()}
+    trainers = Trainer.objects.all()
+    paginator = Paginator(trainers, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"trainers":page_obj}
     return render(request, 'greenCircle/green_trainerList.html', context)

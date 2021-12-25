@@ -1,0 +1,32 @@
+{% load static %}
+<div class="table-responsive">
+                        <table class="table align-items-center">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">الأسم </th>
+                              <th scope="col"> الصورة  </th>
+                        
+                            </tr>
+                          </thead>
+                          <tbody>
+                         {% for item in data %}
+                             <tr>
+                              <th scope="row" class="text-center">{{ item.pk }}</th>
+                              <td>{{ item.name }}</td>
+                              <td>
+                                  <div class="text-center d-flex justify-content-center">
+                                        <img src="{{item.image.url}}" class="image_design" />
+                                  </div>
+                              </td>
+                        
+                        
+                        
+                            </tr>
+                        
+                          {% endfor %}
+                        
+                          </tbody>
+                          </table>
+
+                      </div>
