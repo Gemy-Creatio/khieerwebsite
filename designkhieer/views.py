@@ -1,10 +1,11 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render , redirect
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from django.views.generic.edit import CreateView
-from . import models , forms
+from . import models, forms
 from django.core.files.storage import FileSystemStorage
+
 
 # Create your views here.
 def addUserDesign(request):
@@ -13,7 +14,7 @@ def addUserDesign(request):
         fs = FileSystemStorage()
         filename = fs.save(image.name, image)
         name = request.POST.get('name')
-        obj = models.KhieerDesign(name=name , image = image)
+        obj = models.KhieerDesign(name=name, image=image)
         obj.save()
         if obj.pk:
             return redirect('user-designs')
@@ -26,11 +27,11 @@ def AddDesign(request):
         fs = FileSystemStorage()
         filename = fs.save(image.name, image)
         name = request.POST.get('name')
-        obj = models.KhieerDesign(name=name , image = image)
+        obj = models.KhieerDesign(name=name, image=image)
         obj.save()
         if obj.pk:
             return redirect('all-design')
-    return render(request, 'designkhieer/addDesign.html')    
+    return render(request, 'designkhieer/addDesign.html')
 
 
 class AllDesigns(View):
@@ -42,16 +43,15 @@ class AllDesigns(View):
         return render(request, 'designkhieer/allDesigns.html', context={"data": page_obj})
 
 
-
-
-
 class AllUserDesigns(View):
     def get(self, request):
-        data = models.KhieerDesign.objects.all()
-        return render(request, 'designkhieer/userDesigns.html', context={"data": data})                    
+        data = models.KhieerDesign.objects.order_by('-pk')
+        paginator = Paginator(data, 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'designkhieer/userDesigns.html', context={"data": page_obj})
 
 
-
-def DeleteDesign (request , pk):
-     models.KhieerDesign.objects.filter(id=pk).delete()
-     return redirect('user-designs')
+def DeleteDesign(request, pk):
+    models.KhieerDesign.objects.filter(id=pk).delete()
+    return redirect('user-designs')
