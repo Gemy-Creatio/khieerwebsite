@@ -17,8 +17,9 @@
               <div class="card-header">
               <div class="row justify-content-center">
              <div class="col-10 jsutify content-center">
-              <a class="btn btn-sm btn-primary bg-maal text-white text-xs" href="{% url 'user-add' %}">اضافة تصميم</a>
-
+              <a class="btn btn-sm btn-primary bg-maal text-white text-xs" href="{% url 'user-add' %}">ارفع تصميمك هنا !</a>
+             <p class="text-sm text-muted">في هذه المساحة الإبداعية تستطيع من خلالها تجربة تصاميمك على مكونات ومنتجات مختلفة كالأكواب والتيشيرت وكوفر الجوال..الخ.
+جرّب الآن وشاركنا العطاء !</p>
              </div>
               </div>
               </div>
@@ -30,7 +31,7 @@
                 <a href="{% url 'delete-design' item.pk %}">
                   <i class="fas fa-trash text-danger"></i>
                 </a>
-               <img id="{{item.pk}}" name="{{ item.image.url}}" src="{{ item.image.url}}" alt={{item.name}} class="image_design viewID" />
+               <img id="{{item.pk}}" src="{{ item.image.url}}" alt={{item.name}} class="image_design" />
              </div>
            </div>
             {% endfor %}
@@ -41,10 +42,22 @@
           </div>
         </div>
           </div>
-          <div class="row pt-10 justify-content-center">
-            <div id="frame">
-                <img id="myImg" src="{% static 'images/logo.png' %}" class="image_design">
+          <div class="row pt-10 justify-content-lg-between">
+           <div class="col-lg-3 col-12">
+                <div id="frame">
+                <img id="myImg" src="{% static 'images/ksa-design.png' %}" class="image_design">
             </div>
+           </div>
+                 <div class="col-lg-3 p-3 col-12 ">
+                <div id="frameCover">
+                <img id="myImgCover" src="{% static 'images/ksa-design.png' %}" class="image_design">
+            </div>
+           </div>
+                 <div class="col-lg-3 p-3 col-12 ">
+                <div id="frameCap">
+                <img id="myImgCap" src="{% static 'images/ksa-design.png' %}" class="image_design">
+            </div>
+           </div>
               </div>
           </div>
         </div>

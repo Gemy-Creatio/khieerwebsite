@@ -27,8 +27,11 @@ urlpatterns = [
     path('hebakhieer/', include('hebakhieer.urls')),
     path('greencircle/', include('greenCircle.urls')),
     path('designs/', include('designkhieer.urls')),
-
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
+
+
+# handler404 = 'main.views.page_not_found'
+# handler500 = 'main.views.Error500'

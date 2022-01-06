@@ -84,5 +84,25 @@ class GreenCourseForm(forms.ModelForm):
             'description': 'المحتوى',
             'total_hours': 'عدد ساعات الدائرة ',
             'duration': 'عدد الساعات',
+        }
 
+
+class DocumentDownloadForm(forms.ModelForm):
+    class Meta:
+        model = models.DocumentDownload
+        fields = ['name', 'email', 'phone', 'destination']
+        widgets = {
+            'email': forms.EmailInput(
+                attrs={'id': 'email', 'class': 'form-control', 'placeholder': 'البريد الألكترونى '}),
+            'phone': forms.TextInput(
+                attrs={'id': 'phone', 'class': 'form-control', 'placeholder': 'الجوال '}),
+            'name': forms.TextInput(
+                attrs={'id': 'name', 'class': 'form-control', 'placeholder': 'الأسم '}),
+            'destination': forms.Select(choices=models.DocumentDownload.DESTINATION_CHOICES)
+        }
+        labels = {
+            'phone': 'الجوال',
+            'name': 'الأسم',
+            'email': 'البريد الألكترونى',
+            'destination': 'الجهة'
         }

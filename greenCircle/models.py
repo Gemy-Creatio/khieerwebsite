@@ -67,3 +67,19 @@ class CourseRequest(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class DocumentDownload(models.Model):
+    DESTINATION_CHOICES = (
+        (1, 'افراد'),
+        (2, 'قطاع عام'),
+        (3, 'قطاع خاص'),
+        (4, 'قطاع غير ربحى'),
+    )
+    name = models.CharField(null=True, blank=True, max_length=255)
+    email = models.EmailField(null=True, blank=True)
+    phone = models.CharField(null=True, blank=True , max_length=255)
+    destination = models.SmallIntegerField(null=True, choices=DESTINATION_CHOICES)
+
+    def __str__(self):
+        return self.name

@@ -10,5 +10,7 @@ urlpatterns = [
     path('greenCircle/list', views.Greencourses_list, name='all-green'),
     path('greenCircle/requests', views.Greenrequest_list, name='all-requests'),
     path('greenCircle/trainers', views.Greentrainers_list, name='all-trainers'),
+    path('document/download/list', views.Document_List, name='download-list'),
+    path('document/create', views.CreateDocumentDownload.as_view(), name='create_document'),
 
 ]

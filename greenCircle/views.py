@@ -1,10 +1,12 @@
+from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 from django.views.generic import CreateView
 
-from greenCircle.models import Category, Trainer, CourseRequest, Course
+from greenCircle.models import Category, Trainer, CourseRequest, Course, DocumentDownload
 from django.core.paginator import Paginator
 from . import forms
 
@@ -93,5 +95,24 @@ def Greentrainers_list(request):
     paginator = Paginator(trainers, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    context = {"trainers":page_obj}
+    context = {"trainers": page_obj}
     return render(request, 'greenCircle/green_trainerList.html', context)
+
+
+class CreateDocumentDownload(CreateView):
+    model = DocumentDownload
+    form_class = forms.DocumentDownloadForm
+    template_name = 'greenCircle/documents_download/create_document.html'
+
+    def get_success_url(self):
+        messages.success(self.request, "شكرا سيصلك رسالة بالدليل")
+        return reverse('create_document')
+
+
+def Document_List(request):
+    documents = DocumentDownload.objects.all()
+    paginator = Paginator(documents, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"documents": page_obj}
+    return render(request, 'greenCircle/documents_download/documentdownload_list.html', context)

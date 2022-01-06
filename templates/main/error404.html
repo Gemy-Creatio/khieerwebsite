@@ -1,0 +1,36 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %} حدث خطأ {% endblock title %}
+
+{% block body %}
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/tech.png');">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n8 mt-md-n8 mt-n8">
+        <div class="col-xl-4 col-lg-5 col-md-7 pt-3 mx-auto">
+          <div class="card z-index-0">
+            <div class="card-body text-center">
+                    <h4 class="green-khieer mb-2 mt-5 text-center">حدث خطأ</h4>
+              <p class="text-lead blue-khieer">
+                         برجاء التواصل مع الدعم الفنى لنتمكن من حل مشكلتك
+              </p>
+                <div class="text-center">
+                    <a href="{% url 'tech-page' %}" class="btn btn-sm btn-primary bg-maal">الدعم الفنى</a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+{% endblock body %}

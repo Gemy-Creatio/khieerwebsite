@@ -15,13 +15,53 @@
 #frame {
   position: relative;
 
-    width: 597px;
+    width: auto;
+    height: 600px;
+  background-image: url('../images/bag.png');
+  background-position: center;
+  background-size: cover; }
+
+#myImg {
+  position: absolute;
+  left: 0;
+  top:200px;
+  right: 0;
+  bottom: 0;
+
+  display: block;
+  margin: auto; }
+
+
+#frameCover {
+  position: relative;
+
+    width: auto;
+    height: 600px;
+  background-image: url('../images/cover.png');
+  background-position: center;
+  background-size: cover; }
+
+#myImgCover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  display: block;
+  margin: auto; }
+
+
+#frameCap {
+  position: relative;
+
+    width: auto;
     height: 600px;
   background-image: url('../images/shirt.png');
   background-position: center;
   background-size: cover; }
 
-#myImg {
+#myImgCap {
   position: absolute;
   left: 0;
   top: 0;

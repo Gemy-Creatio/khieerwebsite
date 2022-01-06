@@ -11,6 +11,14 @@ from greenCircle.models import Course, Trainer
 from hebakhieer.models import HebaKheer, Volunteer
 
 
+def page_not_found(request , exception):
+    return render(request, 'main/error404.html')
+
+
+def Error500(request):
+    return render(request, 'main/error404.html')
+
+
 def home_page(request):
     return render(request, 'main/home.html', )
 

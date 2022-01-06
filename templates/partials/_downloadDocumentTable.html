@@ -1,0 +1,39 @@
+<div class="table-responsive">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الأسم </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الهاتف</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">البريد الألكترونى</th>
+
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الجهة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                             {% for item in documents %}
+                              <tr>
+                                        <td>
+
+                                                <div class="d-flex text-center flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm text-center">{{ item.name }} </h6>
+                                                </div>
+                                        </td>
+
+                                  <td class="align-middle text-center text-sm">
+                                            <span class="badge badge-sm text-center bg-gradient-secondary">{{ item.phone }}</span>
+                                        </td>
+                                    <td class="align-middle text-center text-sm">
+                                            <p class="text-xs text-center font-weight-bold mb-0">{{ item.email }}</p>
+                                        </td>
+
+                                    <td>
+                                        <p class="text-xs text-center font-weight-bold mb-0">{{ item.get_destination_display }}</p>
+
+                                        </td>
+                                    </tr>
+                               {% endfor %}
+
+                            </tbody>
+                        </table>
+
+</div>
