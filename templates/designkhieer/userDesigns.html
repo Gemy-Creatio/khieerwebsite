@@ -1,6 +1,6 @@
 {% extends 'virtualmaster.html' %}
 {% load static %}
-{% block title %}  تصاميم الخير {% endblock title %}
+{% block title %}  جرب تصميمك {% endblock title %}
 
 {% block style %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -26,15 +26,20 @@
               <div class="card-body">
            <div class="row d-flex pt-3">
             {% for item in data %}
-            <div class="col-4 text-center pt-3">
+            <div class="col-lg-5 col-12 text-center pt-3">
              <div class="icon icon-shape shadow text-center border-radius-md" style="width: fit-content; height: fit-content;cursor: pointer;">
                 <a href="{% url 'delete-design' item.pk %}">
                   <i class="fas fa-trash text-danger"></i>
                 </a>
-               <img id="{{item.pk}}" src="{{ item.image.url}}" alt={{item.name}} class="image_design" />
+               <img id="{{item.pk}}" src="{{ item.image.url | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
+
+                    <img id="{{item.pk}}" src="public_html/static/images/designs/{{ item.image.name | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
              </div>
            </div>
             {% endfor %}
+              <div class="d-flex flex-row justify-content-around pt-6" id="choices">
+
+                 </div>
                {% include 'partials/_pagination.html' with page_obj=data only %}
 
            </div>
@@ -73,8 +78,25 @@
 
   $(document).ready(function () {
     $(".viewID").on('click', function () {
-        var src =$(this).attr('name');
-        $("#myImg").attr("src",src);
+        var src =$(this).attr('src');
+        $("#choices").empty();
+        $("#choices").append(`
+                       <a class="btn btn-success bg-maal text-white" id="cup">حافظ الجوال</a>
+                                            <a class="btn btn-success bg-maal text-white" id="bag">الحقيبة</a>
+ <a class="btn btn-success bg-maal text-white" id="shirt">الزى</a>
+`);
+       $("#bag").on('click' , event => {
+           event.stopPropagation();
+           $("#myImg").attr("src",src);
+       });
+          $("#shirt").on('click' , event => {
+           event.stopPropagation();
+           $("#myImgCap").attr("src",src);
+       });
+             $("#cup").on('click' , event => {
+           event.stopPropagation();
+           $("#myImgCover").attr("src",src);
+       });
 
 
     });
