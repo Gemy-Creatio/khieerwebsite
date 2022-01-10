@@ -90,7 +90,7 @@ class GreenCourseForm(forms.ModelForm):
 class DocumentDownloadForm(forms.ModelForm):
     class Meta:
         model = models.DocumentDownload
-        fields = ['name', 'email', 'phone', 'destination']
+        fields = ['name', 'email', 'phone', 'destination' , 'choice']
         widgets = {
             'email': forms.EmailInput(
                 attrs={'id': 'email', 'class': 'form-control', 'placeholder': 'البريد الألكترونى '}),
@@ -98,11 +98,14 @@ class DocumentDownloadForm(forms.ModelForm):
                 attrs={'id': 'phone', 'class': 'form-control', 'placeholder': 'الجوال '}),
             'name': forms.TextInput(
                 attrs={'id': 'name', 'class': 'form-control', 'placeholder': 'الأسم '}),
-            'destination': forms.Select(choices=models.DocumentDownload.DESTINATION_CHOICES)
+            'destination': forms.Select(choices=models.DocumentDownload.DESTINATION_CHOICES),
+            'choice': forms.Select(choices=models.DocumentDownload.DOWNLOAD_CHOICES)
+
         }
         labels = {
             'phone': 'الجوال',
             'name': 'الأسم',
             'email': 'البريد الألكترونى',
-            'destination': 'الجهة'
+            'destination': 'الجهة',
+            'choice': 'إختر الدليل'
         }

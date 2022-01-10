@@ -70,15 +70,23 @@ class CourseRequest(models.Model):
 
 
 class DocumentDownload(models.Model):
+    TATOF = '1_TATOF'
+    GREEN = '2_GREEN'
     DESTINATION_CHOICES = (
         (1, 'افراد'),
         (2, 'قطاع عام'),
         (3, 'قطاع خاص'),
         (4, 'قطاع غير ربحى'),
     )
+    DOWNLOAD_CHOICES = (
+        (TATOF, 'دليل التعاطف'),
+        (GREEN, 'تكوين دائرة'),
+
+    )
+    choice = models.CharField(max_length=255, null=True, blank=True, choices=DOWNLOAD_CHOICES)
     name = models.CharField(null=True, blank=True, max_length=255)
     email = models.EmailField(null=True, blank=True)
-    phone = models.CharField(null=True, blank=True , max_length=255)
+    phone = models.CharField(null=True, blank=True, max_length=255)
     destination = models.SmallIntegerField(null=True, choices=DESTINATION_CHOICES)
 
     def __str__(self):

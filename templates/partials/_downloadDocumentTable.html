@@ -7,6 +7,8 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">البريد الألكترونى</th>
 
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">الجهة</th>
+                                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">النوع</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,6 +32,11 @@
                                         <p class="text-xs text-center font-weight-bold mb-0">{{ item.get_destination_display }}</p>
 
                                         </td>
+                                 <td>
+                                        <p class="text-xs text-center font-weight-bold mb-0">{{ item.get_choice_display }}</p>
+
+                                        </td>
+
                                     </tr>
                                {% endfor %}
 
