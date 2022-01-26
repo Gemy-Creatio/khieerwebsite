@@ -8,5 +8,6 @@ urlpatterns = [
     path('user/designs', views.AllUserDesigns.as_view(), name='user-designs'),
     path('add/user', views.addUserDesign, name='user-add'),
     path('delete/cesign/<int:pk>', views.DeleteDesign, name='delete-design'),
+    path('user/new', views.NewUserDesign.as_view(), name='new-designs'),
 
 ]

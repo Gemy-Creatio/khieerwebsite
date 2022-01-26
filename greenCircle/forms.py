@@ -18,6 +18,7 @@ class TrainerForm(forms.ModelForm):
                 attrs={'id': 'last_name', 'class': 'form-control', 'placeholder': 'اللقب '}),
             'first_name': forms.TextInput(
                 attrs={'id': 'first_name', 'class': 'form-control', 'placeholder': 'الأسم '}),
+
         }
         labels = {
             'phone': 'الجوال',
@@ -26,6 +27,7 @@ class TrainerForm(forms.ModelForm):
             'email': 'البريد الألكترونى',
             'image': 'الصورة الشخصية',
             'address': 'العنوان',
+            'destination_name': "إسم الجهة"
         }
 
 
@@ -90,7 +92,7 @@ class GreenCourseForm(forms.ModelForm):
 class DocumentDownloadForm(forms.ModelForm):
     class Meta:
         model = models.DocumentDownload
-        fields = ['name', 'email', 'phone', 'destination' , 'choice']
+        fields = ['name', 'email', 'phone', 'destination', 'destination_name', 'choice']
         widgets = {
             'email': forms.EmailInput(
                 attrs={'id': 'email', 'class': 'form-control', 'placeholder': 'البريد الألكترونى '}),
@@ -99,7 +101,9 @@ class DocumentDownloadForm(forms.ModelForm):
             'name': forms.TextInput(
                 attrs={'id': 'name', 'class': 'form-control', 'placeholder': 'الأسم '}),
             'destination': forms.Select(choices=models.DocumentDownload.DESTINATION_CHOICES),
-            'choice': forms.Select(choices=models.DocumentDownload.DOWNLOAD_CHOICES)
+            'destination_name': forms.TextInput(
+                attrs={'id': 'first_name', 'class': 'form-control', 'placeholder': 'إسم الجهة '}),
+            'choice': forms.Select(choices=models.DocumentDownload.DOWNLOAD_CHOICES),
 
         }
         labels = {
@@ -107,5 +111,39 @@ class DocumentDownloadForm(forms.ModelForm):
             'name': 'الأسم',
             'email': 'البريد الألكترونى',
             'destination': 'الجهة',
-            'choice': 'إختر الدليل'
+            'destination_name': "إسم الجهة",
+            'choice': 'إختر الدليل',
+        }
+
+
+class GreenSurveyForm(forms.ModelForm):
+    class Meta:
+        model = models.GreenSurvey
+        fields = ['is_accepted', 'choices']
+        widgets = {
+            'choices': forms.Select(choices=models.GreenSurvey.GREEN_CHOICES),
+            'is_accepted': forms.Select(choices=models.GreenSurvey.ACCEPTED_CHOICES),
+
+        }
+        labels = {
+            'is_accepted': ' هل تريد ان تكون قضيتك وشغفك',
+            'choices': 'نوع القضية'
+        }
+
+
+class VolunteerTripForm(forms.ModelForm):
+    class Meta:
+        model = models.VolunteerTrip
+        fields = '__all__'
+        labels = {
+            'first_name': 'الأسم الأول',
+            'last_name': 'إسم العائلة',
+            'phone': 'رقم التواصل',
+            'email': 'البريد الألكترونى',
+            'national_id_type': 'نوع الهوية',
+            'national_id_number': 'رقم الهوية',
+            'age': 'الفئة العمرية',
+            'why_you_join': 'لماذا تريد الأنضمام إلى الرحالات التنموية التطوعية؟',
+            'accept_pay': 'أوافق على دفع نصف تكاليف الرحلة',
+
         }

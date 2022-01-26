@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import CreateView
 
-from greenCircle.models import Category, Trainer, CourseRequest, Course, DocumentDownload
+from greenCircle.models import *
 from django.core.paginator import Paginator
 from . import forms
 
@@ -99,14 +99,37 @@ def Greentrainers_list(request):
     return render(request, 'greenCircle/green_trainerList.html', context)
 
 
+def trip_request_list(request):
+    trips = VolunteerTrip.objects.all()
+    paginator = Paginator(trips, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"trips": page_obj}
+    return render(request, 'greenCircle/trips/all-trip-request.html', context)
+
+
+class CreateVolunteerTripRequest(CreateView):
+    model = VolunteerTrip
+    form_class = forms.VolunteerTripForm
+    template_name = 'greenCircle/trips/trip-request.html'
+
+    def get_success_url(self):
+        messages.success(self.request, "شكرًا لأهتمامك بالأنضمام لرحالاتنا التطوعية سنتاواصل معك لتعلم التفاصيل")
+        return reverse('trip-request')
+
+
 class CreateDocumentDownload(CreateView):
     model = DocumentDownload
     form_class = forms.DocumentDownloadForm
     template_name = 'greenCircle/documents_download/create_document.html'
 
     def get_success_url(self):
-        messages.success(self.request, "شكرا سيصلك رسالة بالدليل")
-        return reverse('create_document')
+        if self.object.choice == '2_GREEN':
+            self.request.session['doc_id'] = self.object.pk
+            return reverse('create_survey')
+        else:
+            messages.success(self.request, "شكرًا سيصلكم رسالة بالدليل على البريد الالكتروني خلال ٢٤ ساعة")
+            return reverse('create_document')
 
 
 def Document_List(request):
@@ -116,3 +139,29 @@ def Document_List(request):
     page_obj = paginator.get_page(page_number)
     context = {"documents": page_obj}
     return render(request, 'greenCircle/documents_download/documentdownload_list.html', context)
+
+
+class CreateGreenSurvey(CreateView):
+    model = GreenSurvey
+    form_class = forms.GreenSurveyForm
+    template_name = 'greenCircle/documents_download/create_survey.html'
+
+    def form_valid(self, form):
+        survery_obj = form.save(commit=True)
+        doc_obj = DocumentDownload.objects.get(pk=self.request.session['doc_id'])
+        survery_obj.document_download = doc_obj
+        survery_obj.save()
+        return super(CreateGreenSurvey, self).form_valid(form)
+
+    def get_success_url(self):
+        messages.success(self.request, "شكرًا سيصلكم رسالة بالدليل على البريد الالكتروني خلال ٢٤ ساعة")
+        return reverse('create_survey')
+
+
+def GreenCricle_request_list(request):
+    requests = GreenSurvey.objects.all()
+    paginator = Paginator(requests, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"courses": page_obj}
+    return render(request, 'greenCircle/greenRequestList.html', context)

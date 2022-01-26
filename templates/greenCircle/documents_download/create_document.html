@@ -18,23 +18,26 @@
           <div class="card z-index-0">
             <div class="card-header text-center pt-4">
                 <h3 class="blue-khieer mb-2 mt-5">طلب الحصول على الدليل  </h3>
-                {% include 'partials/_messages.html' %}
             </div>
             <div class="card-body">
+              {% if messages %}
+              {% include 'partials/_messages.html' %}
+              {% else %}
               <form method="post">
-                  {% csrf_token %}
-                                           {% for filed in form %}
-                <div class="mb-3">
+                {% csrf_token %}
+                                         {% for filed in form %}
+              <div class="mb-3">
 
-                     <label class="text-black"> {{filed.label}} </label>
-                                                {{ filed }}
-                </div>
-                                                          {% endfor %}
+                   <label class="text-black"> {{filed.label}} </label>
+                                              {{ filed }}
+              </div>
+                                                        {% endfor %}
 
-                <div class="text-center">
-                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">إرسال الطلب </button>
-                </div>
-              </form>
+              <div class="text-center">
+                <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">إرسال الطلب </button>
+              </div>
+            </form>
+              {% endif %}
             </div>
           </div>
         </div>

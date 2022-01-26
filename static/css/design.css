@@ -1,0 +1,78 @@
+/*
+** Author : Chafik Amraoui
+** Date   : 14/09/2020
+** Title  : T-shirt Color Generator
+*/
+
+
+/* Global Rules  */
+*,
+*::after,
+*::before { box-sizing: border-box }
+
+:root{
+    --color : rgb(255, 255, 255);
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    height: 2000px;
+    background-color:rgb(255, 255, 255);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* End Global Rules  */
+.container_design{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.image_container{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image_container img{
+    width: 400px;
+    display: block;
+    background-color: var(--color);
+}
+.colors{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+.colors ul li{
+   width: 30px;
+   height: 30px;
+   /* background-color:var(--color) ; */
+   display: inline-block;
+   cursor: pointer;
+
+}
+
+
+.btn_round_size {
+    border-radius: 50%;
+    background-color: #f4f4f4;
+      font-size: 16px;
+  margin: 4px 2px;
+     padding: 20px;
+  text-align: center;
+    color: #5DBD7E ;
+    border: none;
+}
+
+.sizes ul li{
+  display: inline !important;
+}

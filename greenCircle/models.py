@@ -88,6 +88,54 @@ class DocumentDownload(models.Model):
     email = models.EmailField(null=True, blank=True)
     phone = models.CharField(null=True, blank=True, max_length=255)
     destination = models.SmallIntegerField(null=True, choices=DESTINATION_CHOICES)
+    destination_name = models.CharField(null=True, blank=True, max_length=255)
 
     def __str__(self):
         return self.name
+
+
+class GreenSurvey(models.Model):
+    document_download = models.ForeignKey(DocumentDownload, null=True, on_delete=models.CASCADE,
+                                          related_name='green_survey')
+    ACCEPTED_CHOICES = (
+        (True, 'نعم'),
+        (False, 'لا'),
+    )
+    is_accepted = models.BooleanField(null=True, blank=True, choices=ACCEPTED_CHOICES)
+    SOCIATY_SUPPORT = 'دعم المجتمع النساء '
+    BLIND_SUPPORT = 'تعليم المكفوفين'
+    GREEN_CHOICES = (
+        (SOCIATY_SUPPORT, SOCIATY_SUPPORT),
+        (BLIND_SUPPORT, BLIND_SUPPORT),
+    )
+    choices = models.CharField(max_length=255, choices=GREEN_CHOICES)
+
+    def __str__(self):
+        return self.choices
+
+
+class VolunteerTrip(models.Model):
+    ID_CHOICES = (
+        ('إقامة', 'إقامة'),
+        ('هوية وطنية', 'هوية وطنية')
+    )
+    PAY_CHOICES = (
+        (True, 'أوافق'),
+        (False, 'لا اوافق')
+    )
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    national_id_type = models.CharField(max_length=100, null=True, choices=ID_CHOICES)
+    national_id_number = models.IntegerField(null=True, blank=True)
+    age = models.SmallIntegerField(null=True, blank=True)
+    why_you_join = models.TextField(null=True, blank=True)
+    accept_pay = models.BooleanField(null=True, blank=True, default=True,choices=PAY_CHOICES)
+    phone = models.IntegerField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def __str__(self):
+        return self.full_name

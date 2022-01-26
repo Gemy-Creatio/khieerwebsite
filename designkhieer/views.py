@@ -7,6 +7,15 @@ from . import models, forms
 from django.core.files.storage import FileSystemStorage
 
 
+class NewUserDesign(View):
+    def get(self, request):
+        data = models.KhieerDesign.objects.order_by('-pk')
+        paginator = Paginator(data, 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'designkhieer/newUserDesign.html', context={"data": page_obj})
+
+
 # Create your views here.
 def addUserDesign(request):
     if request.method == 'POST' and request:

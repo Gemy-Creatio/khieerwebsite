@@ -23,7 +23,9 @@ SECRET_KEY = 'django-insecure-u-j2q_5*#b4^1!=t1&s513psgzp4&-5!4blh$5yp_0)o*l)e&i
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -41,9 +43,10 @@ INSTALLED_APPS = [
     'main',
     'designkhieer',
     'xhtml2pdf',
-    'django_filters'
+    'django_filters',
+    'crispy_forms',
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

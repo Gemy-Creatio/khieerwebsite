@@ -1,0 +1,131 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %}
+    جرب تصميمك
+ {% endblock title %}
+{% block style %}
+    <link href="{% static 'css/design.css' %}" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+{% endblock style %}
+{% block body %}
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/tamkeen_new.png');">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto pt-lg-5">
+               <div class="card z-index-0 ">
+              <div class="card-header">
+              <div class="row justify-content-center">
+             <div class="col-10 jsutify content-center">
+              <a class="btn btn-sm btn-primary bg-maal text-white text-xs" href="{% url 'user-add' %}">ارفع تصميمك هنا !</a>
+             <p class="text-sm text-muted">في هذه المساحة الإبداعية تستطيع من خلالها تجربة تصاميمك على مكونات ومنتجات مختلفة كالأكواب والتيشيرت وكوفر الجوال..الخ.
+جرّب الآن وشاركنا العطاء !</p>
+             </div>
+              </div>
+              </div>
+              <div class="card-body">
+           <div class="row d-flex pt-3">
+            {% for item in data %}
+            <div class="col-lg-5 col-12 text-center pt-3">
+             <div class="icon icon-shape shadow text-center border-radius-md" style="width: fit-content; height: fit-content;cursor: pointer;">
+                <a href="{% url 'delete-design' item.pk %}">
+                  <i class="fas fa-trash text-danger"></i>
+                </a>
+               <img id="{{item.pk}}" src="{{ item.image.url | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
+
+                    <img id="{{item.pk}}" src="public_html/static/images/designs/{{ item.image.name | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
+             </div>
+           </div>
+            {% endfor %}
+              <div class="d-flex flex-row justify-content-around pt-6" id="choices">
+
+                 </div>
+               {% include 'partials/_pagination.html' with page_obj=data only %}
+
+           </div>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+              <div class="card">
+                  <div class="row pt-2">
+                      <div class="container_design">
+                      <div class="image_container frame">
+            <img src="{% static 'images/shirt_new.png' %}" class="img-fluid">
+        </div>
+        <div class="colors">
+            <ul>
+                <li data-color="#F44336" style="background-color: #F44336;"></li>
+                <li data-color="#E91E63" style="background-color:#E91E63 ;"></li>
+                <li data-color="#9C27B0" style="background-color: #9C27B0;"></li>
+                <li data-color="#673AB7" style="background-color:#673AB7 ;"></li>
+                <li data-color="#3F51B5" style="background-color: #3F51B5;"></li>
+                <li data-color="#2196F3" style="background-color:#2196F3 ;"></li>
+                <li data-color="#03A9F4" style="background-color:#03A9F4 ;"></li>
+                <li data-color="#00BCD4" style="background-color:#00BCD4 ;"></li>
+                <li data-color="#009688" style="background-color:#009688 ;"></li>
+                <li data-color="#4CAF50" style="background-color:#4CAF50 ;"></li>
+                <li data-color="#8BC34A" style="background-color:#8BC34A ;"></li>
+                <li data-color="#CDDC39" style="background-color:#CDDC39 ;"></li>
+                <li data-color="#FFEB3B" style="background-color:#FFEB3B ;"></li>
+                <li data-color="#FFC107" style="background-color:#FFC107 ;"></li>
+                <li data-color="#FF5722" style="background-color:#FF5722 ;"></li>
+                <li data-color="#FF9800" style="background-color:#FF9800 ;"></li>
+                <li data-color="#795548" style="background-color:#795548 ;"></li>
+                <li data-color="#9E9E9E" style="background-color:#9E9E9E ;"></li>
+                <li data-color="#607D8B" style="background-color:#607D8B ;"></li>
+                <!-- <li data-color="#795548" style="background-color:#795548 ;"></li> -->
+
+            </ul>
+        </div>
+              </div>
+                  </div>
+                  <div class="row pt-1 justify-content-center m-auto sizes">
+                    <ul>
+                        <li><button class="btn_round_size"> M </button></li>
+                        <li><button class="btn_round_size"> L </button></li>
+                        <li><button class="btn_round_size"> XL </button></li>
+                        <li><button class="btn_round_size"> 2XL </button></li>
+
+
+                    </ul>
+                  </div>
+              </div>
+      </div>
+    </div>
+</section>
+
+
+{% endblock body %}
+
+{% block scripts %}
+<script>
+let listElements = document.querySelectorAll('li');
+listElements.forEach(element => {
+    element.addEventListener('click', function(){
+        let clr = this.getAttribute('data-color');
+        document.documentElement.style.setProperty('--color', clr);
+        listElements.forEach(element=>{
+            element.style.border="none";
+        })
+        this.style.border="3px solid black";
+
+    })
+});
+</script>
+<script>
+
+  $(document).ready(function () {
+    $(".viewID").on('click', function () {
+        var src =$(this).attr('src');
+           $("#myImg").attr("src",src);
+    });
+
+});
+</script>
+{% endblock scripts %}

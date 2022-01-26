@@ -1,5 +1,5 @@
   {% load static %}
-   <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+   <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <a href="{% url 'all-green' %}" style="cursor: pointer; text-decoration: none">
                         <div class="card">
                             <div class="card-body p-3">
@@ -22,7 +22,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <a href="{% url 'all-requests' %}" style="cursor: pointer; text-decoration: none">
                         <div class="card">
                             <div class="card-body p-3">
@@ -44,7 +44,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <a href="{% url 'all-trainers' %}" style="cursor: pointer; text-decoration: none">
                         <div class="card">
                             <div class="card-body p-3">
@@ -58,6 +58,28 @@
                                     <div class="col-4 text-end">
                                         <div class="icon icon-shape shadow text-center border-radius-md">
                                             <img src="{% static 'images/kheer_inner_new.png' %}" style="width: 2.9rem"
+                                                 class="logo_user"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <a href="{% url 'trip-list' %}" style="cursor: pointer; text-decoration: none">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <h4 class="text-sm blue-khieer mb-0 text-capitalize font-weight-bold">طلبات الأنضمام للرحالات
+                                                </h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="icon icon-shape shadow text-center border-radius-md">
+                                            <img src="{% static 'images/goals.png' %}" style="width: 2.9rem"
                                                  class="logo_user"/>
                                         </div>
                                     </div>
