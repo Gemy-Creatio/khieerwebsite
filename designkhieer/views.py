@@ -26,7 +26,7 @@ def addUserDesign(request):
         obj = models.KhieerDesign(name=name, image=image)
         obj.save()
         if obj.pk:
-            return redirect('user-designs')
+            return redirect('new-designs')
     return render(request, 'designkhieer/addUserDesign.html')
 
 
@@ -63,4 +63,4 @@ class AllUserDesigns(View):
 
 def DeleteDesign(request, pk):
     models.KhieerDesign.objects.filter(id=pk).delete()
-    return redirect('user-designs')
+    return redirect('new-designs')

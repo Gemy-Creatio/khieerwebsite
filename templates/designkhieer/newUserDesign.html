@@ -6,7 +6,6 @@
 {% block style %}
     <link href="{% static 'css/design.css' %}" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 {% endblock style %}
 {% block body %}
 <section class="min-vh-85 mb-8">
@@ -32,9 +31,7 @@
                 <a href="{% url 'delete-design' item.pk %}">
                   <i class="fas fa-trash text-danger"></i>
                 </a>
-               <img id="{{item.pk}}" src="{{ item.image.url | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
-
-                    <img id="{{item.pk}}" src="public_html/static/images/designs/{{ item.image.name | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
+                 <img id="{{item.pk}}" src="/static/images/{{ item.image.name | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
              </div>
            </div>
             {% endfor %}
@@ -57,6 +54,7 @@
                       <div class="container_design">
                       <div class="image_container frame">
             <img src="{% static 'images/shirt_new.png' %}" class="img-fluid">
+            <img src="" id="myImg" class="design">
         </div>
         <div class="colors">
             <ul>
@@ -117,15 +115,16 @@ listElements.forEach(element => {
 
     })
 });
-</script>
-<script>
 
   $(document).ready(function () {
+      $("#myImg").hide();
     $(".viewID").on('click', function () {
+              $("#myImg").show();
         var src =$(this).attr('src');
            $("#myImg").attr("src",src);
     });
 
 });
 </script>
+
 {% endblock scripts %}

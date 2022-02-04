@@ -114,8 +114,8 @@ class CreateVolunteerTripRequest(CreateView):
     template_name = 'greenCircle/trips/trip-request.html'
 
     def get_success_url(self):
-        messages.success(self.request, "شكرًا لأهتمامك بالأنضمام لرحالاتنا التطوعية سنتاواصل معك لتعلم التفاصيل")
-        return reverse('trip-request')
+        messages.success(self.request, "شكرًا لأهتمامك بالأنضمام لرحالاتنا التطوعية سنتواصل معك لتعلم التفاصيل")
+        return reverse('trip-add')
 
 
 class CreateDocumentDownload(CreateView):

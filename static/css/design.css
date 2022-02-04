@@ -76,3 +76,10 @@ ul {
 .sizes ul li{
   display: inline !important;
 }
+
+ .design {
+         height: 8vh !important;
+    z-index: 99 !important;
+    width: 9rem !important;
+    margin: 0 auto !important;
+ }
