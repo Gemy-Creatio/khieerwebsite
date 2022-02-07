@@ -1,7 +1,13 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %}فريق العمل{% endblock title %}
+{% block title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+فريق العمل
+{% else %}
+     Staff Team
 
+{% endif %}
+{% endblock title %}
 {% block body %}
 <section class="min-vh-40 mb-8">
     <div class="bg-kheer page-header align-items-start min-vh-40 pt-5 pb-11 m-3 border-radius-lg" style="background-size: cover; background-repeat: no-repeat; background-position: center; background-image: url('../../static/images/who-us.png');">
@@ -17,8 +23,12 @@
                    <div class="col-12 col-xl-12">
           <div class="card h-100">
             <div class="card-header pb-0 p-3">
-                                                                  {% include 'partials/menus/_KheerHeader.html' %}
+                {% include 'partials/menus/_KheerHeader.html' %}
+                    {% if LANGUAGE_CODE == 'ar' %}
               <h6 class="mb-0">فريق العمل</h6>
+                {% else %}
+              <h6 class="mb-0">Staff Team</h6>
+                {% endif %}
             </div>
             <div class="card-body p-3 justify-content-center overflow-hidden">
               <ul class="list-group">
@@ -27,8 +37,13 @@
                     <img src="{% static 'images/emp.png' %}" alt="kal" class="border-radius-lg shadow">
                   </div>
                   <div  class="d-flex align-items-start flex-column justify-content-center">
+                                          {% if LANGUAGE_CODE == 'ar' %}
                     <h6 class="mb-0 text-sm ">أمانى الشعلان</h6>
                     <p class="mb-0 text-xs blue-khieer">مؤسس الوقف</p>
+                      {% else %}
+                   <h6 class="mb-0 text-sm ">Amani ElShaelan</h6>
+                    <p class="mb-0 text-xs blue-khieer">CoFounder</p>
+                      {% endif %}
                   </div>
                   <a class="btn btn-link blue-khieer pe-3 ps-0 mb-0 ms-auto" href="javascript:;">{{ 'info@khieer.com'|urlize }}</a>
                 </li>
@@ -37,8 +52,13 @@
                     <img src="{% static 'images/emp.png' %}" alt="kal" class="border-radius-lg shadow">
                   </div>
                   <div  class="d-flex align-items-start flex-column justify-content-center">
+                                                                {% if LANGUAGE_CODE == 'ar' %}
                     <h6 class="mb-0 text-sm">نوف الصليهم</h6>
                     <p class="mb-0 text-xs blue-khieer">المدير التنفيذى</p>
+                                                                    {% else %}
+                                                                     <h6 class="mb-0 text-sm">Nawaf ElSalehm</h6>
+                    <p class="mb-0 text-xs blue-khieer">Executive manager</p>
+                      {% endif %}
                   </div>
                   <a class="btn btn-link blue-khieer pe-3 ps-0 mb-0 ms-auto" href="javascript:;">{{ 'nouffahads98@gmail.com'|urlize }}</a>
                 </li>
@@ -48,8 +68,13 @@
                     <img src="{% static 'images/emp.png' %}" alt="kal" class="border-radius-lg shadow">
                   </div>
                   <div   class="d-flex align-items-start flex-column justify-content-center">
+                                                                                      {% if LANGUAGE_CODE == 'ar' %}
                     <h6 class="mb-0 text-sm">قاسم العلى</h6>
                     <p class="mb-0 text-xs blue-khieer">المستشار المالى</p>
+                      {% else %}
+                         <h6 class="mb-0 text-sm">Qasm AlAli</h6>
+                    <p class="mb-0 text-xs blue-khieer">Financial consultant</p>
+                      {% endif %}
                   </div>
                   <a class="btn btn-link blue-khieer pe-3 ps-0 mb-0 ms-auto" href="javascript:;">{{ 'qasem.alali8@gmail.com'|urlize }}</a>
                 </li>
@@ -58,8 +83,13 @@
                     <img src="{% static 'images/emp.png' %}" alt="kal" class="border-radius-lg shadow">
                   </div>
                   <div   class="d-flex align-items-start flex-column justify-content-center">
+                                                                                                            {% if LANGUAGE_CODE == 'ar' %}
                     <h6 class="mb-0 text-sm">طلال الفرحان</h6>
                     <p class="mb-0 text-xs blue-khieer">مسوق برامج خير السعودية</p>
+                      {% else %}
+                  <h6 class="mb-0 text-sm">Talal ElFarhan</h6>
+                    <p class="mb-0 text-xs blue-khieer"> Marketer</p>
+                      {% endif %}
                   </div>
                   <a class="btn btn-link blue-khieer pe-3 ps-0 mb-0 ms-auto" href="javascript:;">{{ 'talalalfarhan188@gmail.com'|urlize }}</a>
                 </li>
@@ -69,8 +99,12 @@
                     <img src="{% static 'images/emp.png' %}" alt="kal" class="border-radius-lg shadow">
                   </div>
                   <div  class="d-flex align-items-start  flex-column justify-content-center">
+                                                                                                                                  {% if LANGUAGE_CODE == 'ar' %}
                     <h6 class="mb-0 text-sm">نوار الجدى</h6>
                     <p class="mb-0 text-xs blue-khieer">مدير مشروع الدائرة الخضراء</p>
+                      {% else %}<h6 class="mb-0 text-sm">Nawar ELGadi</h6>
+                    <p class="mb-0 text-xs blue-khieer">Project Manager</p>
+                      {% endif %}
                   </div>
                   <a class="btn btn-link blue-khieer pe-3 ps-0 mb-0 ms-auto" href="javascript:;">{{ 'nawar.aljidy@gmail.com'|urlize }}</a>
                 </li>
@@ -80,8 +114,13 @@
                     <img src="{% static 'images/emp.png' %}" alt="kal" class="border-radius-lg shadow">
                   </div>
                   <div  class="d-flex align-items-start  flex-column justify-content-center">
+                          {% if LANGUAGE_CODE == 'ar' %}
                     <h6 class="mb-0 text-sm">مشاعل الصقير</h6>
                     <p class="mb-0 text-xs blue-khieer">منسق اداري</p>
+                              {% else %}
+                                   <h6 class="mb-0 text-sm">MAshal ELSakir</h6>
+                    <p class="mb-0 text-xs blue-khieer">Administrative Coordinator</p>
+                      {% endif %}
                   </div>
                   <a class="btn btn-link blue-khieer pe-3 ps-0 mb-0 ms-auto" href="javascript:;">{{ 'm.k.alsugair@gmail.com'|urlize }}</a>
                 </li>

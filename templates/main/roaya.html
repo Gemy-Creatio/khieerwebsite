@@ -1,7 +1,13 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %}رسالتنا و رؤيتنا{% endblock title %}
+{% block title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+رسالتنا و رؤيتنا
+{% else %}
+Our mission and vision
 
+{% endif %}
+{% endblock title %}
 {% block body %}
 <section class="min-vh-40 mb-8">
     <div class="bg-kheer page-header align-items-start min-vh-40 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('../../static/images/h1_hero.png');">
@@ -20,11 +26,17 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">الرؤية</h3>
                                 <p class="blue-khieer">
 الريادة الأجتماعية في تعزيز حب العمل الخيري والعطاء بوعي
-
                                 </p>
+                                {% else %}
+                                           <h3 class="mb-1 pt-2 green-khieer text-bold">Our Vision</h3>
+                                <p class="blue-khieer">
+                  Social leadership in promoting the love of charitable work and giving consciously
+                                </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -48,10 +60,17 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">الرسالة</h3>
                                 <p class="blue-khieer">
 إعادة تعريف العمل الخيري والاجتماعي بطرق الإلهام والانسنة والعطاء بوعي , ونبتكر أو نتعاون في إخراج منتجات جاذبة ومحفزة
                                 </p>
+                                {% else %}
+                           <h3 class="mb-1 pt-2 green-khieer text-bold">Our Message</h3>
+                                <p class="blue-khieer">
+                                Redefining charitable and social work in ways of inspiration, humanity and conscious giving, and we innovate or cooperate in producing attractive and stimulating products
+                                </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">

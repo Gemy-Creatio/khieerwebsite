@@ -7,7 +7,12 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                       {% if LANGUAGE_CODE == 'ar' %}
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">الخصوصية و الأحكام</p>
+                      {% else %}
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Privacy and Terms</p>
+
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -27,7 +32,13 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                                             {% if LANGUAGE_CODE == 'ar' %}
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">رسالتنا و رؤيتنا</p>
+                      {% else %}
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Our mission and vision</p>
+
+
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -48,7 +59,13 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                                                                   {% if LANGUAGE_CODE == 'ar' %}
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">فريق العمل</p>
+                                                                       {% else %}
+
+                                                                                           <p class="text-sm mb-0 text-capitalize font-weight-bold">Staff Team</p>
+
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -70,7 +87,14 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                                                                                         {% if LANGUAGE_CODE == 'ar' %}
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">خير السعودية 2030</p>
+                      {% else %}
+
+                         <p class="text-sm mb-0 text-capitalize font-weight-bold">
+Khieer Saudi Arabia 2030</p>
+
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">

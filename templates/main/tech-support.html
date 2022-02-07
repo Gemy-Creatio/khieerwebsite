@@ -1,6 +1,14 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %}الدعم الفنى {% endblock title %}
+{% block title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+الدعم الفنى
+
+        {% else %}
+        {% block title %}Technical Support{% endblock title %}
+
+{% endif %}
+{% endblock title %}
 
 {% block body %}
 <section class="min-vh-85 mb-8">
@@ -22,6 +30,7 @@
             <div class="card-body">
               <form method="post">
                   {% csrf_token %}
+                      {% if LANGUAGE_CODE == 'ar' %}
                 <div class="mb-3">
                   <input type="text" class="form-control" placeholder="الأسم" name="name" id="name" aria-label="Name" aria-describedby="email-addon">
                 </div>
@@ -31,6 +40,17 @@
                 <div class="text-center">
                   <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">إرسال</button>
                 </div>
+                  {% else %}
+                       <div class="mb-3">
+                  <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="email-addon">
+                </div>
+                  <div class="mb-3">
+                  <input type="text" name="message" id="message" class="form-control" placeholder="Message" aria-label="amount" aria-describedby="password-addon">
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">Send</button>
+                </div>
+                  {% endif %}
               </form>
             </div>
           </div>

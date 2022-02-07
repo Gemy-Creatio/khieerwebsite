@@ -1,7 +1,14 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %} الدائرة الخضراء {% endblock title %}
 
+{% block title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+ الدائرة الخضراء
+        {% else %}
+        Green Courses
+
+{% endif %}
+{% endblock title %}
 {% block body %}
 <section class="min-vh-85 mb-8">
     <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/green_banner.png');">
@@ -23,9 +30,16 @@
                         <div class="row">
                         <div class="col-lg-6 pt-lg-3">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">الدائرة الخضراء</h3>
                                 <p class="blue-khieer">
 منتج لتكوين مجموعات في دوائر خضراء ترمز للنمو والتماسك والتعاضد. يقدم عدد من الخدمات المبتكرة التي تهدف إلى نمو وعي المستفيدين داخل الدائرة في اكتشاف الشغف والوصول للغاية من الحياة والنوايا والوعي بالعطاء والتسامح.                                </p>
+                       {% else %}
+                                                          <h3 class="mb-1 pt-2 green-khieer text-bold">Grren Circle</h3>
+                                <p class="blue-khieer">
+                                A product to form groups in green circles symbolizing growth, cohesion and solidarity. It offers a number of innovative services that aim to grow the awareness of the beneficiaries within the circle in discovering the passion and reach of life and intentions and awareness of giving and tolerance.
+                                </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -58,12 +72,21 @@
       </div>
      <div class="row pt-5 justify-content-center">
          <div class="col-4 justify-content-center text-center">
+                 {% if LANGUAGE_CODE == 'ar' %}
              <a class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1" href="{% url 'create_document' %}"> تكوين دائرة</a>
+  {% else %}
+                       <a class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1" href="{% url 'create_document' %}"> Create Circle</a>
 
+             {% endif %}
          </div>
            <div class="col-4 justify-content-center text-center">
+                                {% if LANGUAGE_CODE == 'ar' %}
              <a class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1" href="{% url 'trip-add' %}">الأنضمام للرحلات التطوعية</a>
+ {% else %}
+                   <a class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1" href="{% url 'trip-add' %}">Join volunteer trips
+</a>
 
+               {% endif %}
          </div>
      </div>
 

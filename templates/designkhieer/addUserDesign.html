@@ -1,6 +1,7 @@
 {% extends 'masterpage.html' %}
 {% load static %}
 {% block title %} إضافة تصميم {% endblock title %}
+{% load crispy_forms_tags %}
 
 {% block body %}
 <section class="min-vh-85 mb-8">
@@ -23,14 +24,7 @@
               <div class="card-body">
               <form enctype="multipart/form-data" method="post">
                   {% csrf_token %}
-                  <div class="form-group">
-                      <label class="text-black">العنوان </label>
-                      <input type="text" id="name" class="form-control" name="name"/>
-                      </div>
-                  <div class="form-group">
-                  <label class="text-black">الصورة </label>
-                  <input type="file" id="image" class="form-control" name="image"/>
-                  </div>
+                   {{ form|crispy }}
 <div class="text-center">
 <button type="submit" class="btn btn-sm text-white bg-maal">
  إضافة

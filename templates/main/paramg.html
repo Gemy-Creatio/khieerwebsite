@@ -1,6 +1,13 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %}  برامجنا {% endblock title %}
+{% block title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+    برامجنا
+        {% else %}
+        Our Programs
+
+{% endif %}
+{% endblock title %}
 
 {% block body %}
 <section class="min-vh-85 mb-8">
@@ -23,6 +30,7 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">برنامج خير السعودية بناسها</h3>
                                 <p class="blue-khieer pt-2">
 هو برنامج حواري وتوعوي إلهامي يُبرز شخصيات ساهمت في العمل الإنساني ولها الأثر المجتمعي للتحدث عن تجاربها في العطاء بوعي وبذل الخير ، وتأثير العطاء عليها وعلى أفراد المجتمع على النمو الداخلي ليؤثر في محيطه الخارجي .                                </p>
@@ -42,6 +50,30 @@
                                     <li>  توثيق وتقديم تجارب الشخصيات بأسلوب إلهامي ومميز وبسيط </li>
                                                                    <li> إلهام المقتدرين على بذل الخير</li>
                                 </ul>
+                                {% else %}
+                                    <h3 class="mb-1 pt-2 green-khieer text-bold">Khieer Saudi Arabia with its people</h3>
+                                <p class="blue-khieer pt-2">
+                                It is an inspirational talk show and awareness program that highlights personalities who have contributed to humanitarian work and have a societal impact, to talk about their experiences of giving with awareness and doing good, and the impact of giving on them and the members of society on internal growth to affect its external surroundings
+                                </p>
+                                <h4 class="mb-1 pt-3 text-black-50 text-bold">
+                                Main Aspects
+                                </h4>
+                                <ul class="pt-2" >
+                                    <li>Yusr</li>
+                                    <li>humanity</li>
+                                    <li>harmony</li>
+                                </ul>
+                                 <h4 class="mb-1 pt-3 blue-khieer text-bold">
+Goals
+                                 </h4>
+                                <ul class="pt-2 blue-khieer" >
+                                    <li>Spreading the culture of giving consciously, influencing the community, and enhancing the love of giving among the public </li>
+                                    <li>Promote a sense of humanity and sympathy in the public</li>
+                                    <li>
+Documenting and presenting the experiences of the characters in an inspirational, distinctive and simple style </li>
+                                                                   <li>Inspiring the able to do good </li>
+                                </ul>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -66,9 +98,16 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 text-lg pt-2 green-khieer text-bold"> أدلة التغيير الثقافي والأثر الاجتماعي</h3>
                                 <p class="blue-khieer text-xs">
  وهو مراجع وأدلة العطاء بوعي والتعاطف والأنسنة والإلهام في العمل الاجتماعي والخيري.                                </p>
+                                {% else %}
+                                 <h3 class="mb-1 text-lg pt-2 green-khieer text-bold"> Evidence of cultural change and social impact</h3>
+                                <p class="blue-khieer text-xs">
+It is references and guides to giving consciously, empathy, humanization and inspiration in social and charitable work
+ .                                </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -89,8 +128,15 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6 ">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-lg text-bold"> دليل التعاطف</h3>
-                                 <a href="{% url 'create_document' %}" class="btn btn-sm text-white bg-maal btn-round mb-0 me-1" style="width: 10rem;"> الحصول على الدليل</a>
+                                                                         <a href="{% url 'create_document' %}" class="btn btn-sm text-white bg-maal btn-round mb-0 me-1" style="width: 10rem;"> الحصول على الدليل</a>
+
+                                {% else %}
+                                <h3 class="mb-1 pt-2 green-khieer text-lg text-bold">Sympathy Guide</h3>
+                                 <a href="{% url 'create_document' %}" class="btn btn-sm text-white bg-maal btn-round mb-0 me-1" style="width: 10rem;"> Get Guide</a>
+
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">

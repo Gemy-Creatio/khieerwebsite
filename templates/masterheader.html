@@ -13,6 +13,7 @@
         </span>
       </button>
       <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
+                                          {% if LANGUAGE_CODE == 'ar' %}
                                   <ul class="navbar-nav navbar-nav-hover mx-auto">
                                                                         <li class="nav-item">
                                     <a class="nav-link me-2 green-khieer" href="{% url 'home-page' %}">
@@ -52,6 +53,7 @@
                                     <a class="nav-link green-khieer me-2" href="{% url 'auto-page' %}">
                                         الخدمات الألكترونية                                    </a>
                                 </li>
+                                              <li>{% include 'partials/_language.html' %}</li>
 
                                 <li class="nav-item d-lg-none">
                                     <a class="nav-link me-2 green-khieer" href="{% url 'new-designs' %}">
@@ -64,7 +66,61 @@
                                 </li>
 
                             </ul>
+ {% else %}
+                                              <ul class="navbar-nav navbar-nav-hover mx-auto">
+                                                                        <li class="nav-item">
+                                    <a class="nav-link me-2 green-khieer" href="{% url 'home-page' %}">
+                                        Home
+                                    </a>
+                                </li>
+                                                                       <li class="nav-item">
+                                    <a class="nav-link me-2 green-khieer" href="{% url 'paramg-page' %}">
+                                        Our Programs
+                                    </a>
+                                </li>
+                                                                         <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'about-page' %}">
+                                       About Khieer
+                                    </a>
+                                </li>
+                                                                                {% if request.user.first_name %}
+                                                         <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'logout' %}">
+                                       Logout
+                                    </a>
+                                </li>
+                                                                                                                          <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'dashboard-page' %}">
+                                        Dashboard
+                                    </a>
+                                </li>
+                                         {% else %}
+                                                            <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'reg-vol' %}">
+                                       Join Us
+                                    </a>
+                                </li>
+                                      {% endif %}
 
+                                           <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'auto-page' %}">
+                                        Services                                   </a>
+                                </li>
+                                              <li>{% include 'partials/_language.html' %}</li>
+
+                                <li class="nav-item d-lg-none">
+                                    <a class="nav-link me-2 green-khieer" href="{% url 'new-designs' %}">
+                                       Try Your Design
+                                    </a>
+                                </li>
+                                     <li class="nav-item d-lg-none">
+                                           <a href="https://KSAKhair.com" class="nav-link green-khieer me-2">Online Store</a>
+
+                                </li>
+
+                            </ul>
+
+      {% endif %}
         <ul class="navbar-nav d-lg-inline d-none">
           <li class="nav-item d-lg-inline">
             <a href="https://KSAKhair.com" class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1"><i class="fas fa-store text-white text-lg"></i></a>

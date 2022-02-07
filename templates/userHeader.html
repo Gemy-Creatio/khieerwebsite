@@ -16,7 +16,8 @@
                             </span>
                         </button>
                         <div class="collapse navbar-collapse ps" id="navigation">
-                                                          <ul class="navbar-nav mx-auto">
+                                                                                 {% if LANGUAGE_CODE == 'ar' %}
+                                  <ul class="navbar-nav mx-auto">
                                                                         <li class="nav-item">
                                     <a class="nav-link me-2 green-khieer" href="{% url 'home-page' %}">
                                         الرئيسية
@@ -27,7 +28,6 @@
                                         برامجنا
                                     </a>
                                 </li>
-                             
                                                                          <li class="nav-item">
                                     <a class="nav-link green-khieer me-2" href="{% url 'about-page' %}">
                                         عن الوقف
@@ -39,7 +39,7 @@
                                         تسجيل خروج
                                     </a>
                                 </li>
-                                                                                                         <li class="nav-item">
+                                                                                                                          <li class="nav-item">
                                     <a class="nav-link green-khieer me-2" href="{% url 'dashboard-page' %}">
                                         لوحة التحكم
                                     </a>
@@ -56,8 +56,9 @@
                                     <a class="nav-link green-khieer me-2" href="{% url 'auto-page' %}">
                                         الخدمات الألكترونية                                    </a>
                                 </li>
+                                              <li>{% include 'partials/_language.html' %}</li>
 
-                                             <li class="nav-item d-lg-none">
+                                <li class="nav-item d-lg-none">
                                     <a class="nav-link me-2 green-khieer" href="{% url 'new-designs' %}">
                                        جرّب تصميمك
                                     </a>
@@ -66,16 +67,71 @@
                                            <a href="https://KSAKhair.com" class="nav-link green-khieer me-2">المتجر الألكترونى</a>
 
                                 </li>
+
+                            </ul>
+ {% else %}
+                                              <ul class="navbar-nav mx-auto">
+                                                                        <li class="nav-item">
+                                    <a class="nav-link me-2 green-khieer" href="{% url 'home-page' %}">
+                                        Home
+                                    </a>
+                                </li>
+                                                                       <li class="nav-item">
+                                    <a class="nav-link me-2 green-khieer" href="{% url 'paramg-page' %}">
+                                        Our Programs
+                                    </a>
+                                </li>
+                                                                         <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'about-page' %}">
+                                       About Khieer
+                                    </a>
+                                </li>
+                                                                                {% if request.user.first_name %}
+                                                         <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'logout' %}">
+                                       Logout
+                                    </a>
+                                </li>
+                                                                                                                          <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'dashboard-page' %}">
+                                        Dashboard
+                                    </a>
+                                </li>
+                                         {% else %}
+                                                            <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'reg-vol' %}">
+                                       Join Us
+                                    </a>
+                                </li>
+                                      {% endif %}
+
+                                           <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'auto-page' %}">
+                                        Services                                   </a>
+                                </li>
+                                              <li>{% include 'partials/_language.html' %}</li>
+
+                                <li class="nav-item d-lg-none">
+                                    <a class="nav-link me-2 green-khieer" href="{% url 'new-designs' %}">
+                                       Try Your Design
+                                    </a>
+                                </li>
+                                     <li class="nav-item d-lg-none">
+                                           <a href="https://KSAKhair.com" class="nav-link green-khieer me-2">Online Store</a>
+
+                                </li>
+
                             </ul>
 
-                             <ul class="navbar-nav d-lg-inline d-none ">
-                                <li class="nav-item d-lg-inline">
-            <a href="https://KSAKhair.com" class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1">المتجر الألكترونى</a>
-                                </li>
-                                     <li class="nav-item d-lg-inline">
-            <a href="{% url 'new-designs' %}" class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1">جرّب تصميمك</a>
+      {% endif %}
+        <ul class="navbar-nav d-lg-inline d-none">
+          <li class="nav-item d-lg-inline">
+            <a href="https://KSAKhair.com" class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1"><i class="fas fa-store text-white text-lg"></i></a>
           </li>
-                            </ul>
+              <li class="nav-item d-lg-inline">
+            <a href="{% url 'new-designs' %}" class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1"><i class="fas fa-tshirt text-white text-lg"></i></a>
+          </li>
+        </ul>
                             <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
                         </div>
                     </div>

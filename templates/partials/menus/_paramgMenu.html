@@ -6,7 +6,12 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                          {% if LANGUAGE_CODE == 'ar' %}
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">   خير السعودية بناسها</p>
+                      {% else %}
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold"> Khieer Saudi Arabia with its people  </p>
+
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -25,7 +30,12 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                                                {% if LANGUAGE_CODE == 'ar' %}
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">الدائرة الخضراء</p>
+                      {% else %}
+                                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Green Circle</p>
+
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -45,7 +55,12 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                                                                      {% if LANGUAGE_CODE == 'ar' %}
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">ادلة التغيير الثقافي والأثر الاجتماعي</p>
+                      {% else %}
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Evidence of cultural change and social impact</p>
+
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">

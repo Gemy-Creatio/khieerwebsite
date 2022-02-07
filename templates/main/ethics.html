@@ -1,6 +1,12 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %}  الخصوصية و الأحكام{% endblock title %}
+{% block title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+  الخصوصية و الأحكام
+{% else %}
+Privacy and Terms
+{% endif %}
+{% endblock title %}
 
 {% block body %}
 <section class="min-vh-40 mb-8">
@@ -17,10 +23,17 @@
         <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
           <div class="card z-index-0">
             <div class="card-body">
+                    {% if LANGUAGE_CODE == 'ar' %}
   <h3 class="green-khieer mb-2 mt-5">الخصوصية و الأحكام</h3>
               <p class="text-lead blue-khieer">
                   يحرص وقف خير السعودية الخيرية على حفظ خصوصية رواده الزوار ، فنحن ملتزمون بجميع القوانين التي تضبط العمل داخل الفضاء الرقمي انطلاقا من نفس مبادئ الوقف
               </p>
+                {% else %}
+            <h3 class="green-khieer mb-2 mt-5">Privacy and Terms</h3>
+              <p class="text-lead blue-khieer">
+The Saudi Khair Charitable Endowment is keen to preserve the privacy of its visitors. We are committed to all laws that regulate work within the digital space, based on the same principles of the endowment.
+              </p>
+                {% endif %}
             </div>
           </div>
         </div>
@@ -33,10 +46,17 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">سياسة الخصوصية</h3>
                                 <p class="blue-khieer pt-2">
 تمثل سياسة الخصوصية نوعا من التعاقد الضمني بين موقع الوقف وجميع رواده الزوار، ونعمل من خلال البنود الواردة فيها على توضيح كافة البيانات التي يتم جمعها منهم آليا أو إراديا، كما نبرز الأسباب التي تدفعنا لجمعها
                                 </p>
+                                {% else %}
+                                   <h3 class="mb-1 pt-2 green-khieer text-bold">Privacy policy</h3>
+                                <p class="blue-khieer pt-2">
+                                The privacy policy represents a kind of implicit contract between the Waqf site and all its visitors, and we work through the clauses contained in it to clarify all the data collected from them automatically or voluntarily, and we highlight the reasons that motivate us to collect it
+                                </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -60,10 +80,18 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">حماية معلوماتكم الشخصية</h3>
                                 <p class="blue-khieer pt-2">
 نحن على علم بمدى أهمية المعلومات الشخصية لزوارنا والمستخدمين الكرام ، كما ندرك تمام الإدراك مدى التحديات التي تقف في وجه سلامة التعاملات داخل الانترنت، لهذا نبذل جهودا كبيرة لحماية هذه المعلومات ، وذلك عبر اعتماد أقصى درجات الأمان للموقع من اخطار الهجمات الالكترونية
                                 </p>
+                                {% else %}
+                                <h3 class="mb-1 pt-2 green-khieer text-bold">Protecting your personal information</h3>
+                                <p class="blue-khieer pt-2">
+
+We are aware of the importance of personal information to our valued visitors and users, and we are fully aware of the challenges that stand in the face of the safety of transactions within the Internet, so we make great efforts to protect this information, by adopting the highest levels of security for the site from the dangers of electronic attacks
+                                </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -87,9 +115,18 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">الشروط و الأحكام</h3>
                                 <p class="blue-khieer pt-2">
 بدخولك إلى الموقع فأنت توافق على الإلتزام بهذه الشروط، وعلى جميع القوانين واللوائح المعمول بها، وتقر كذلك بأنك مسئول عن الإمتثال لأي قوانين محلية سارية . إذا كنت لا توافق على أي من هذه الشروط، فلا يحق لك استخدام أو الدخول إلى هذا الموقع. نحن نحتفظ بالحق في تعديل هذه الشروط والأحكام في أي وقت دون سابق إنذار لك. وتسري أي تعديلات على هذه الشروط والأحكام بمجرد نشرها على موقعنا الإلكتروني. تشكل هذه الشروط والأحكام كامل الاتفاق القانوني بينك وبين وقف خير السعودية إذا ثبت أن أي نص من نصوص هذه الشروط والأحكام غير قانوني أو غير قابل للتنفيذ، لا تتأثر الشروط والأحكام الأخرى وتظل نافذة وسارية المفعول تماماً. تخضع هذه الشروط والأحكام لقوانين المملكة العربية السعودية، وتخضع جميع المنازعات التي تنشأ عن إنفاذ هذه الأحكام والشروط للاختصاص القضائي الحصري للمحاكم السعودية. التغييرات على هذه السياسة تُنشَر أي تغييرات و/أو تعديلات نقوم بإجرائها على سياسة الخصوصية هذه مستقبلاً على الموقع الإلكتروني، وسيتم إبلاغك بها حيثما يكون ذلك ملائماً، ونوصيك بالرجوع إلى هذه الصفحة بانتظام للاطلاع على أحدث نسخة لسياسة الخصوصية. وبالمداومة على استعمال الموقع الإلكتروني، فإنك تُعتبَر بذلك موافقاً على سياسة الخصوصية هذه. قبول الشروط والاحكام: تعد الموافقة على الطلب بمثابة موافقة نهائيه غير مشروطه من العميل على جميع الشروط والأحكام                            </div>
+                     {% else %}
+                         <h3 class="mb-1 pt-2 green-khieer text-bold">Terms and Conditions</h3>
+                                <p class="blue-khieer pt-2">
+By accessing the Site, you agree to be bound by these Terms, all applicable laws and regulations, and acknowledge that you are responsible for compliance with any applicable local laws. IF YOU DO NOT AGREE WITH ANY OF THESE TERMS, YOU MAY NOT USE OR ACCESS THIS SITE. We reserve the right to modify these terms and conditions at any time without notice to you. Any modifications to these terms and conditions will be effective once they are posted on our website.
+ These terms and conditions constitute the entire legal agreement between you and Waqf Khair Saudia. If any provision of these terms and conditions is held to be illegal or unenforceable, the other terms and conditions shall not be affected and shall remain in full force and effect. These terms and conditions are governed by the laws of the Kingdom of Saudi Arabia, and all disputes arising from the enforcement of these terms and conditions shall be subject to the exclusive jurisdiction of the Saudi courts. Changes to this Policy Any future changes and/or modifications we make to this Privacy Policy will be posted on the Website and, where appropriate, will be notified to you
+      We recommend that you return to this page regularly to view the most current version of the Privacy Policy. By continuing to use the Website, you are deemed to have accepted this Privacy Policy. Acceptance of terms and conditions: Approval of the application is a final, unconditional acceptance by the client of all terms and conditions
+                                </p>
+                            {% endif %}
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
                             <div class="border-radius-lg h-100">

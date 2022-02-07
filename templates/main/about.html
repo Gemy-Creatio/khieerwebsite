@@ -1,6 +1,13 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %}  عن الوقف {% endblock title %}
+{% block title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+  عن الوقف
+{% else %}
+        About Khieer
+
+{% endif %}
+{% endblock title %}
 
 {% block body %}
 <section class="min-vh-85 mb-8">
@@ -23,10 +30,17 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">عن خير السعودية</h3>
                                 <p class="blue-khieer pt-2">
                                     عبارة عن مشروع وقفي يعني ببرامج ومنتجات الإلهام والأنسنة والعطاء بوعي لترغيب الناس بأهداف وغايات العطاء، يهتم خير السعودية بالعمل التطوعي، وصياغة القضايا الإنسانية واحتياجات الفئات الأقل حظاً وفق نظرية التغيير، وتكوين مجتمعات تكافلية محبة وداعمة للعطاء.
                                 </p>
+                                {% else %}
+                                      <h3 class="mb-1 pt-2 green-khieer text-bold">About Khieer Saudi Arabia</h3>
+                                <p class="blue-khieer pt-2">
+                                It is an endowment project concerned with programs and products of inspiration, humanization and giving consciously to entice people with the goals and objectives of giving. Khair Saudi Arabia is concerned with volunteer work, formulating humanitarian issues and the needs of the less fortunate according to the theory of change, and forming symbiotic societies that are loving and supportive of giving.
+                                </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -50,11 +64,19 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">الأهداف العامة</h3>
                                 <p class="blue-khieer">
                                     تسعى خير السعودية إلى توعية المجتمع بالمفهوم الواسع لأنسنة العمل الخيري والتكافل الاجتماعي وأهمية العطاء بوعي عبر مواقع التواصل الاجتماعي
 
                                 </p>
+                                {% else %}
+                                 <h3 class="mb-1 pt-2 green-khieer text-bold">General goals</h3>
+                                <p class="blue-khieer">
+
+Saudi Khair seeks to educate society about the broad concept of humanizing charitable work, social solidarity, and the importance of giving consciously through social networking sites.
+                                </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">

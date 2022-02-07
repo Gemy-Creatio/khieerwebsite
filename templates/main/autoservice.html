@@ -1,6 +1,12 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %}الخدمات الألكترونية {% endblock title %}
+   {% block title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+
+       الخدمات الألكترونية{% else %}
+electronic services
+{% endif %}
+   {% endblock title %}
 
 {% block body %}
 <section class="min-vh-85 mb-8">
@@ -17,11 +23,16 @@
         <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
           <div class="card z-index-0">
             <div class="card-header text-center pt-4">
+                    {% if LANGUAGE_CODE == 'ar' %}
               <h5 class="blue-khieer">تواصل معنا</h5>
+                {% else %}
+                             <h5 class="blue-khieer">Contact Us</h5>
+                {% endif %}
             </div>
             <div class="card-body">
               <form method="post">
                   {% csrf_token %}
+                                      {% if LANGUAGE_CODE == 'ar' %}
                 <div class="mb-3">
                   <input type="text" class="form-control" placeholder="الأسم" name="name" id="name" aria-label="Name" aria-describedby="email-addon">
                 </div>
@@ -37,6 +48,23 @@
                 <div class="text-center">
                   <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">إرسال</button>
                 </div>
+                  {% else %}
+                     <div class="mb-3">
+                  <input type="text" class="form-control" placeholder="Full Name" name="name" id="name" aria-label="Name" aria-describedby="email-addon">
+                </div>
+                <div class="mb-3">
+                  <input type="text" name="address" id="address" class="form-control" placeholder="Address" aria-label="address" aria-describedby="email-addon">
+                </div>
+                   <div class="mb-3">
+                  <input type="number" name="phone" id="phone" class="form-control" placeholder="Mobile Number" aria-label="amount" aria-describedby="password-addon">
+                </div>
+                  <div class="mb-3">
+                  <input type="text" name="message" id="message" class="form-control" placeholder="Message" aria-label="amount" aria-describedby="password-addon">
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">Send</button>
+                </div>
+                  {% endif %}
               </form>
             </div>
           </div>
@@ -50,7 +78,11 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                          {% if LANGUAGE_CODE == 'ar' %}
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">تسجيل دخول</p>
+                      {% else %}
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Login</p>
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -70,7 +102,12 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                          {% if LANGUAGE_CODE == 'ar' %}
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">الدعم الفنى</p>
+                      {% else %}
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Technical Support</p>
+
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -91,7 +128,12 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-capitalize font-weight-bold">المتجر الألكترونى</p>
+                                                {% if LANGUAGE_CODE == 'ar' %}
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">متجر خير السعودية</p>
+                      {% else %}
+                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Khieer Online Store</p>
+
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">

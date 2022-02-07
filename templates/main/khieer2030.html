@@ -1,6 +1,14 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %}خير السعودية  2030{% endblock title %}
+{% block title %}
+
+    {% if LANGUAGE_CODE == 'ar' %}
+    خير السعودية  2030
+{% else %}
+Khieer Saudi Arabia 2030
+
+{% endif %}
+{% endblock title %}
 
 {% block body %}
 <section class="min-vh-40 mb-8">
@@ -17,10 +25,18 @@
         <div class="col-xl-4 col-lg-5 col-md-7 pt-3 mx-auto">
           <div class="card z-index-0">
             <div class="card-body">
+                    {% if LANGUAGE_CODE == 'ar' %}
                     <h4 class="green-khieer mb-2 mt-5">خير السعودية ضمن 2030</h4>
               <p class="text-lead blue-khieer">
                   من مرتكزات رؤية 2030 أن تكون المملكة العربية السعودية "وطن طموح ومواطنة مسؤول". تسعى خير لأن تكون جزء من تحقيق هذه الرؤية.
               </p>
+           {% else %}
+                       <h4 class="green-khieer mb-2 mt-5">Khieer Saudi Arabia within 2030</h4>
+              <p class="text-lead blue-khieer">
+
+One of the pillars of Vision 2030 is for the Kingdom of Saudi Arabia to be an “ambitious nation and responsible citizenship.” Khair seeks to be a part of achieving this vision
+              </p>
+                {% endif %}
             </div>
           </div>
         </div>
@@ -33,9 +49,16 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">المسؤولية في الحياة</h3>
                                 <p class="blue-khieer">
 تمثل رؤية خير السعودية مسؤولية بعيدة المدى واسعة النطاق والتأثير على حاضر ومستقبل كل من المستفيدين والمتطوعين والشركاء                                 </p>
+                          {% else %}
+                           <h3 class="mb-1 pt-2 green-khieer text-bold">Responsibility in life</h3>
+                                <p class="blue-khieer">
+                                Saudi Khieer Vision represents a far-reaching and wide-ranging responsibility and influence on the present and future of beneficiaries, volunteers and partners
+                                </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -59,10 +82,15 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">المسؤولية في العمل</h3>
                                 <p class="blue-khieer">
 تسهم خير السعودية في ربط الكيانات المقتدرة من المؤسسات والأفراد بالمستفيداتِ من الجمعيات الخيرية للعمل على تطويرهنّ وتمكينهنّ وتوظيفهنّ، معتمدةً الاستدامة قيمة أساسية في أدائها. كما تستقطب الكفاءات التطوعية وتعمل على تطويرها وتمكينها وتوظيفها بما يخدم المجتمع.
                                 </p>
+                                {% else %}
+                             <h3 class="mb-1 pt-2 green-khieer text-bold">Responsibility at work</h3>
+                                        <p class="blue-khieer"> Saudi Khair contributes to linking the capable entities of institutions and individuals with the beneficiaries of charitable societies to work on their development, empowerment and employment, adopting sustainability as a primary value in its performance. It also attracts volunteer competencies and works to develop, empower and employ them to serve the community. </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
@@ -86,10 +114,15 @@
                     <div class="row">
                         <div class="col-lg-6 pt-lg-6">
                             <div class="d-flex flex-column h-100">
+                                    {% if LANGUAGE_CODE == 'ar' %}
                                 <h3 class="mb-1 pt-2 green-khieer text-bold">المسؤولية في المجتمع</h3>
                                 <p class="blue-khieer">
 تسهم خير السعودية في غرس قيم التكافل الاجتماعي والتطوع في المجتمع. كما تتجاوز ذلك إلى توفير الفرص الفعلية لتحقيق مبادئ أنسنة العمل الخيري والعطاء بوعي والتعاون بصورة تنضح معها تكاملية المجتمع السعودي.
                                 </p>
+                                {% else %}
+<h3 class="mb-1 pt-2 green-khieer text-bold"> Responsibility in society</h3>
+                                        <p class="blue-khieer"> Saudi Khair contributes to instilling the values ​​of social solidarity and volunteering in society. It also goes beyond that to providing actual opportunities to realize the principles of humanizing charitable work and giving with awareness and cooperation in a way that exudes the integration of Saudi society. </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">

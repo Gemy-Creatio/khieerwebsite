@@ -1,7 +1,10 @@
 {% extends 'masterpage.html' %}
 {% load static %}
+                                    {% if LANGUAGE_CODE == 'ar' %}
 {% block title %} تسجيل الدخول {% endblock title %}
-
+{% else %}
+{% block title %} Login {% endblock title %}
+{% endif %}
 {% block body %}
 <section class="min-vh-85 mb-8">
     <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/login_ne.png');">
@@ -23,6 +26,7 @@
             <div class="card-body">
               <form method="post">
                   {% csrf_token %}
+                                                      {% if LANGUAGE_CODE == 'ar' %}
                 <div class="mb-3">
   <input type="email" id="email" name="email" class="form-control"
                                                placeholder="البريد الألكترونى">
@@ -33,6 +37,18 @@
                    </div>
                 <div class="text-center">
                   <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">تسجيل</button>
+                    {% else %}
+                               <div class="mb-3">
+  <input type="email" id="email" name="email" class="form-control"
+                                               placeholder="Email">
+                </div>
+                   <div class="mb-3">
+  <input type="password" id="password" name="password" class="form-control"
+                                               placeholder="Password">
+                   </div>
+                <div class="text-center">
+                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">Login</button>
+                    {% endif %}
                 </div>
               </form>
             </div>
@@ -47,8 +63,14 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
+                                                          {% if LANGUAGE_CODE == 'ar' %}
                       <h4 class="text-sm blue-khieer mb-0 text-capitalize font-weight-bold">إنضم إلينا</h4>
                     <p class="text-sm mb-0 green-khieer text-capitalize font-weight-bold">ليس لديك حساب؟</p>
+                                                              {% else %}
+                                                              <h4 class="text-sm blue-khieer mb-0 text-capitalize font-weight-bold">Join Us</h4>
+                    <p class="text-sm mb-0 green-khieer text-capitalize font-weight-bold">
+Don't have an account?</p>
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-4 text-end">

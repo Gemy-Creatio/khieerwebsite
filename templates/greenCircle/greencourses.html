@@ -1,7 +1,11 @@
 {% extends 'masterpage.html' %}
 {% load static %}
+                                    {% if LANGUAGE_CODE == 'ar' %}
 {% block title %} الدائرة الخضراء {% endblock title %}
+{% else %}
+{% block title %} Green Circle{% endblock title %}
 
+{% endif %}
 {% block body %}
 <section class="min-vh-85 mb-8">
     <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/green_banner.png');">

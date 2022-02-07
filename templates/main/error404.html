@@ -1,6 +1,12 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %} حدث خطأ {% endblock title %}
+{% block title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+        حدث خطأ
+        {% else %}
+        {% block title %} Error  {% endblock title %}
+{% endif %}
+{% endblock title %}
 
 {% block body %}
 <section class="min-vh-85 mb-8">
@@ -17,6 +23,7 @@
         <div class="col-xl-4 col-lg-5 col-md-7 pt-3 mx-auto">
           <div class="card z-index-0">
             <div class="card-body text-center">
+                    {% if LANGUAGE_CODE == 'ar' %}
                     <h4 class="green-khieer mb-2 mt-5 text-center">حدث خطأ</h4>
               <p class="text-lead blue-khieer">
                          برجاء التواصل مع الدعم الفنى لنتمكن من حل مشكلتك
@@ -24,6 +31,15 @@
                 <div class="text-center">
                     <a href="{% url 'tech-page' %}" class="btn btn-sm btn-primary bg-maal">الدعم الفنى</a>
                 </div>
+                {% else %}
+                            <h4 class="green-khieer mb-2 mt-5 text-center">an error occurred</h4>
+              <p class="text-lead blue-khieer">
+Please contact technical support so that we can solve your problem
+              </p>
+                <div class="text-center">
+                    <a href="{% url 'tech-page' %}" class="btn btn-sm btn-primary bg-maal">Technical support</a>
+                </div>
+                {% endif %}
             </div>
           </div>
         </div>

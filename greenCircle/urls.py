@@ -15,4 +15,5 @@ urlpatterns = [
     path('green/survey/create', views.CreateGreenSurvey.as_view(), name='create_survey'),
     path('trip/add', views.CreateVolunteerTripRequest.as_view(), name='trip-add'),
     path('trip/list', views.trip_request_list, name='trip-list'),
+
 ]

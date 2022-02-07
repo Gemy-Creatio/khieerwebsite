@@ -1,7 +1,14 @@
 {% extends 'masterpage.html' %}
 {% load static %}
-{% block title %}  هبة الخير {% endblock title %}
+{% block title %}
+     {% if LANGUAGE_CODE == 'ar' %}
+  هبة الخير
 
+{% else %}
+Khieer Gift
+
+{% endif %}
+{% endblock title %}
 
 {% block body %}
 
@@ -17,14 +24,20 @@
         <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
           <div class="card z-index-0">
             <div class="card-header text-center pt-4">
+                     {% if LANGUAGE_CODE == 'ar' %}
                 <h3 class="blue-khieer mb-2 mt-5">الهبات والدعم  </h3>
                 <p class="text-xs blue-khieer">ما تعطيه هنا يدعم إستمرارنا في أعمالنا</p>
+                {% else %}
+                           <h3 class="blue-khieer mb-2 mt-5"> Donations and support </h3>
+                <p class="text-xs blue-khieer">What you give here supports our continuation in our business</p>
+                {% endif %}
             <p class="text-lead text-sm" style="color: #040404; padding-right: 1.7rem">مَّن ذَا الَّذِي يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا فَيُضَاعِفَهُ لَهُ أَضْعَافًا كَثِيرَةً ۚ وَاللَّهُ يَقْبِضُ وَيَبْسُطُ وَإِلَيْهِ تُرْجَعُونَ (245)</p>
      
             </div>
             <div class="card-body">
               <form method="post">
                   {% csrf_token %}
+                      {% if LANGUAGE_CODE == 'ar' %}
                 <div class="mb-3">
                   <input type="text" class="form-control" placeholder="الأسم" name="name" id="name" aria-label="Name" aria-describedby="email-addon">
                 </div>
@@ -57,6 +70,40 @@
                 <div class="text-center">
                   <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">مساهمة</button>
                 </div>
+                  {% else %}
+                     <div class="mb-3">
+                  <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="email-addon">
+                </div>
+                <div class="mb-3">
+                  <input type="text" name="address" id="address" class="form-control" placeholder="Address" aria-label="address" aria-describedby="email-addon">
+                </div>
+                   <div class="mb-3">
+                  <input type="number" name="phone" id="phone" class="form-control" placeholder="Phone" aria-label="amount" aria-describedby="password-addon">
+                </div>
+                  <div class="mb-3">
+                  <input type="number" name="amount" id="amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="password-addon">
+                </div>
+                   <div class="mb-3">
+                       <p class="text-sm blue-khieer">
+We are pleased at the Saudi Khair Endowment, which is affiliated with the Balad Al-Khair Endowment Foundation, to thank you for your constant efforts in serving those in need.
+We also thank you for your desire to stop the entrance amount, of which 30% will be allocated to the charitable works of Saudi Arabia and 70% to charitable deeds based on what is stipulated in the endowment deed for the good of Saudi Arabia, so we hope that you will agree to acknowledge by pressing the button below.
+
+We ask God Almighty to give you more goodness and giving and to write this support in the balance of your deeds.
+
+accept our regards,
+Saudi Khieer team.
+                       </p>
+                </div>
+                <div class="form-check form-check-info text-left">
+                  <input class="form-check-input" name="flexCheckDefault"  type="checkbox" value="" id="flexCheckDefault" checked="">
+                  <label class="form-check-label" for="flexCheckDefault">
+                Agree to the above
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">Donate</button>
+                </div>
+                  {% endif %}
               </form>
             </div>
           </div>

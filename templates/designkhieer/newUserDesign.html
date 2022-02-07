@@ -1,130 +1,316 @@
 {% extends 'masterpage.html' %}
 {% load static %}
 {% block title %}
-    جرب تصميمك
- {% endblock title %}
+    {% if LANGUAGE_CODE == 'ar' %}
+        جرب تصميمك
+    {% else %}
+        Try Your Design
+    {% endif %}
+{% endblock title %}
 {% block style %}
-    <link href="{% static 'css/design.css' %}" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="{% static 'css/design.css' %}" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock style %}
 {% block body %}
-<section class="min-vh-85 mb-8">
-    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/tamkeen_new.png');">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5 text-center mx-auto pt-lg-5">
-               <div class="card z-index-0 ">
-              <div class="card-header">
-              <div class="row justify-content-center">
-             <div class="col-10 jsutify content-center">
-              <a class="btn btn-sm btn-primary bg-maal text-white text-xs" href="{% url 'user-add' %}">ارفع تصميمك هنا !</a>
-             <p class="text-sm text-muted">في هذه المساحة الإبداعية تستطيع من خلالها تجربة تصاميمك على مكونات ومنتجات مختلفة كالأكواب والتيشيرت وكوفر الجوال..الخ.
-جرّب الآن وشاركنا العطاء !</p>
-             </div>
-              </div>
-              </div>
-              <div class="card-body">
-           <div class="row d-flex pt-3">
-            {% for item in data %}
-            <div class="col-lg-5 col-12 text-center pt-3">
-             <div class="icon icon-shape shadow text-center border-radius-md" style="width: fit-content; height: fit-content;cursor: pointer;">
-                <a href="{% url 'delete-design' item.pk %}">
-                  <i class="fas fa-trash text-danger"></i>
-                </a>
-                 <img id="{{item.pk}}" src="/static/images/{{ item.image.name | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
-             </div>
-           </div>
-            {% endfor %}
-              <div class="d-flex flex-row justify-content-around pt-6" id="choices">
+    <section class="min-vh-85 mb-8">
+        <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
+             style=" background-image: url('../../static/images/tamkeen_new.png');">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 text-center mx-auto pt-lg-5">
+                        <div class="card z-index-0 ">
+                            <div class="card-header">
+                                <div class="row justify-content-center">
+                                    <div class="col-10 jsutify content-center">
+                                        {% if LANGUAGE_CODE == 'ar' %}
+                                            <a class="btn btn-sm btn-primary bg-maal text-white text-xs"
+                                               href="{% url 'user-add' %}">ارفع تصميمك هنا !</a>
+                                            <p class="text-sm text-muted">في هذه المساحة الإبداعية تستطيع من خلالها
+                                                تجربة تصاميمك على مكونات ومنتجات مختلفة كالأكواب والتيشيرت وكوفر
+                                                الجوال..الخ.
+                                                جرّب الآن وشاركنا العطاء !</p>
+                                        {% else %}
+                                            <a class="btn btn-sm btn-primary bg-maal text-white text-xs"
+                                               href="{% url 'user-add' %}"> Upload Your design</a>
+                                            <p class="text-sm text-muted">
 
-                 </div>
-               {% include 'partials/_pagination.html' with page_obj=data only %}
+                                                In this creative space, you can experiment with your designs on
+                                                different components and products such as cups, T-shirts, mobile covers,
+                                                etc.
+                                                Try now and give us a try!
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row d-flex pt-3">
+                                    {% for item in data %}
+                                        <div class="col-lg-5 col-12 text-center pt-3">
+                                            <div class="icon icon-shape shadow text-center border-radius-md"
+                                                 style="width: fit-content; height: fit-content;cursor: pointer;">
+                                                <a href="{% url 'delete-design' item.pk %}">
+                                                    <i class="fas fa-trash text-danger"></i>
+                                                </a>
+                                                <img id="{{ item.pk }}"
+                                                     src="/static/images/{{ item.image.name | safe }}"
+                                                     alt={{ item.name }} class="viewID"
+                                                     style="width: 5rem; height: 10vh;"/>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    <div class="d-flex flex-row justify-content-around pt-6" id="choices">
 
-           </div>
-              </div>
-          </div>
-          </div>
+                                    </div>
+                                    {% include 'partials/_pagination.html' with page_obj=data only %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row mt-lg-n10 mt-md-n11 mt-n10">
-              <div class="card">
-                  <div class="row pt-2">
-                      <div class="container_design">
-                      <div class="image_container frame">
-            <img src="{% static 'images/shirt_new.png' %}" class="img-fluid">
-            <img src="" id="myImg" class="design">
+        <div class="container">
+            <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+                <div class="card">
+
+
+                       {% if messages %}
+              {% include 'partials/_messages.html' %}
+              {% else %}
+                    <form method="post">
+                        {% csrf_token %}
+                         <div class="row pt-2">
+                            <div class="container_design">
+                                <div class="image_container frame">
+                                    <img src="{% static 'images/shirt_new.png' %}" class="img-fluid">
+                                    <img src="" id="myImg" class="design">
+                                </div>
+                                                    <div class="colors">
+
+                                    <ul>
+                                        <li data-color="#F44336" style="background-color: #F44336;"></li>
+                                        <li data-color="#E91E63" style="background-color:#E91E63 ;"></li>
+                                        <li data-color="#9C27B0" style="background-color: #9C27B0;"></li>
+                                        <li data-color="#673AB7" style="background-color:#673AB7 ;"></li>
+                                        <li data-color="#3F51B5" style="background-color: #3F51B5;"></li>
+                                        <li data-color="#2196F3" style="background-color:#2196F3 ;"></li>
+                                        <li data-color="#03A9F4" style="background-color:#03A9F4 ;"></li>
+                                        <li data-color="#00BCD4" style="background-color:#00BCD4 ;"></li>
+                                        <li data-color="#009688" style="background-color:#009688 ;"></li>
+                                        <li data-color="#4CAF50" style="background-color:#4CAF50 ;"></li>
+                                        <li data-color="#8BC34A" style="background-color:#8BC34A ;"></li>
+                                        <li data-color="#CDDC39" style="background-color:#CDDC39 ;"></li>
+                                        <li data-color="#FFEB3B" style="background-color:#FFEB3B ;"></li>
+                                        <li data-color="#FFC107" style="background-color:#FFC107 ;"></li>
+                                        <li data-color="#FF5722" style="background-color:#FF5722 ;"></li>
+                                        <li data-color="#FF9800" style="background-color:#FF9800 ;"></li>
+                                        <li data-color="#795548" style="background-color:#795548 ;"></li>
+                                        <li data-color="#9E9E9E" style="background-color:#9E9E9E ;"></li>
+                                        <li data-color="#607D8B" style="background-color:#607D8B ;"></li>
+                                        <!-- <li data-color="#795548" style="background-color:#795548 ;"></li> -->
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row pt-1 justify-content-center m-auto sizes text-center">
+                            <ul>
+                                <li>
+                                    <span value="M" class="btn_round_size"> M</span>
+                                </li>
+                                <li>
+                                    <span value="L" class="btn_round_size"> L</span>
+                                </li>
+                                <li>
+                                    <span value="XL" class="btn_round_size"> XL</span>
+                                </li>
+                                <li>
+                                    <span value="2XL" class="btn_round_size"> 2XL</span>
+                                </li>
+
+
+                            </ul>
+<span id="size_sel" class="text-center green-khieer pt-2"></span>
+
+                        </div>
+                        <div class="row pt-5 justify-content-center">
+                            <div class="form-group col-6">
+                                {% if LANGUAGE_CODE == 'ar' %}
+                                    <label>الكمية</label>
+                                {% else %}
+                                    <label>Quantity</label>
+                                {% endif %}
+                                <input id="number_of_clothes" type="number" value="10" min="10" max="100000"
+                                       name="number_of_clothes" class="form-control"/>
+                                <span id="price" name="price" class="green-khieer"></span>
+                            </div>
+                            <div class="form-group col-6">
+                                {% if LANGUAGE_CODE == 'ar' %}
+                                    <label for="type_cloth">نوع القماش</label>
+                                    <select name="type_cloth" id="type_cloth" class="form-control">
+                                        <option value="قماش">قماش</option>
+                                        <option value="كتان">كتان</option>
+                                    </select>
+                                {% else %}
+                                    <label>Type of Cloth</label>
+
+                                    <select name="type_cloth" id="type_cloth" class="form-control">
+                                        <option value="قماش">Fabric</option>
+                                        <option value="كتان">linen</option>
+                                    </select>
+
+                                {% endif %}
+
+                            </div>
+                            <div class="text-center col-2 justify-content-center">
+                                                                {% if LANGUAGE_CODE == 'ar' %}
+                                <button id="complete_request" class="btn btn-primary text-white bg-maal">أتمام الطلب</button>
+                              {% else %}
+                                                                    <span id="complete_request" class="btn btn-primary text-white bg-maal">Complete Request</span>
+
+                                {% endif %}
+                            </div>
+                           <div class="row pt-2" id="request">
+                                     <div class="form-group col-4">
+                                {% if LANGUAGE_CODE == 'ar' %}
+                                    <label>الأسم</label>
+                                {% else %}
+                                    <label>Name</label>
+                                {% endif %}
+                                <input id="name" type="text"
+                                       name="name" class="form-control"/>
+                            </div>
+                          <div class="form-group col-4">
+                                {% if LANGUAGE_CODE == 'ar' %}
+                                    <label>الهاتف</label>
+                                {% else %}
+                                    <label>phone</label>
+                                {% endif %}
+                                <input id="phone" type="text"
+                                       name="phone" class="form-control"/>
+                            </div>
+                           <div class="form-group col-4">
+                                {% if LANGUAGE_CODE == 'ar' %}
+                                    <label>البريد الألكترونى</label>
+                                {% else %}
+                                    <label>Email</label>
+                                {% endif %}
+                                <input id="email" type="email"
+                                       name="email" class="form-control"/>
+                            </div>
+                           <div class="text-center col-2 justify-content-center">
+                                                                                               {% if LANGUAGE_CODE == 'ar' %}
+                                                                    <span id="send" class="btn btn-primary text-white bg-maal">إرسال الطلب </span>
+
+                                                                          {% else %}
+                                                                    <span id="send" class="btn btn-primary text-white bg-maal">Send</span>
+                                  {% endif %}
+
+                           </div>
+                           </div>
+                        </div>
+                    </form>
+                {% endif %}
+                </div>
+            </div>
         </div>
-        <div class="colors">
-            <ul>
-                <li data-color="#F44336" style="background-color: #F44336;"></li>
-                <li data-color="#E91E63" style="background-color:#E91E63 ;"></li>
-                <li data-color="#9C27B0" style="background-color: #9C27B0;"></li>
-                <li data-color="#673AB7" style="background-color:#673AB7 ;"></li>
-                <li data-color="#3F51B5" style="background-color: #3F51B5;"></li>
-                <li data-color="#2196F3" style="background-color:#2196F3 ;"></li>
-                <li data-color="#03A9F4" style="background-color:#03A9F4 ;"></li>
-                <li data-color="#00BCD4" style="background-color:#00BCD4 ;"></li>
-                <li data-color="#009688" style="background-color:#009688 ;"></li>
-                <li data-color="#4CAF50" style="background-color:#4CAF50 ;"></li>
-                <li data-color="#8BC34A" style="background-color:#8BC34A ;"></li>
-                <li data-color="#CDDC39" style="background-color:#CDDC39 ;"></li>
-                <li data-color="#FFEB3B" style="background-color:#FFEB3B ;"></li>
-                <li data-color="#FFC107" style="background-color:#FFC107 ;"></li>
-                <li data-color="#FF5722" style="background-color:#FF5722 ;"></li>
-                <li data-color="#FF9800" style="background-color:#FF9800 ;"></li>
-                <li data-color="#795548" style="background-color:#795548 ;"></li>
-                <li data-color="#9E9E9E" style="background-color:#9E9E9E ;"></li>
-                <li data-color="#607D8B" style="background-color:#607D8B ;"></li>
-                <!-- <li data-color="#795548" style="background-color:#795548 ;"></li> -->
-
-            </ul>
-        </div>
-              </div>
-                  </div>
-                  <div class="row pt-1 justify-content-center m-auto sizes">
-                    <ul>
-                        <li><button class="btn_round_size"> M </button></li>
-                        <li><button class="btn_round_size"> L </button></li>
-                        <li><button class="btn_round_size"> XL </button></li>
-                        <li><button class="btn_round_size"> 2XL </button></li>
-
-
-                    </ul>
-                  </div>
-              </div>
-      </div>
-    </div>
-</section>
+    </section>
 
 
 {% endblock body %}
 
 {% block scripts %}
-<script>
-let listElements = document.querySelectorAll('li');
-listElements.forEach(element => {
-    element.addEventListener('click', function(){
-        let clr = this.getAttribute('data-color');
-        document.documentElement.style.setProperty('--color', clr);
-        listElements.forEach(element=>{
-            element.style.border="none";
-        })
-        this.style.border="3px solid black";
+    <script>
+            var price;
+            var color;
+            var size;
+            var design;
+            var src;
+        let listElements = document.querySelectorAll('li');
+        listElements.forEach(element => {
+            element.addEventListener('click', function () {
+                color = this.getAttribute('data-color');
+                document.documentElement.style.setProperty('--color', color);
+                listElements.forEach(element => {
+                    element.style.border = "none";
+                })
+                this.style.border = "3px solid black";
 
-    })
-});
+            })
+        });
 
-  $(document).ready(function () {
-      $("#myImg").hide();
-    $(".viewID").on('click', function () {
-              $("#myImg").show();
-        var src =$(this).attr('src');
-           $("#myImg").attr("src",src);
-    });
+         let images = document.querySelectorAll('img');
+        images.forEach(element => {
+            element.addEventListener('click', function () {
+                var src = this.getAttribute('src');
+                design = this.getAttribute('id');
+               var img = document.getElementById('myImg')
+                img.setAttribute('src', src);
+               img.style.display = "block";
+            })
+        });
+        $(document).ready(function () {
 
-});
-</script>
+            $("#myImg").hide();
+            $("#request").hide();
+              $("#complete_request").on('click', function (event) {
+                  event.stopPropagation();
+                $("#request").show();
+            });
+
+              $(".btn_round_size").on('click', function (event) {
+                  event.stopPropagation();
+                size= $(this).attr('value');
+                                      $("#size_sel").empty();
+                  {% if LANGUAGE_CODE == 'ar' %}
+                      $("#size_sel").append("المقاس" + " : " + size);
+
+                  {% else %}
+                      $("#size_sel").append("Size" + " : " + size);
+                  {% endif %}
+            });
+
+            $('#number_of_clothes').on('change', (event) => {
+                price = event.target.value * 30;
+                $('#price').empty();
+                {% if LANGUAGE_CODE == 'ar' %}
+                    $("#price").append("السعر" + " : " + price + " ريال سعودى");
+                {% else %}
+                    $("#price").append("price" + " :" + price + " SR");
+                {% endif %}
+            });
+
+                     $("#send").on('click' , (event) => {
+                           $.ajax({
+                                        method: 'POST',
+                                        url: '{% url 'req-design' %}',
+                                        data: {
+                                            'size': size,
+                                            'design': design,
+                                            'color':color,
+                                            'type':$("#type_cloth").val(),
+                                            'number':$("#number_of_clothes").val(),
+                                            'name':$("#name").val(),
+                                            'phone':$("#phone").val(),
+                                            'email':$("#email").val(),
+                                            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                                        },
+                                        success: function (data) {
+                                           window.location.href = '{% url "new-designs" %}';
+                                        },
+                                        error: function (error) {
+                                            alert(error.responseText)
+                                        }
+                                    });
+                     });
+
+        });
+    </script>
 
 {% endblock scripts %}
