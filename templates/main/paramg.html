@@ -144,6 +144,16 @@ Activating the role of the third sector in supporting and enabling development a
                     </div>
 
                 </div>
+            <div class="card-footer">
+                <div class="text-center justify-content-center d-flex">
+                                                        {% if LANGUAGE_CODE == 'ar' %}
+                    <a href="{% url 'trip-add' %}" class="btn btn-sm text-white bg-maal btn-round mb-0 me-1" style="width: 10rem;">  طلب رحلة</a>
+                {% else %}
+                                        <a href="{% url 'trip-add' %}" class="btn btn-sm text-white bg-maal btn-round mb-0 me-1" style="width: 10rem;">Trip Request  </a>
+
+                    {% endif %}
+                </div>
+            </div>
             </div>
         </div>
 

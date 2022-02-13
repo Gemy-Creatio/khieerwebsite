@@ -1,10 +1,13 @@
 {% extends 'masterpage.html' %}
 {% load static %}
+{%  block title %}
+
                                     {% if LANGUAGE_CODE == 'ar' %}
-{% block title %} تسجيل الدخول {% endblock title %}
+ تسجيل الدخول 
 {% else %}
-{% block title %} Login {% endblock title %}
+Login 
 {% endif %}
+{% endblock title %}
 {% block body %}
 <section class="min-vh-85 mb-8">
     <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../static/images/login_ne.png');">

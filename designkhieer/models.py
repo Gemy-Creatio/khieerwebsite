@@ -26,3 +26,17 @@ class DesignRequest(models.Model):
     @property
     def Price(self):
         return self.number_of_order * 30
+
+
+class DesignerJoinUs(models.Model):
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    phone = models.CharField(max_length=255, null=True, blank=True)
+    national_id = models.IntegerField(null=True, blank=True)
+    signature = models.CharField(max_length=255, null=True, blank=True)
+    design_filed = models.CharField(max_length=255, null=True, blank=True)
+    is_accept_policy = models.BooleanField(null=True, blank=True, default=False)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"

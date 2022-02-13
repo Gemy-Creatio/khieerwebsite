@@ -1,0 +1,73 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %} الأنضمام كمصمم {% endblock title %}
+{% load crispy_forms_tags %}
+
+
+{% block body %}
+
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../../static/images/aida.jpeg');">
+      <div class="container">
+        <div class="row justify-content-center">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+                     {% if messages %}
+              {% include 'partials/_messages.html' %}
+                                       {% else %}
+        {% include 'partials/_policy.html' %}
+      </div>
+        <div class="row pt-3 justify-content-center">
+            <div class="col-10 justify-content-center">
+                <div class="card h-75">
+                    <div class="card-body justify-content-center">
+
+                                                         <form method="post" action="{% url 'accept-policy' context.pk %}">
+                            {% csrf_token %}
+                         <div class="row">
+                             <div class="col-4">
+                                                                         {% if LANGUAGE_CODE == 'ar' %}
+                                 <p class="green-khieer">هل توافق على الشروط و الأحكام؟</p>
+                                                                             {% else %}
+                                 <p class="green-khieer">Do You Agree With Our Policy?</p>
+
+                                                                             {% endif %}
+                             </div>
+                                  <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-sm bg-maal text-white">
+                                                                                                         {% if LANGUAGE_CODE == 'ar' %}
+                                أوافق
+                                                                                                             {% else %}
+                                                                                                             Agree
+                                                                                                             {% endif %}
+                            </button>
+                        </div>
+                         <div class="col-4">
+                            <a class="btn btn-primary btn-sm bg-maal text-white" href="{% url 'home-page' %}">
+                                                               {% if LANGUAGE_CODE == 'ar' %}
+                                لا اوافق
+                                                                                                             {% else %}
+                                                                                                             Don't Agree
+                                                                                                             {% endif %}
+                            </a>
+                        </div>
+                         </div>
+
+                        </form>
+
+                                             </div>
+
+              {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+
+{% endblock body %}

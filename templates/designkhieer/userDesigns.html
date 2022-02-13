@@ -1,74 +1,32 @@
-{% extends 'virtualmaster.html' %}
+{% extends 'masterpage.html' %}
 {% load static %}
 {% block title %}  جرب تصميمك {% endblock title %}
 
 {% block style %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock style %}
 
 
 {% block body %}
-    <main class="main-content mt-1 border-radius-lg ps">
-      <div class="section min-vh-85 position-relative transform-scale-0 transform-scale-md-7">
-        <div class="container">
-          <div class="row pt-8 pt-lg-4">
-        <div class="col-12 justify-content-center">
-          <div class="card z-index-0 ">
-              <div class="card-header">
-              <div class="row justify-content-center">
-             <div class="col-10 jsutify content-center">
-              <a class="btn btn-sm btn-primary bg-maal text-white text-xs" href="{% url 'user-add' %}">ارفع تصميمك هنا !</a>
-             <p class="text-sm text-muted">في هذه المساحة الإبداعية تستطيع من خلالها تجربة تصاميمك على مكونات ومنتجات مختلفة كالأكواب والتيشيرت وكوفر الجوال..الخ.
-جرّب الآن وشاركنا العطاء !</p>
-             </div>
-              </div>
-              </div>
-              <div class="card-body">
-           <div class="row d-flex pt-3">
-            {% for item in data %}
-            <div class="col-lg-5 col-12 text-center pt-3">
-             <div class="icon icon-shape shadow text-center border-radius-md" style="width: fit-content; height: fit-content;cursor: pointer;">
-                <a href="{% url 'delete-design' item.pk %}">
-                  <i class="fas fa-trash text-danger"></i>
-                </a>
-               <img id="{{item.pk}}" src="{{ item.image.url | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
-
-                    <img id="{{item.pk}}" src="public_html/static/images/designs/{{ item.image.name | safe }}" alt={{item.name}} class="viewID"  style="width: 5rem; height: 10vh;"/>
-             </div>
-           </div>
-            {% endfor %}
-              <div class="d-flex flex-row justify-content-around pt-6" id="choices">
-
-                 </div>
-               {% include 'partials/_pagination.html' with page_obj=data only %}
-
-           </div>
-              </div>
-          </div>
-        </div>
-          </div>
-          <div class="row pt-10 justify-content-lg-between">
-           <div class="col-lg-3 col-12">
-                <div id="frame">
-                <img id="myImg" src="{% static 'images/ksa-design.png' %}" class="image_design">
-            </div>
-           </div>
-                 <div class="col-lg-3 p-3 col-12 ">
-                <div id="frameCover">
-                <img id="myImgCover" src="{% static 'images/ksa-design.png' %}" class="image_design">
-            </div>
-           </div>
-                 <div class="col-lg-3 p-3 col-12 ">
-                <div id="frameCap">
-                <img id="myImgCap" src="{% static 'images/ksa-design.png' %}" class="image_design">
-            </div>
-           </div>
-              </div>
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('/static/images/aida.jpeg');">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto">
           </div>
         </div>
       </div>
-    <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></main>
+    </div>
+    <div class="container">
+      <div class="row">
+            {% if messages %}
+              {% include 'partials/_messages.html' %}
+          {% else %}
+{% include 'partials/menus/_designMenu.html' %}
+      {% endif %}
+      </div>
 
+    </div>
+  </section>
 {% endblock body %}
 
 

@@ -31,6 +31,22 @@
                                                 تجربة تصاميمك على مكونات ومنتجات مختلفة كالأكواب والتيشيرت وكوفر
                                                 الجوال..الخ.
                                                 جرّب الآن وشاركنا العطاء !</p>
+                                            <div class="row justify-content-center">
+                                            <ul>
+                                                <li>
+                                                    <h5 class="blue-khieer">وصف المنتج</h5>
+                                                    <p class="text-muted">حقيية كانفس قماشية مصنوعة من مواد مستدامة صديقة للبيئة تأتي بمقاس (44*30) سم تكفي لحمل جهاز الأيباد والأدوات اليومية
+ مزينة برسومات مطبوعة
+تدعم القضايا الإنسانية والتنموية
+</p>
+                                                </li>
+                                                                   <li>
+                                                    <h5 class="blue-khieer">تعليمات الغسيل</h5>
+                                                    <p class="text-muted">يُفضل الغسل اليدوي وفي حال الغسيل الأوتوماتيك يكون الماء بارد وتقلب القطعة للداخل قبل الغسل </p>
+                                                </li>
+                                            </ul>
+
+                                            </div>
                                         {% else %}
                                             <a class="btn btn-sm btn-primary bg-maal text-white text-xs"
                                                href="{% url 'user-add' %}"> Upload Your design</a>
@@ -41,6 +57,23 @@
                                                 etc.
                                                 Try now and give us a try!
                                             </p>
+                                            <div class="row justify-content-center">
+                                            <ul>
+                                                <li>
+                                                    <h5 class="blue-khieer">Product Description</h5>
+                                                    <p class="text-muted">
+Canvas bag made of sustainable and environmentally friendly materials comes in size (44 * 30) cm, enough to hold an iPad and daily tools
+ Decorated with printed graphics
+Supports humanitarian and development issues</p>
+                                                </li>
+                                                                   <li>
+                                                    <h5 class="blue-khieer">washing instructions</h5>
+                                                    <p class="text-muted"> Hand washing is preferred, and in the case of automatic washing, the water is cold and the piece is turned inside out before washing</p>
+                                                </li>
+                                            </ul>
+
+                                            </div>
+
                                         {% endif %}
                                     </div>
                                 </div>
@@ -86,8 +119,8 @@
                          <div class="row pt-2">
                             <div class="container_design">
                                 <div class="image_container frame">
-                                    <img src="{% static 'images/shirt_new.png' %}" class="img-fluid">
-                                    <img src="" id="myImg" class="design">
+                                    <img src="{% static 'images/bag.png' %}" class="img-fluid">
+                                    <img src="" id="myImg" class="design" style="top:290px;">
                                 </div>
                                                     <div class="colors">
 
@@ -170,8 +203,8 @@
                             </div>
                             <div class="text-center col-2 justify-content-center">
                                                                 {% if LANGUAGE_CODE == 'ar' %}
-                                <button id="complete_request" class="btn btn-primary text-white bg-maal">أتمام الطلب</button>
-                              {% else %}
+                                                                <span id="complete_request" class="btn btn-primary text-white bg-maal">أتمام الطلب</span>
+                                                                {% else %}
                                                                     <span id="complete_request" class="btn btn-primary text-white bg-maal">Complete Request</span>
 
                                 {% endif %}
@@ -275,6 +308,15 @@
                       $("#size_sel").append("Size" + " : " + size);
                   {% endif %}
             });
+            $('#number_of_clothes').on('click', (event) => {
+                price = event.target.value * 30;
+                $('#price').empty();
+                {% if LANGUAGE_CODE == 'ar' %}
+                    $("#price").append("السعر" + " : " + price + " ريال سعودى");
+                {% else %}
+                    $("#price").append("price" + " :" + price + " SR");
+                {% endif %}
+            });
 
             $('#number_of_clothes').on('change', (event) => {
                 price = event.target.value * 30;
@@ -291,6 +333,7 @@
                                         method: 'POST',
                                         url: '{% url 'req-design' %}',
                                         data: {
+                                            'product':'حقيبة ',
                                             'size': size,
                                             'design': design,
                                             'color':color,

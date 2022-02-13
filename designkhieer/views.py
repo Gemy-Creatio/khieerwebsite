@@ -6,20 +6,53 @@ from django.urls import reverse
 from django.utils.translation import get_language
 from django.views import View
 from django.views.generic.edit import CreateView
-from . import models, forms
+from . import forms
 from django.core.files.storage import FileSystemStorage
 from .models import (
-    DesignRequest
+    DesignRequest,
+    KhieerDesign,
+    DesignerJoinUs
 )
 
 
-class NewUserDesign(View):
+class AcceptPpolicy(View):
+    def get(self, request, pk):
+        design = DesignerJoinUs.objects.get(pk=pk)
+        return render(request, 'designkhieer/joinus/accept-policy.html', context={"context": design})
+
+    def post(self, request, pk):
+        design = DesignerJoinUs.objects.get(pk=pk)
+        design.is_accept_policy = True
+        design.save()
+        messages.success(request, "راح نرسلك نص الاقرار قريبا اعملي الصفحة تقنيًا الان لين ارسلك النص")
+        return render(request, 'designkhieer/joinus/accept-policy.html', context={"context": design})
+
+
+class JoinDesigner(CreateView):
+    model = DesignerJoinUs
+    form_class = forms.DesignerJoinUsForm
+    template_name = 'designkhieer/joinus/join-designer.html'
+
+    def get_success_url(self):
+        return reverse('accept-policy', kwargs={'pk': self.object.pk})
+
+
+class NewUserDesignShirt(View):
     def get(self, request):
-        data = models.KhieerDesign.objects.order_by('-pk')
+        data = KhieerDesign.objects.order_by('-pk')
         paginator = Paginator(data, 8)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-        return render(request, 'designkhieer/newUserDesign.html', context={"data": page_obj})
+        return render(request, 'designkhieer/newUserDesignShirt.html', context={"data": page_obj})
+
+
+class NewUserDesignBag(View):
+    def get(self, request):
+        data = KhieerDesign.objects.order_by('-pk')
+        paginator = Paginator(data, 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'designkhieer/newUserDesignBag.html', context={"data": page_obj})
 
 
 # Create your views here.
@@ -29,27 +62,15 @@ def addUserDesign(request):
         fs = FileSystemStorage()
         filename = fs.save(image.name, image)
         name = request.POST.get('name')
-        obj = models.KhieerDesign(name=name, image=image)
+        obj = KhieerDesign(name=name, image=image)
         obj.save()
         if obj.pk:
             return redirect('new-designs')
     return render(request, 'designkhieer/addUserDesign.html')
 
 
-# def AddDesign(request):
-#     if request.method == 'POST' and request:
-#         image = request.FILES['image']
-#         fs = FileSystemStorage()
-#         filename = fs.save(image.name, image)
-#         name = request.POST.get('name')
-#         obj = models.KhieerDesign(name=name, image=image)
-#         obj.save()
-#         if obj.pk:
-#             return redirect('all-design')
-#     return render(request, 'designkhieer/addDesign.html')
-
 class AddDesign(CreateView):
-    model = models.KhieerDesign
+    model = KhieerDesign
     template_name = 'designkhieer/addUserDesign.html'
     form_class = forms.KhieerDesignForm
 
@@ -59,7 +80,7 @@ class AddDesign(CreateView):
 
 class AllDesigns(View):
     def get(self, request):
-        data = models.KhieerDesign.objects.all()
+        data = KhieerDesign.objects.all()
         paginator = Paginator(data, 8)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
@@ -68,6 +89,7 @@ class AllDesigns(View):
 
 def AddUserRequestDesign(request):
     if request.method == 'POST' and request.is_ajax:
+        product = request.POST.get('product')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         name = request.POST.get('name')
@@ -75,7 +97,7 @@ def AddUserRequestDesign(request):
         type = request.POST.get('type')
         color = request.POST.get('color')
         design = request.POST.get('design')
-        req = DesignRequest(product='تى شيرت', design_image_id=design, email=email, phone=phone, name=name,
+        req = DesignRequest(product=product, design_image_id=design, email=email, phone=phone, name=name,
                             number_of_order=number,
                             type_clothes=type, color=color)
         req.save()
@@ -98,13 +120,9 @@ def AddUserRequestDesign(request):
 
 class AllUserDesigns(View):
     def get(self, request):
-        data = models.KhieerDesign.objects.order_by('-pk')
-        paginator = Paginator(data, 8)
-        page_number = request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        return render(request, 'designkhieer/userDesigns.html', context={"data": page_obj})
+        return render(request, 'designkhieer/userDesigns.html')
 
 
 def DeleteDesign(request, pk):
-    models.KhieerDesign.objects.filter(id=pk).delete()
+    KhieerDesign.objects.filter(id=pk).delete()
     return redirect('new-designs')
