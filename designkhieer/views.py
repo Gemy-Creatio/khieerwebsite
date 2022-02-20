@@ -24,7 +24,7 @@ class AcceptPpolicy(View):
         design = DesignerJoinUs.objects.get(pk=pk)
         design.is_accept_policy = True
         design.save()
-        messages.success(request, "راح نرسلك نص الاقرار قريبا اعملي الصفحة تقنيًا الان لين ارسلك النص")
+        messages.success(request, "شكرا لك فى رغبتك فى الأنضمام إلينا")
         return render(request, 'designkhieer/joinus/accept-policy.html', context={"context": design})
 
 

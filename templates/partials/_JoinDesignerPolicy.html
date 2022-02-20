@@ -1,0 +1,73 @@
+{% load static %}
+<div class="row pt-1">
+    <div class="col-lg-12  mb-lg-0 mb-4">
+        <div class="card">
+            <div class="card-body p-3">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 pt-lg-6">
+                        <div class="d-flex flex-column h-100 justify-content-center">
+                            {% if LANGUAGE_CODE == 'ar' %}
+                                <h3 class="mb-1 pt-2 green-khieer text-bold text-center">الشروط و الأحكام</h3>
+                                <p class="blue-khieer pt-2 text-center">
+                                    للمتابعة نأمل قراءة سياسة العمل معنا أدناه والموافقة عليها:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <p class="text-muted text-center">
+                                            يحق للمصمم الحصول على نسبة ٢٥ ٪؜ عن كل تصميم .
+                                            ٥٪؜ تشغيل لأعمال وقف خير السعودية
+                                            وبقية النسبة تُخصص للقضايا الانسانية التي يهتم بها الوقف
+                                            علمًا بأن هذا المشروع مشروع وقفي ولا يعتمد على الربحية
+
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="text-muted text-center">
+                                            تكون التصاميم الممنوحة لخير السعودية حصرية ولا يستخدمها المصمم لأغراض أخرى
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="text-muted text-center">
+                                            يحق للمصمم متابعة إيرادات التصاميم التي شارك بها عبر تقرير يرسل له بشكل
+                                            شهري </p>
+                                    </li>
+                                </ul>
+                            {% else %}
+                                <h3 class="mb-1 pt-2 green-khieer text-bold text-center">Terms and Conditions</h3>
+                                <p class="blue-khieer pt-2 text-center">
+                                    To continue, we hope you read and agree to our working with us policy below:
+                                </p>
+                                <ul>
+                                    <li>
+                                        <p class="text-muted text-center">
+
+                                            The designer is entitled to receive 25% of each design.
+                                            5% operating for the works of the Saudi Khair Endowment
+                                            The rest of the percentage is allocated to humanitarian issues that concern
+                                            the endowment
+                                            Note that this project is an endowment project and does not depend on
+                                            profitability
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="text-muted text-center">
+                                            Designs given to Khieer Saudi Arabia are exclusive and are not used by the
+                                            designer for other purposes </p>
+                                    </li>
+                                    <li>
+                                        <p class="text-muted text-center">
+
+                                            The designer has the right to follow up on the revenues of the designs he
+                                            participated in through a report sent to him on a monthly basis
+                                        </p>
+                                    </li>
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
