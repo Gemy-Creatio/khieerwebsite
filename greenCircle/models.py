@@ -119,19 +119,16 @@ class VolunteerTrip(models.Model):
         ('إقامة', 'إقامة'),
         ('هوية وطنية', 'هوية وطنية')
     )
-    PAY_CHOICES = (
-        (True, 'أوافق'),
-        (False, 'لا اوافق')
-    )
+
     first_name = models.CharField(max_length=255, null=True, blank=True)
     last_name = models.CharField(max_length=255, null=True, blank=True)
+    phone = models.IntegerField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     national_id_type = models.CharField(max_length=100, null=True, choices=ID_CHOICES)
     national_id_number = models.IntegerField(null=True, blank=True)
     age = models.SmallIntegerField(null=True, blank=True)
     why_you_join = models.TextField(null=True, blank=True)
-    accept_pay = models.BooleanField(null=True, blank=True, default=True,choices=PAY_CHOICES)
-    phone = models.IntegerField(null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
+
 
     @property
     def full_name(self):

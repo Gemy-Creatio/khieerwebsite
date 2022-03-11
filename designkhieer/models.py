@@ -33,7 +33,7 @@ class DesignerJoinUs(models.Model):
     last_name = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     phone = models.CharField(max_length=255, null=True, blank=True)
-    national_id = models.IntegerField(null=True, blank=True)
+    national_id = models.CharField(max_length=255, null=True, blank=True)
     signature = models.CharField(max_length=255, null=True, blank=True)
     design_filed = models.CharField(max_length=255, null=True, blank=True)
     is_accept_policy = models.BooleanField(null=True, blank=True, default=False)
