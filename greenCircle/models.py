@@ -104,9 +104,12 @@ class GreenSurvey(models.Model):
     is_accepted = models.BooleanField(null=True, blank=True, choices=ACCEPTED_CHOICES)
     SOCIATY_SUPPORT = 'دعم المجتمع النساء '
     BLIND_SUPPORT = 'تعليم المكفوفين'
+    TEXT_SUPPORT = 'دعم حرفة الخيوط '
     GREEN_CHOICES = (
         (SOCIATY_SUPPORT, SOCIATY_SUPPORT),
         (BLIND_SUPPORT, BLIND_SUPPORT),
+        (TEXT_SUPPORT, TEXT_SUPPORT),
+
     )
     choices = models.CharField(max_length=255, choices=GREEN_CHOICES)
 

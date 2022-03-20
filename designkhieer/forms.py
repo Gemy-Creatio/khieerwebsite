@@ -25,5 +25,5 @@ class DesignerJoinUsForm(forms.ModelForm):
             'national_id': 'رقم الهوية/ رقم الاقامة',
             'phone': 'رقم الجوال',
             'signature': 'المقر',
-            'design_filed': 'مجال التصميم',
+            'design_filed': ' مجال التصميم أو الحرفة ',
         }
