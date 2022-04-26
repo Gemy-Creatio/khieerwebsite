@@ -14,7 +14,10 @@ urlpatterns = [
     path('mediaCenter', views.media_center, name='media-page'),
     path('dashboard', views.dashboard, name='dashboard-page'),
     path('reports', views.reports, name='report-page'),
-    path('vol/report', views.VolunteerAllReport.as_view(), name='vol-report'),
-    path('courses/report', views.CourseAllReport.as_view(), name='course-report'),
-    path('hebas/report', views.HebaAllReport.as_view(), name='heba-report'),
+    # path('vol/report', views.VolunteerAllReport.as_view(), name='vol-report'),
+    # path('courses/report', views.CourseAllReport.as_view(), name='course-report'),
+    # path('hebas/report', views.HebaAllReport.as_view(), name='heba-report'),
+    path('add/topic', views.CreateTopic.as_view(), name='add-topic'),
+    path('all/topic', views.AllTopicDash.as_view(), name='all-topic'),
+
 ]

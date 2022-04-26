@@ -11,5 +11,6 @@ urlpatterns = [
     path('user-profile-dash', views.user_profile_dash, name='user-profile-dash'),
     path('<int:pk>', views.edit_user_info, name='edit-info'),
     path('employees/list', views.employees_list, name='emp-list'),
+    path('register-circle', views.register_joiner, name='register-joiner'),
 
 ]

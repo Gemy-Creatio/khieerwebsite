@@ -126,3 +126,14 @@ class AllUserDesigns(View):
 def DeleteDesign(request, pk):
     KhieerDesign.objects.filter(id=pk).delete()
     return redirect('new-designs')
+
+
+
+
+class AllDesignRequest(View):
+    def get(self , request):
+        requests = DesignerJoinUs.objects.all()
+        paginator = Paginator(requests, 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request , 'designkhieer/allrequest.html' , context={"data":page_obj})

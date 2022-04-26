@@ -13,5 +13,6 @@ urlpatterns = [
     path('ajax/new', views.AddUserRequestDesign, name='req-design'),
     path('join/designer', views.JoinDesigner.as_view(), name='join-designer'),
     path('accept/policy/<int:pk>', views.AcceptPpolicy.as_view(), name='accept-policy'),
+    path('all/requests/', views.AllDesignRequest.as_view(), name='design-requests'),
 
 ]

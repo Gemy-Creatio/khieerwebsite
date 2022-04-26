@@ -107,6 +107,29 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def create_joiner(self, email, first_name, last_name, phone, address, password):
+        """
+        Creates and saves a Helper Employee User with the given email, first name,
+        last name and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+            phone=phone,
+            address=address,
+            commit=False,
+        )
+        user.is_secondary_emp = False
+        user.is_admin = False
+        user.staff = False
+        user.is_joiner = True
+        user.is_active = True
+        user.user_type = 4
+        user.save(using=self._db)
+        return user
+
 
 
 
@@ -136,8 +159,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         (1, 'ممثل المؤسسة'),
         (2, 'مشرف مركزى'),
         (3, 'مشرف متطوع'),
-    )
+        (4, ' مكون دائرة'),
 
+    )
+    is_joiner =  models.BooleanField(_('Joiner Circle '), default=False, help_text=_(
+        'Designates whether this user should be treated as an Joiner Circle. '
+    ))
     user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, null=True, verbose_name=_('User Type'),
                                                  help_text=_(
                                                      'User Role in A system '

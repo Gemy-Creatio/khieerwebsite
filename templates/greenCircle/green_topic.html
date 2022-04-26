@@ -1,0 +1,33 @@
+{% extends 'masterpage.html' %}
+{% load static %}
+{% block title %} الدوائر الخضراء {% endblock title %}
+{% block body %}
+<section class="min-vh-85 mb-8">
+    <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style=" background-image: url('../../../static/images/green_banner.png');">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto pt-lg-5">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n8 mt-md-n8 mt-n8">
+        {% for topic in topics %}
+
+                  <div class="col-xl-4 col-lg-4 col-md-12 mx-auto">
+                      
+   {% include 'partials/_greenTopicCard.html' with content=topic %}
+
+   
+                  </div>
+                  {% endfor %}
+      </div>
+  <div class="text-center">
+    {% include 'partials/_pagination.html' with page_obj=topics %}
+
+  </div>
+    </div>
+  </section>
+
+{% endblock body %}

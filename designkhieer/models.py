@@ -37,6 +37,8 @@ class DesignerJoinUs(models.Model):
     signature = models.CharField(max_length=255, null=True, blank=True)
     design_filed = models.CharField(max_length=255, null=True, blank=True)
     is_accept_policy = models.BooleanField(null=True, blank=True, default=False)
-
+    @property
+    def get_fullname(self):
+        return f"{self.first_name} {self.last_name}"
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

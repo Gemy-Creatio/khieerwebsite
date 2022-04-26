@@ -1,4 +1,5 @@
 {% extends 'masterpage.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block title %}
     {% if LANGUAGE_CODE == 'ar' %}
@@ -13,7 +14,7 @@
 
     <section class="min-vh-85 mb-8">
         <div class=" bg-kheer page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
-             style=" background-image: url('../../static/images/volunteer_banner.png');">
+             style=" background-image: url('../../../static/images/volunteer_banner.png');">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 text-center mx-auto pt-lg-5">
@@ -31,237 +32,17 @@
                         </p>
                         </div>
                         <div class="card-body">
-                            <form method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                    {% if LANGUAGE_CODE == 'ar' %}
-                                <div class="mb-3">
-                                    <input type="text" name="first_name" class="form-control"
-                                           placeholder="(الأسم الأول)">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="last_name" class="form-control"
-                                           placeholder="( اللقب)">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="email" name="email" class="form-control"
-                                           placeholder="البريد الألكترونى">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="job" class="form-control"
-                                           placeholder=" الوظيفة">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="address" class="form-control" placeholder="العنوان">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="number" name="phone" class="form-control" placeholder="رقم الجوال">
-                                </div>
-                                <div class="mb-3">
-                                                                        <label class="green-khieer">تاريخ الميلاد</label>
-
-                                    <input type="date"  name="birthdate" class="form-control"
-                                           placeholder="تاريخ الميلاد"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">السيرة الذاتية</label>
-
-                                    <input type="file" name="cv" accept=".doc,.docx,.pdf" class="form-control"
-                                           placeholder="CV"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer"> الهدف من التطوع</label>
-<textarea id="goals" name="goals" rows="8" class="form-control" cols="50" placeholder="الهدف من التطوع">
-
-</textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">المهارات</label>
-<textarea id="skills" name="skills" class="form-control" rows="8" cols="50" placeholder="المهارات">
-
-</textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer"> نبذه عن المتطوع </label>
-<textarea id="skills" name="desc" class="form-control" rows="8" cols="50" placeholder="نبذه عن المتطوع">
-
-</textarea>
-                                </div>
-                                <div class="mb-3">
-                                                                        <label class="green-khieer">النوع</label>
-                                    <select class="form-control" name="gender" id="gender">
-                                        <option disabled value="النوع">النوع</option>
-                                        <option value="ذكر">ذكر</option>
-                                        <option value=" أنثى">أنثى</option>
-
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">التفرغ</label>
-                                    <select class="form-control" name="time" id="time">
-                                        <option disabled value="التفرغ">التفرغ</option>
-                                        <option value="متفرغ">متفرغ</option>
-                                        <option value="غير متفرغ">غير متفرغ</option>
-
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">المؤهل الدراسى</label>
-                                    <select class="form-control" name="study" id="study">
-                                        <option disabled value="المؤهل الدراسى">المؤهل الدراسى</option>
-                                        <option value="ثانوى">ثانوى</option>
-                                        <option value="متوسط">متوسط</option>
-                                        <option value="جامعى">جامعى</option>
-                                        <option value="دراسات عليا">دراسات عليا</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">المجال الذى ترغب التطوع به</label>
-                                    <select class="form-control" name="filed" id="filed">
-                                        <option disabled value="المجال الذى ترغب التطوع به">المجال الذى ترغب التطوع به</option>
-                                        <option value=">تصميم الجرافيك">تصميم الجرافيك</option>
-                                        <option value="تصميم الموشن الجرافيك">تصميم الموشن الجرافيك</option>
-                                        <option value="كتابة المحتوى">كتابة المحتوى</option>
-                                        <option value="التصوير الفوتوغرافى">التصوير الفوتوغرافى</option>
-                                        <option value="التقنية">التقنية</option>
-                                        <option value="الأعمال المكتبية">الأعمال المكتبية</option>
-                                        <option value="التسويق الألكترونى">التسويق الألكترونى</option>
-                                        <option value="تصوير الفيديو ">تصوير الفيديو</option>
-                                        <option value="التدريب ">التدريب</option>
-                                        <option value="التنظيم والتنسيق ">التنظيم والتنسيق</option>
-                                        <option value="المونتاج تحرير الأفلام  ">المونتاج تحرير الأفلام</option>
-                                        <option value="التعليق الصوتى">التعليق الصوتى</option>
-
-                                        <option value="اخرى">اخرى</option>
-                                    </select>
-                                </div>
-                                                <div class="mb-3">
-                                                    <label class="green-khieer">موقع التطوع</label>
-                               <select class="form-control" name="place" id="place">
-                                   <option disabled value="موقع التطوع">موقع التطوع</option>
-                                        <option value="ميدانى">ميدانى</option>
-                                        <option value="عن بعد">عن بعد</option>
-                                        <option value="الأثنين معا">الأثنين معا</option>
-
-                                    </select>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">تطوع</button>
-                                </div>
-                                {% else %}
-                                                <div class="mb-3">
-                                    <input type="text" name="first_name" class="form-control"
-                                           placeholder="First Name">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="last_name" class="form-control"
-                                           placeholder="Last Name">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="email" name="email" class="form-control"
-                                           placeholder="Email">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="job" class="form-control"
-                                           placeholder=" Job">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="address" class="form-control" placeholder="Address">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="number" name="phone" class="form-control" placeholder="Phone">
-                                </div>
-                                <div class="mb-3">
-                                                                        <label class="green-khieer">Birthdate</label>
-
-                                    <input type="date"  name="birthdate" class="form-control"
-                                           placeholder="Birthdate"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">Cv</label>
-
-                                    <input type="file" name="cv" accept=".doc,.docx,.pdf" class="form-control"
-                                           placeholder="CV"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">Goal From Volunteering</label>
-<textarea id="goals" name="goals" rows="8" class="form-control" cols="50" placeholder="Goal From Volunteering">
-
-</textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">Skills</label>
-<textarea id="skills" name="skills" class="form-control" rows="8" cols="50" placeholder="Skills">
-
-</textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer"> About Volunteer </label>
-<textarea id="skills" name="desc" class="form-control" rows="8" cols="50" placeholder="About Volunteer">
-
-</textarea>
-                                </div>
-                                <div class="mb-3">
-                                                                        <label class="green-khieer">Gender</label>
-                                    <select class="form-control" name="gender" id="gender">
-                                        <option disabled value="النوع">Gender</option>
-                                        <option value="ذكر">Male</option>
-                                        <option value=" أنثى">Female</option>
-
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">full time</label>
-                                    <select class="form-control" name="time" id="time">
-                                        <option disabled value="التفرغ">full time</option>
-                                        <option value="متفرغ">Free</option>
-                                        <option value="غير متفرغ">Not Free</option>
-
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">Educational Qualification</label>
-                                    <select class="form-control" name="study" id="study">
-                                        <option disabled value="المؤهل الدراسى">Educational Qualification</option>
-                                        <option value="ثانوى">secondary</option>
-                                        <option value="متوسط">MidLevel</option>
-                                        <option value="جامعى">Academic</option>
-                                        <option value="دراسات عليا">Postgraduate</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="green-khieer">The field you would like to volunteer in</label>
-                                    <select class="form-control" name="filed" id="filed">
-                                        <option disabled value="المجال الذى ترغب التطوع به">The field you would like to volunteer in</option>
-                                        <option value=">تصميم الجرافيك">Graphic Design</option>
-                                        <option value="تصميم الموشن الجرافيك">Motion graphic design</option>
-                                        <option value="كتابة المحتوى">Content Writer</option>
-                                        <option value="التصوير الفوتوغرافى">photographer</option>
-                                        <option value="التقنية">IT</option>
-                                        <option value="الأعمال المكتبية">office work</option>
-                                        <option value="التسويق الألكترونى">E-Marketing</option>
-                                        <option value="تصوير الفيديو ">video shooting</option>
-                                        <option value="التدريب ">Training</option>
-                                        <option value="التنظيم والتنسيق ">Organizing and coordinating</option>
-                                        <option value="المونتاج تحرير الأفلام  "> Film Editing</option>
-                                        <option value="التعليق الصوتى">audio commentary</option>
-                                        <option value="اخرى">other</option>
-                                    </select>
-                                </div>
-                                                <div class="mb-3">
-                                                    <label class="green-khieer">volunteer site</label>
-                               <select class="form-control" name="place" id="place">
-                                   <option disabled value="موقع التطوع">volunteer site</option>
-                                        <option value="ميدانى">on Field</option>
-                                        <option value="عن بعد">remote</option>
-                                        <option value="الأثنين معا">Both</option>
-
-                                    </select>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">Join</button>
-                                </div>
-                                {% endif %}
-                            </form>
+                            <form method="post">
+                                {% if messages %}
+                         {% include 'partials/_messages.html' %}
+                         {% else %}
+                             {% csrf_token %}
+                              {{ form|crispy }}
+                           <div class="text-center">
+                             <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">إنضم</button>
+                           </div>
+                             {% endif %}
+                         </form>
                         </div>
                     </div>
                 </div>

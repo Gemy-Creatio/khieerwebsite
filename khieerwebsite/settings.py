@@ -30,7 +30,7 @@ LOCALE_PATHS = (
 ALLOWED_HOSTS = []
 
 # Application definition
-
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -151,3 +151,8 @@ API_ENDPOINT = 'https://secure.paytabs.sa/payment/request'
 PAYTAB_API_SERVERKEY = 'SKJNNWHTJT-J22NNW6TLL-KLLJT6TGN9'
 PAYTAB_API_CLIENTKEY = 'C7KMMK-VVRV6M-MQQVG7-G7Q2PV'
 PROFILE_KEY = 75985
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

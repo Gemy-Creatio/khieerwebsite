@@ -1,0 +1,37 @@
+{% load static %}
+<div class="table-responsive">
+                        <table class="table align-items-center">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">الأسم </th>
+                              <th scope="col"> البريد الألكترونى  </th>
+                              <th scope="col"> الهاتف   </th>
+                              <th scope="col"> الرقم القومى   </th>
+                              <th scope="col"> المجال   </th>
+                              <th scope="col"> الأمضاء   </th>
+
+                            </tr>
+                          </thead>
+                          <tbody>
+                         {% for item in data %}
+                             <tr>
+                              <th scope="row" class="text-center">{{ item.pk }}</th>
+                              <td><p>{{ item.get_fullname }} </p></td>
+                            
+                              <td><p>{{ item.email }} </p></td>
+                              <td><p>{{ item.phone }} </p></td>
+                              <td><p>{{ item.national_id }} </p></td>
+                              <td><p>{{ item.design_filed }} </p></td>
+                              <td><p>{{ item.signature }} </p></td>
+
+                        
+                        
+                            </tr>
+                        
+                          {% endfor %}
+                        
+                          </tbody>
+                          </table>
+
+                      </div>

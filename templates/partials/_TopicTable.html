@@ -1,0 +1,29 @@
+{% load static %}
+<div class="table-responsive">
+                        <table class="table align-items-center">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">عنوان القضية </th>
+                              <th scope="col"> مجال القضية  </th>
+                              <th scope="col">الفئة المستهدفة</th>
+                              <th scope="col"> عدد الفئة المستهدفة</th>
+
+                            </tr>
+                          </thead>
+                          <tbody>
+                         {% for item in data %}
+                             <tr>
+                              <th scope="row" class="text-center">{{ item.pk }}</th>
+                              <td class="text-center">  <p> {{ item.name }} </p></td>
+                              <td class="text-center">  <p> {{ item.filed }} </p></td>
+                              <td class="text-center">  <p> {{ item.target }} </p></td>
+                              <td class="text-center">  <p> {{ item.number_target }} </p></td>
+                            </tr>
+                        
+                          {% endfor %}
+                        
+                          </tbody>
+                          </table>
+
+                      </div>

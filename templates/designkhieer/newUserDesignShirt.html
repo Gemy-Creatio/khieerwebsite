@@ -306,6 +306,10 @@ Cotton T-shirt made of 100% natural cotton, comes in multiple sizes and colors w
                       $("#size_sel").append("Size" + " : " + size);
                   {% endif %}
             });
+            $("#incWidth").on('click' , event => {
+               event.stopPropagation();
+               $("#myImg").width ++;
+            });
             $('#number_of_clothes').on('click', (event) => {
                 price = event.target.value * 30;
                 $('#price').empty();

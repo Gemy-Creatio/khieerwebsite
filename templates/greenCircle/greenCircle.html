@@ -59,11 +59,7 @@
       <div class="row pt-3">
      {% for cat in cats %}
         <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-         {% if request.user.first_name %}
-         <a href="{% url 'green-courses' cat.pk %}" style="cursor: pointer; text-decoration: none">
-             {% else %}
-         <a href="{% url 'login' %}" style="cursor: pointer; text-decoration: none">
-        {% endif %}
+         <a href="{% url 'all-topics' cat.pk %}" style="cursor: pointer; text-decoration: none">
              {% include 'partials/_greenCard.html' with cat=cat %}
           </a>
         </div>
@@ -74,8 +70,11 @@
          <div class="d-flex justify-content-center text-center">
                  {% if LANGUAGE_CODE == 'ar' %}
              <a class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1" href="{% url 'create_document' %}"> تكوين دائرة</a>
+             <a class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1" href="{% url 'add-topic' %}">  إرفع قضيتك</a>
+
   {% else %}
                        <a class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1" href="{% url 'create_document' %}"> Create Circle</a>
+                       <a class="btn btn-sm text-white bg-maal  btn-round mb-0 me-1" href="{% url 'add-topic' %}">  Share Topic </a>
 
              {% endif %}
          </div>

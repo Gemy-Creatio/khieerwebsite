@@ -87,12 +87,23 @@ Pioneering the humanization of harmonious and sustainable philanthropy
                         <div class="col-xl-4 col-lg-5 col-md-7 mx-auto pt-3">
                         <div class="card z-index-0">
                             <div class="card-header text-center pt-4">
+                               
                                                                                             {% if LANGUAGE_CODE == 'ar' %}
-                                    <a href="{% url 'green-circle' %}" class="btn btn-sm btn-round text-white mb-0 me-1 bg-maal">الدائرة الخضراء</a>
+                                                                                            {% if request.user.first_name  %}
+                                                                                            <a href="{% url 'green-circle' %}" class="btn btn-sm btn-round text-white mb-0 me-1 bg-maal">الدائرة الخضراء</a>
+                                                                                            {% else %}
+                                                                                            <a href="{% url 'register-joiner' %}" class="btn btn-sm btn-round text-white mb-0 me-1 bg-maal">الدائرة الخضراء</a>
+
+                                                                                            {% endif %}
                          {% else %}
+                         {% if request.user.first_name  %}
                                                  <a href="{% url 'green-circle' %}" class="btn btn-sm btn-round text-white mb-0 me-1 bg-maal">Green Circle</a>
 
-                                {% endif %}
+                               {% else %}
+                               <a href="{% url 'register-joiner' %}" class="btn btn-sm btn-round text-white mb-0 me-1 bg-maal">Green Circle</a>
+
+                               {% endif %}
+                     {% endif %}
                             </div>
                             <div class="row px-xl-7 px-sm-7 px-7">
                                 <div class="col-12 m-auto ">

@@ -89,30 +89,32 @@ class GreenCourseForm(forms.ModelForm):
         }
 
 
+
+class FinishCircleForm(forms.ModelForm):
+    class Meta:
+        model = models.FinishCircle
+        fields = '__all__'
+        labels = {
+            'is_loved':'هل تريد تصبح هذه القضية شغفك ؟',
+            'help_accepted': 'هل تمت المساعدة؟ ',
+            'notes':'اكتب مرئياتك وملاحظاتك',
+            'is_entertainment':'هل استمتعت في هذه الرحلة',
+        }
+
 class DocumentDownloadForm(forms.ModelForm):
     class Meta:
         model = models.DocumentDownload
-        fields = ['name', 'email', 'phone', 'destination', 'destination_name', 'choice']
-        widgets = {
-            'email': forms.EmailInput(
-                attrs={'id': 'email', 'class': 'form-control', 'placeholder': 'البريد الألكترونى '}),
-            'phone': forms.TextInput(
-                attrs={'id': 'phone', 'class': 'form-control', 'placeholder': 'الجوال '}),
-            'name': forms.TextInput(
-                attrs={'id': 'name', 'class': 'form-control', 'placeholder': 'الأسم '}),
-            'destination': forms.Select(choices=models.DocumentDownload.DESTINATION_CHOICES),
-            'destination_name': forms.TextInput(
-                attrs={'id': 'first_name', 'class': 'form-control', 'placeholder': 'إسم الجهة '}),
-            'choice': forms.Select(choices=models.DocumentDownload.DOWNLOAD_CHOICES),
-
-        }
+        fields = '__all__'
+        exclude = ('user' , )
         labels = {
+            'firstName': ' الأسم الأول',
+            'lastName': ' الأسم الثانى',
             'phone': 'الجوال',
-            'name': 'الأسم',
             'email': 'البريد الألكترونى',
             'destination': 'الجهة',
             'destination_name': "إسم الجهة",
             'choice': 'إختر الدليل',
+            'category':'إختر المسار'
         }
 
 
@@ -130,6 +132,18 @@ class GreenSurveyForm(forms.ModelForm):
             'choices': 'نوع القضية'
         }
 
+
+
+class TopicSurveyForm(forms.ModelForm):
+    class Meta:
+        model = models.TopicSurvery
+        fields = '__all__'
+        exclude = ['user', ]
+        labels = {
+            'help_way': ' كيف يمكننا مساعدة الحرفية مسعودة على إنتاج القطع بكميات كبيرة وفي فترات زمنية قصيرة؟',
+            'provide_help': 'هل تود أن تساند الحرفية مسعودة بتوفير الخيوط لها والأدوات لتنتج؟ ',
+            'women_support':'هل تود دعم مجتمع السيدات الحرفيات بحرفة الخيوط في القرية؟',
+       }
 
 class VolunteerTripForm(forms.ModelForm):
     class Meta:

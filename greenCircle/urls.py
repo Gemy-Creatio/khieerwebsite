@@ -15,5 +15,11 @@ urlpatterns = [
     path('green/survey/create', views.CreateGreenSurvey.as_view(), name='create_survey'),
     path('trip/add', views.CreateVolunteerTripRequest.as_view(), name='trip-add'),
     path('trip/list', views.trip_request_list, name='trip-list'),
+    path('all/topics/<int:pk>', views.GreenTopicView.as_view(), name='all-topics'),
+    path('topics/<int:pk>', views.GreenTopicDetailView.as_view(), name='topic-details'),
+    path('add/topic/<int:pk>', views.AddUserToTopic, name='add-topic'),
+    path('all/msgs', views.AllmessagesForJoiner.as_view(), name='all-msgs'),
+    path('create/topic/survery', views.CreateTopicSurvery.as_view(), name='topic-survey'),
+    path('create/finish-circle/survery', views.CreateFinsihCircleView.as_view(), name='finish-circle'),
 
 ]

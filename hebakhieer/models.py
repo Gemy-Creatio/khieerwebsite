@@ -12,7 +12,7 @@ class Volunteer(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     address = models.CharField(_('Address'), max_length=255, null=True, blank=True)
     job = models.CharField(max_length=255, null=True, blank=True, verbose_name='المهنه')
-    desc = models.CharField(max_length=255, null=True, blank=True, verbose_name='التخصص')
+    desc = models.TextField(max_length=255, null=True, blank=True)
     birthdate = models.DateField(null=True, blank=True)
     GENDER_CHOICES = (
         ('ذكر', 'ذكر'),
@@ -23,13 +23,40 @@ class Volunteer(models.Model):
         ('متفرغ', 'متفرغ'),
         ('غير متفرغ', 'غير متفرغ'),
     )
+    STUDY_CHOICES = (
+        ('ثانوى' , 'ثانوى'),
+        ('متوسط' , 'متوسط'),
+        ('جامعى' , 'جامعى'),
+        ('دراسات عليا' , 'دراسات عليا'),
+    )
+    FILED_CHOICES = (
+        ('تصميم الجرافيك','تصميم الجرافيك'),
+        ('محاسبة مالية','محاسبة مالية'),
+        ('تصميم الموشن الجرافيك','تصميم الموشن الجرافيك'),
+        ('كتابة المحتوى','كتابة المحتوى'),
+        ('التصوير الفوتوغرافى','التصوير الفوتوغرافى'),
+        ('التقنية','التقنية'),
+        ('الأعمال المكتبية','الأعمال المكتبية'),
+       ('التسويق الألكترونى','التسويق الألكترونى'),
+       ('تصوير الفيديو ','تصوير الفيديو '),
+       ('التدريب','التدريب'),
+       ('التنظيم والتنسيق','التنظيم والتنسيق'),
+       ('المونتاج تحرير الأفلام','المونتاج تحرير الأفلام'),
+       ('التعليق الصوتى','التعليق الصوتى'),
+       ('اخرى','اخرى'),
+    )
+    PLACE_CHOICES = (
+        ('ميدانى','ميدانى'),
+        ('عن بعد','عن بعد'),
+        ('الأثنين معا','الأثنين معا'),
+    )
     time = models.CharField(max_length=255, null=True, choices=TIME_CHOICES)
-    place = models.CharField(max_length=255, null=True)
-    study = models.CharField(max_length=255, null=True)
+    place = models.CharField(max_length=255, null=True ,choices=PLACE_CHOICES)
+    study = models.CharField(max_length=255, null=True , choices=STUDY_CHOICES)
     skills = models.TextField(null=True)
     goals = models.TextField(null=True)
-    filed = models.CharField(max_length=255, null=True)
-    cv = models.FileField(null=True)
+    filed = models.CharField(max_length=255, null=True ,choices=FILED_CHOICES)
+    cv = models.FileField(upload_to='joiners_cv/',null=True,blank=True)
     date_received = models.DateField(auto_now_add=True)
 
     def __str__(self):

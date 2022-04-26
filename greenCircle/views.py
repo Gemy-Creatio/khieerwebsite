@@ -4,11 +4,11 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-from django.views.generic import CreateView
-
+from django.views.generic import CreateView , DetailView
 from greenCircle.models import *
 from django.core.paginator import Paginator
 from . import forms
+from django.core.mail import send_mail
 
 
 def greenCircle(request):
@@ -21,6 +21,30 @@ def greenCircleCourses(request, pk):
     courses = Course.objects.filter(category_id=pk)
     context = {"courses": courses}
     return render(request, 'greenCircle/greencourses.html', context=context)
+
+
+class AllmessagesForJoiner(View):
+    def get(self , request):
+        msgs = Messgaes.objects.order_by('-timeStamp').filter(sent_to = request.user)
+        paginator = Paginator(msgs, 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {"msgs": page_obj}
+        return render(request , 'greenCircle/all-msgs.html' , context=context)
+
+
+def AddUserToTopic(request , pk):
+    if request.user.is_authenticated:
+        topic = GreenTopic.objects.get(pk=pk)
+        topic.joiners.add(request.user)
+        topic.save()
+        return redirect('topic-survey')
+    else :
+        return redirect('register-joiner')
+    
+class GreenTopicDetailView(DetailView):
+    model = GreenTopic
+    template_name = 'greenCircle/topic-details.html'
 
 
 def green_trainer_details(request, pk):
@@ -42,7 +66,8 @@ class CourseRequestView(View):
             name = form.cleaned_data.get("name")
             phone = form.cleaned_data.get("phone")
             email = form.cleaned_data.get("email")
-            obj = CourseRequest.objects.create(name=name, phone=phone, course_id=pk, email=email)
+            obj = CourseRequest.objects.create(
+                name=name, phone=phone, course_id=pk, email=email)
             obj.save()
             return redirect('green-circle')
         else:
@@ -114,22 +139,67 @@ class CreateVolunteerTripRequest(CreateView):
     template_name = 'greenCircle/trips/trip-request.html'
 
     def get_success_url(self):
-        messages.success(self.request, "شكرًا لأهتمامك بالأنضمام لرحالاتنا التطوعية سنتواصل معك لتعلم التفاصيل")
+        messages.success(
+            self.request, "شكرًا لأهتمامك بالأنضمام لرحالاتنا التطوعية سنتواصل معك لتعلم التفاصيل")
         return reverse('trip-add')
+
+
+class GreenTopicView(View):
+    def get(self , request , pk):
+        objects = GreenTopic.objects.filter(category_id = pk)
+        paginator = Paginator(objects, 6)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {"topics": page_obj}
+        return render(request , 'greenCircle/green_topic.html' , context )
+
+
+class CreateTopicSurvery(CreateView):
+    model = TopicSurvery
+    form_class = forms.TopicSurveyForm
+    template_name = 'greenCircle/topic_survery.html'
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        messages.success(self.request,"""
+        شاركنا عبر بريد الدائرة الخضراء ببعض توصياتك وأفكارك.
+info@khieer.com
+          و ايضا يمكنك الانتقال لمتجر  دال لإمكانية شرائك لمنتج أو تصميم حملتك والتي يذهب ريعه لدعم القضايا الانسانية والتنموية . 
+        """)
+        return reverse('topic-survey')
+
+
+class CreateFinsihCircleView(CreateView):
+    model = FinishCircle
+    form_class = forms.FinishCircleForm
+    template_name = 'greenCircle/documents_download/create_finishCircle.html'
+    def get_success_url(self):
+        if self.object.is_loved == True:
+            messages.success(self.request, """يمكنك الانتقال لمتجر دال لإمكانية شرائك لمنتج أو تصميم حملتك والتي يذهب ريعه لدعم القضايا الانسانية والتنموية .<a class="btn btn-primary bg-maal text-white" href="https://ksakhair.com/"> متجر دال </a>""")
+            return reverse('finish-circle')
+        else:
+            messages.success(self.request, "شكرًا سيصلكم رسالة بالدليل على البريد الالكتروني خلال ٢٤ ساعة")
+            return reverse('finish-circle')
+
 
 
 class CreateDocumentDownload(CreateView):
     model = DocumentDownload
     form_class = forms.DocumentDownloadForm
     template_name = 'greenCircle/documents_download/create_document.html'
-
+    
+    def form_valid(self, form):
+        if self.request.user.is_anonymous != True:
+            form.instance.user = self.request.user
+        return super().form_valid(form)
+    
     def get_success_url(self):
-        if self.object.choice == '2_GREEN':
-            self.request.session['doc_id'] = self.object.pk
-            return reverse('create_survey')
-        else:
-            messages.success(self.request, "شكرًا سيصلكم رسالة بالدليل على البريد الالكتروني خلال ٢٤ ساعة")
-            return reverse('create_document')
+        messages.success(self.request, "شكرًا سيصلكم رسالة بالدليل على البريد الالكتروني خلال ٢٤ ساعة")
+        return reverse('create_document')
+           
 
 
 def Document_List(request):

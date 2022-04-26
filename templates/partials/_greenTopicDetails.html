@@ -1,0 +1,18 @@
+{% load static %}
+<div class="card h-auto" style="border-top-color: #2D6D93; border-top: 6px solid">
+                    <div class="card-body px-1 pb-0">
+                      <p class="green-khieer text-dark mb-2 text-sm">{{ content.name }}</p>
+                      <p class="mb-4 text-sm">
+                        {{ content.description }}
+                      </p>
+                      <div class="d-flex align-items-center justify-content-between">
+                        <a href="{% url 'add-topic' content.pk %}" class="btn btn-sm btn-round align-self-center text-white mb-0 me-1 bg-maal">مساندة</a>  
+                        <div class="avatar-group mt-2">
+                            <span clas="text-green">عدد المشاركين</span>
+                            <p class="mb-4 text-sm">
+                                {{ content.joiners.all.count }}
+                              </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>

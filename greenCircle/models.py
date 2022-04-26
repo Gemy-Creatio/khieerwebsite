@@ -1,7 +1,9 @@
 from datetime import date
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from accounts.models import(
+    User
+)
 
 class Trainer(models.Model):
     image = models.ImageField(verbose_name='Image', null=True)
@@ -68,9 +70,19 @@ class CourseRequest(models.Model):
     def __str__(self):
         return self.name
 
+class TopicSurvery(models.Model):
+    QUESTION_ANSWERS = (
+        (True, 'نعم'),
+       (False, 'لا'),
+    )
+    help_way = models.TextField(null=True , blank=True)
+    provide_help = models.BooleanField(null=True , blank=True ,choices=QUESTION_ANSWERS )
+    women_support = models.BooleanField(null=True , blank=True ,choices=QUESTION_ANSWERS )
+    user = models.ForeignKey(User , on_delete=models.CASCADE , null=True , blank=True)
+    def __str__(self) -> str:
+        return self.user.first_name
 
 class DocumentDownload(models.Model):
-    TATOF = '1_TATOF'
     GREEN = '2_GREEN'
     DESTINATION_CHOICES = (
         (1, 'افراد'),
@@ -79,19 +91,26 @@ class DocumentDownload(models.Model):
         (4, 'قطاع غير ربحى'),
     )
     DOWNLOAD_CHOICES = (
-        (TATOF, 'دليل التعاطف'),
         (GREEN, 'تكوين دائرة'),
 
     )
+    CATEGORY_CHOICES = (
+        ('مسار الوعى' , 'مسار الوعى'),
+        ('مسار الأرشاد' , 'مسار الأرشاد'),
+        ('مسار الولاء ' , 'مسار الولاء '),
+        (' لا ارغب  ' , ' لا ارغب '),
+    )
     choice = models.CharField(max_length=255, null=True, blank=True, choices=DOWNLOAD_CHOICES)
-    name = models.CharField(null=True, blank=True, max_length=255)
+    firstName = models.CharField(null=True, blank=True, max_length=255)
+    lastName = models.CharField(null=True, blank=True, max_length=255)
     email = models.EmailField(null=True, blank=True)
     phone = models.CharField(null=True, blank=True, max_length=255)
     destination = models.SmallIntegerField(null=True, choices=DESTINATION_CHOICES)
     destination_name = models.CharField(null=True, blank=True, max_length=255)
-
+    user = models.ForeignKey(User , null=True , blank=True , on_delete=models.CASCADE)
+    category = models.CharField(null=True, blank=True, max_length=255 , choices=CATEGORY_CHOICES)
     def __str__(self):
-        return self.name
+        return self.firstName
 
 
 class GreenSurvey(models.Model):
@@ -102,19 +121,35 @@ class GreenSurvey(models.Model):
         (False, 'لا'),
     )
     is_accepted = models.BooleanField(null=True, blank=True, choices=ACCEPTED_CHOICES)
-    SOCIATY_SUPPORT = 'دعم المجتمع النساء '
-    BLIND_SUPPORT = 'تعليم المكفوفين'
+    SOCIATY_SUPPORT = 'الاطفال المحتضنين '
     TEXT_SUPPORT = 'دعم حرفة الخيوط '
     GREEN_CHOICES = (
         (SOCIATY_SUPPORT, SOCIATY_SUPPORT),
-        (BLIND_SUPPORT, BLIND_SUPPORT),
         (TEXT_SUPPORT, TEXT_SUPPORT),
 
     )
+
     choices = models.CharField(max_length=255, choices=GREEN_CHOICES)
 
     def __str__(self):
         return self.choices
+
+
+
+class FinishCircle(models.Model):
+    ACCEPTED_CHOICES = (
+        (True, 'نعم'),
+        (False, 'لا'),
+    )
+    help_accepted = models.BooleanField(null=True, blank=True, choices=ACCEPTED_CHOICES)
+    notes = models.TextField(max_length=255,null=True , blank=True)
+    is_entertainment =  models.BooleanField(null=True, blank=True, choices=ACCEPTED_CHOICES)
+    is_loved =  models.BooleanField(null=True, blank=True, choices=ACCEPTED_CHOICES)
+    def __str__(self) -> str:
+        return self.notes
+    
+
+
 
 
 class VolunteerTrip(models.Model):
@@ -139,3 +174,26 @@ class VolunteerTrip(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+
+class GreenTopic(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True, verbose_name='التصنيف')
+    name = models.CharField(max_length=255, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    joiners = models.ManyToManyField(User , null=True , blank=True )
+    
+    def __str__(self):
+        return self.name
+    
+
+
+
+class Messgaes (models.Model):
+    sent_to = models.ForeignKey(User , on_delete=models.CASCADE , null=True , blank=True)
+    content = models.TextField(null=True , blank=True)
+    file = models.FileField(upload_to='messages/' , null=True , blank=True)
+    link = models.URLField(null=True , blank=True)
+    timeStamp = models.DateField(auto_now_add=True , blank=True ,null=True)
+    def __str__(self):
+        return self.content

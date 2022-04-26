@@ -1,0 +1,42 @@
+{% load static %}
+<div class="table-responsive">
+                        <table class="table align-items-center justify-content-center mb-0">
+                          <thead class="bg-maal text-white">
+                            <tr>
+                              <th class="text-black" scope="col">#</th>
+                              <th class="text-black"  scope="col">الرسالة </th>
+                              <th class="text-black" scope="col">  وقت الأرسال  </th>
+                              <th class="text-black" scope="col">  الرابط  </th>
+                              <th class="text-black" scope="col"> المرفق  </th>
+
+                            </tr>
+                          </thead>
+                          <tbody>
+                         {% for item in data %}
+                             <tr>
+                              <th scope="row" class="text-center text-black">{{ item.pk }}</th>
+                              <td><p class="text-center text-black">{{ item.content }} </p></td>
+                            
+                              <td><p class="text-center text-black">{{ item.timeStamp }} </p></td>
+                               {% if item.link == None %}
+                               <td><p class="text-center text-black">لا يوجد رابط لهذة الرسالة </p></td>
+
+                               {% else %}
+                               <td><a class="btn btn-primary bg-maal text-white" href="{{ item.link }}">اضغط هنا </a></td>
+
+                               {% endif %}
+                               {% if item.link == None %}
+                               <td><p class="text-center text-black">لا يوجد مرفق لهذة الرسالة </p></td>
+                               {% else %}
+                               <td><a class="btn btn-primary bg-maal text-white" href="{{ item.file.url  }}">المرفق  </a></td>
+
+                               {% endif %}
+
+                            </tr>
+                        
+                          {% endfor %}
+                        
+                          </tbody>
+                          </table>
+
+                      </div>

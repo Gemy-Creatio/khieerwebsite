@@ -36,11 +36,20 @@
                                         تسجيل خروج
                                     </a>
                                 </li>
-                                                                                                                          <li class="nav-item">
-                                    <a class="nav-link green-khieer me-2" href="{% url 'dashboard-page' %}">
-                                        لوحة التحكم
+                                {% if request.user.is_joiner == True %}
+                                <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'all-msgs' %}">
+                                        الأشعارات 
                                     </a>
-                                </li>
+                                </li>    
+
+                                    {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link green-khieer me-2" href="{% url 'dashboard-page' %}">
+                                            لوحة التحكم
+                                        </a>
+                                    </li> 
+                                {% endif %}
                                          {% else %}
                                                             <li class="nav-item">
                                     <a class="nav-link green-khieer me-2" href="{% url 'reg-vol' %}">
@@ -94,11 +103,19 @@
                                        Logout
                                     </a>
                                 </li>
-                                                                                                                          <li class="nav-item">
+                                {% if request.user.is_joiner == True %}
+                                <li class="nav-item">
+                                    <a class="nav-link green-khieer me-2" href="{% url 'all-msgs' %}">
+                                        Notifications
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="nav-item">
                                     <a class="nav-link green-khieer me-2" href="{% url 'dashboard-page' %}">
                                         Dashboard
                                     </a>
                                 </li>
+                                {% endif %}
                                          {% else %}
                                                             <li class="nav-item">
                                     <a class="nav-link green-khieer me-2" href="{% url 'reg-vol' %}">

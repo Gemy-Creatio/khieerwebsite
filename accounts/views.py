@@ -26,6 +26,23 @@ def register_trainer(request):
     return render(request, 'accounts/register-trainer.html')
 
 
+def register_joiner(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        user = User.objects.create_joiner(email=email, first_name=first_name, last_name=last_name,
+                                                     address=address, password=password, phone=phone)
+        if user is not None:
+            login(request, user)
+            return redirect('create_document')
+    context = {}
+    return render(request, 'accounts/register-joiner.html', context)
+
+
 def loginPage(request):
     if request.method == 'POST' and request.is_ajax:
         email = request.POST.get('email')
@@ -33,7 +50,10 @@ def loginPage(request):
         user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('dashboard-page')
+            if user.is_joiner:
+                return redirect('home-page')
+            else:
+                return redirect('dashboard-page')
         else:
             return JsonResponse({"status": 'Username OR password is incorrect'})
     context = {}

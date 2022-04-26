@@ -34,3 +34,14 @@ class Blogs(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class TopicGreen(models.Model):
+    name = models.CharField(max_length=200, blank=True, null=True)
+    filed = models.CharField(max_length=200, blank=True, null=True)
+    target = models.CharField(max_length=200, blank=True, null=True)
+    number_target = models.IntegerField(null=True , blank=True)
+    description = models.TextField(null=True , blank=True)
+    effect = models.TextField(null=True , blank=True)
+    def __str__(self):
+        return self.name
