@@ -52,9 +52,14 @@
 
                                         </td>
                                   <td>
-                                       <a target="_blank" href="/static{{item.cv.url}}">
-                                           <i class="far fa-id-card green-khieer">السيرة الذاتية</i>
-                                       </a>
+                                      {% if item.cv_url == None %}
+                                      <p class="text-xs font-weight-bold mb-0">لا يوجد سيرة ذاتية </p>
+
+                                      {% else %}
+                                      <a target="_blank" href="/static{{item.cv.url}}">
+                                        <i class="far fa-id-card green-khieer">السيرة الذاتية</i>
+                                    </a>
+                                      {% endif %}
                                         </td>
                                         <td>
                                           <a href="{% url 'detail-vol' item.pk %}">

@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.templatetags.static import static
+import os
+
 
 
 class Volunteer(models.Model):
@@ -43,6 +46,7 @@ class Volunteer(models.Model):
        ('التنظيم والتنسيق','التنظيم والتنسيق'),
        ('المونتاج تحرير الأفلام','المونتاج تحرير الأفلام'),
        ('التعليق الصوتى','التعليق الصوتى'),
+        ('تسعير منتجات ','تسعير منتجات '),
        ('اخرى','اخرى'),
     )
     PLACE_CHOICES = (
@@ -57,6 +61,16 @@ class Volunteer(models.Model):
     goals = models.TextField(null=True)
     filed = models.CharField(max_length=255, null=True ,choices=FILED_CHOICES)
     cv = models.FileField(upload_to='joiners_cv/',null=True,blank=True)
+    @property
+    def cv_url(self):
+        if self.cv and hasattr(self.cv, 'url'):
+            if os.path.isfile(self.cv.url):
+                return self.cv.url
+            else:
+                return None
+        else:
+            return None
+
     date_received = models.DateField(auto_now_add=True)
 
     def __str__(self):
