@@ -41,8 +41,8 @@ def heba_khieer(request):
             "cart_id": "50",
             "cart_currency": "sar",
             "cart_amount": int(ammount),
-            "callback": "https://khieer.com/about",
-            "return": "https://khieer.com/"
+            "callback": f"{reverse('home-page')}",
+            "return":  f"{reverse('home-page')}"
         }
         headers = {
             "authorization": PAYTAB_API_SERVERKEY,

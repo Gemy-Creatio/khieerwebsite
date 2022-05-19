@@ -18,11 +18,14 @@ def register_trainer(request):
         address = request.POST.get('address')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        train = Trainer(first_name=first_name, last_name=last_name, email=email, phone=phone, address=address,
+        try:
+            train = Trainer(first_name=first_name, last_name=last_name, email=email, phone=phone, address=address,
                         image=image)
-        train.save()
-        if train.pk:
-            return redirect('home-page')
+            train.save()
+            if train.pk:
+               return redirect('home-page')
+        except Exception:
+            return render(request , 'main/error404.html')
     return render(request, 'accounts/register-trainer.html')
 
 
@@ -34,13 +37,14 @@ def register_joiner(request):
         address = request.POST.get('address')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        user = User.objects.create_joiner(email=email, first_name=first_name, last_name=last_name,
+        try:   
+           user = User.objects.create_joiner(email=email, first_name=first_name, last_name=last_name,
                                                      address=address, password=password, phone=phone)
-        if user is not None:
-            login(request, user)
-            return redirect('create_document')
-    context = {}
-    return render(request, 'accounts/register-joiner.html', context)
+           login(request, user)
+           return redirect('create_document')
+        except Exception:
+            return render(request , 'main/error404.html')
+    return render(request, 'accounts/register-joiner.html')
 
 
 def loginPage(request):
@@ -55,7 +59,7 @@ def loginPage(request):
             else:
                 return redirect('dashboard-page')
         else:
-            return JsonResponse({"status": 'Username OR password is incorrect'})
+            return render(request , 'main/error404.html')
     context = {}
     return render(request, 'accounts/login.html', context)
 
@@ -73,11 +77,13 @@ def register_secondary_empolyee(request):
         address = request.POST.get('address')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        user = User.objects.create_secondary_empuser(email=email, first_name=first_name, last_name=last_name,
+        try:
+            user = User.objects.create_secondary_empuser(email=email, first_name=first_name, last_name=last_name,
                                                      address=address, password=password, phone=phone)
-        if user is not None:
             login(request, user)
             return redirect('dash-emps')
+        except Exception:
+            return render(request , 'main/error404.html')
     context = {}
     return render(request, 'accounts/register-employee.html', context)
 
@@ -90,11 +96,13 @@ def register_helper_employee(request):
         address = request.POST.get('address')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        user = User.objects.create_helper_empuser(email=email, first_name=first_name, last_name=last_name,
+        try:
+           user = User.objects.create_helper_empuser(email=email, first_name=first_name, last_name=last_name,
                                                   address=address, password=password, phone=phone)
-        if user is not None:
-            login(request, user)
-            return redirect('dash-emps')
+           login(request, user)
+           return redirect('dash-emps')
+        except Exception :
+            return render(request , 'main/error404.html')
     context = {}
     return render(request, 'accounts/register-helper-employee.html', context)
 

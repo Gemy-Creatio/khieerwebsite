@@ -43,5 +43,6 @@ class TopicGreen(models.Model):
     number_target = models.IntegerField(null=True , blank=True)
     description = models.TextField(null=True , blank=True)
     effect = models.TextField(null=True , blank=True)
+    is_paid = models.BooleanField(null=True , blank=True , default=False)
     def __str__(self):
         return self.name

@@ -31,11 +31,23 @@
               {% else %}
                   {% csrf_token %}
                    {{ form|crispy }}
+                
+             <div class="form-check form-check-info text-left">
+              <input class="form-check-input" name="is_paid"  type="checkbox" value="True" id="flexCheckDefault" checked="">
+              <label class="form-check-label" for="is_paid">
+                <div class="mb-3">
+                  <p class="text-sm blue-khieer">
+                    خدمة تحليل التحدي من خبير خدمة غير ربحية تغطي التكاليف التشغيلية
+                    لإتمام الخدمة سيتم احتساب مبلغ قدرة 250 ريال.
+                                    </p>
+           </div>
+              </label>
+            </div>
                 <div class="text-center">
                     {% if LANGUAGE_CODE == 'ar' %}
-                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">ارفع قضيتك </button>
+                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">تحليل التحدى  </button>
                   {% else %}
-                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2">ٍShare Topic  </button>
+                  <button type="submit" class="btn bg-maal text-white w-100 my-4 mb-2"> Challenge analysis  </button>
 
                   {% endif %}
                 </div>

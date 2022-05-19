@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.views import View
 from accounts.models import User
-from khieerwebsite.utils import render_to_pdf
 from main.models import Contact, TechnicalSupport , TopicGreen
 from greenCircle.models import Course, Trainer
 from hebakhieer.models import HebaKheer, Volunteer
@@ -16,7 +15,9 @@ from django.views.generic import CreateView , View
 from django.contrib import messages
 from django.urls import reverse
 from django.core.paginator import Paginator
-
+import json
+import requests
+from khieerwebsite.settings import PROFILE_KEY, PAYTAB_API_SERVERKEY, API_ENDPOINT
 
 class AllTopicDash(View):
     def get(self , request):
@@ -27,10 +28,39 @@ class AllTopicDash(View):
         context = {"topics": page_obj}
         return render(request , 'main/alltopics.html' , context=context)
 
+
+
+
 class CreateTopic(CreateView):
     model = TopicGreen
     form_class = TopicForm
     template_name = 'main/add-topic.html'
+    def form_valid(self, form):
+        if self.request.POST.get('is_paid') == 'True':
+            topic = form.save(commit=True)
+            topic.save()
+            payload = {
+            "profile_id": PROFILE_KEY,
+            "tran_type": "sale",
+            "tran_class": "ecom",
+            "cart_description": "دفع رسوم رفع القضية",
+            "cart_id": "50",
+            "cart_currency": "sar",
+            "cart_amount": int(250),
+            "callback": f"{reverse('home-page')}",
+            "return":  f"{reverse('home-page')}"
+            }
+            headers = {
+            "authorization": PAYTAB_API_SERVERKEY,
+            "Content-Type": 'application/json; charset=utf-8'
+           }
+            r = requests.post(API_ENDPOINT, data=json.dumps(payload), headers=headers)
+            data = json.dumps(r.json())
+            content = json.loads(data)
+            return redirect(content['redirect_url'])
+        else:
+             messages.info(self.request, "يجب دفع الرسوم لتتمكن من رفع قضيتك        ")
+             return reverse('add-topic')
 
     def get_success_url(self):
         messages.success(self.request, "شكرا لرفع قضيتك        ")
